@@ -109,6 +109,7 @@ b {
     letter-spacing: 0.5px;
     font-size: 18px;
     color: white;
+    margin-top: 5vh;
 }
 
 .back_link_login{
@@ -131,6 +132,7 @@ b {
 
 .go_back_login {
 font-size: 20px;
+margin-top: 5vh;
 }
 .logo_login{
 height: 55vh;
