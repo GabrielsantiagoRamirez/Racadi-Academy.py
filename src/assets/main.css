@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "utf-8";
 html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, form, fieldset, blockquote {
  padding: 0;
@@ -10,3 +11,5 @@ q:before, q:after { content:''; }
 html{
     scroll-behavior: unset;
 }
+=======
+>>>>>>> sebas
