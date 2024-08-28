@@ -1,11 +1,8 @@
 <script setup>
-import HeaderRacadi from './components/header-Racadi.vue';
+import Pagos from './components/Pagos.vue';
 </script>
 
 <template>
-  <div>
-    <HeaderRacadi/>
-  </div>
-
+<Pagos/>
 </template>
 
