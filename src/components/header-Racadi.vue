@@ -33,9 +33,13 @@
 
 
 <style>
+@media (min-width: 1200px) and (max-width: 1499px){
+
+
+}
 .container_header{
   background-color: #05080B; /* updated background color */
-  width: 1480px;
+  width: 100%;
   height: 220px;
   display: flex;
   justify-content: space-between;
@@ -50,7 +54,7 @@
 .redes {
   width: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content:end;
 }
 #redes{
     width: 150px;
@@ -61,29 +65,30 @@
 .boton button{
   margin-right: 20px;
   margin: 20px;
-  background-color: #3AACD9; /* warm yellow-orange color */
+  background-color: #3AACD9; 
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  color: #DCD7DC; /* deep red color */
+  color: #DCD7DC; 
   cursor: pointer;
 }
 
 .boton button:hover {
-  background-color: #2090C2; /* bright red color */
-  color: #DCD7DC; /* white text on hover */
+  background-color: #2090C2; 
+  color: #DCD7DC; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .texto {
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
-  color: #3AACD9; /* updated text color */
+  color: #3AACD9; 
   width: 800px;
   text-align: center;
-  font-size: 40px; /* updated font size */
-  line-height: 1.2; /* updated line height */
+  font-size: 40px; 
+  line-height: 1.2; 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 </style>
