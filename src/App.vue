@@ -7,7 +7,7 @@ import Footer from './components/footer.vue';
 
 </script>
 <template>
-    <Pagos/>
+    <Login/>
 </template>
 
  
