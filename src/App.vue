@@ -1,9 +1,6 @@
 <script setup>
+import Pagos from './components/Pagos.vue';
 </script>
-
 <template>
-<HeaderRacadi/>
-
-<template>
+<Pagos/>
 </template>
-
