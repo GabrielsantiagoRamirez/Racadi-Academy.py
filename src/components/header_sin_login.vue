@@ -2,7 +2,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
-        <header class="container_header">
+        <header class="container_header_sin">
         <div>
             <img src="../components/img/logoRacadi.png" alt="" class="logo">
         
@@ -18,9 +18,6 @@
             <img src="../components/img/icons8-twitterx-50.png" alt="" class="redes">
         </div>
 
-        <div class="boton">
-            <button>Login</button>
-        </div>
 
     </header>
     
@@ -33,7 +30,7 @@
 
 
 <style>
-.container_header{
+.container_header_sin{
   background-color: #05080B; /* updated background color */
   width: 1480px;
   height: 220px;
@@ -41,7 +38,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
   width: 200px;
   display: flex;
@@ -52,29 +48,18 @@
   display: flex;
   justify-content: space-between;
 }
+.container{
+    background-color: #EB8242;
+    width: 1490px;
+    height: 220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 #redes{
     width: 150px;
     display: flex;
     justify-content: end;
-}
-
-.boton button{
-  margin-right: 20px;
-  margin: 20px;
-  background-color: #3AACD9; /* warm yellow-orange color */
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #DCD7DC; /* deep red color */
-  cursor: pointer;
-}
-
-.boton button:hover {
-  background-color: #2090C2; /* bright red color */
-  color: #DCD7DC; /* white text on hover */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .texto {
   font-family: "Anek Devanagari", sans-serif;
@@ -84,6 +69,6 @@
   text-align: center;
   font-size: 40px; /* updated font size */
   line-height: 1.2; /* updated line height */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 </style>
