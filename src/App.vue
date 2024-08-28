@@ -4,3 +4,5 @@ import Pagos from './components/Pagos.vue';
 <template>
 <Pagos/>
 </template>
+
+
