@@ -3,29 +3,24 @@
        
         
         <div class="footer-menu">
-            <div class="logo">LOGO</div>
-            <div>
-                <a href="#">WEEBLY THEMES</a>
-                <a href="#">PRE-SALE FAQS</a>
-                <a href="#">SUBMIT A TICKET</a>
+            <div class="logo_footer">LOGO</div>
+            <div class="cont_a_footer">
+                <a href="#">Incio</a>
+                <a href="#">Paquetes</a>
+                <a href="#">Incio secion</a>
             </div>
             <div>
-                <a href="#">SERVICES</a>
-                <a href="#">THEME TWEAK</a>
+                <a href="#">Contacto</a>
+                <a href="#">Servicios</a>
             </div>
             <div>
-                <a href="#">SHOWCASE</a>
-                <a href="#">WIDGETKIT</a>
-                <a href="#">SUPPORT</a>
+                <a href="#">Mision </a>
+                <a href="#">Vision</a>
+                <a href="#">Quines somos?</a>
             </div>
-            <div>
-                <a href="#">ABOUT US</a>
-                <a href="#">CONTACT US</a>
-                <a href="#">AFFILIATES</a>
-                <a href="#">RESOURCES</a>
-            </div>
+           
         </div>
-        <hr>
+        <div class="linea_footer"></div>
         <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -46,65 +41,62 @@
             text-align: center;
         }
 
-        .footer .logo {
+         .logo_footer {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
-        .footer .slogan {
-            font-size: 12px;
-            margin-bottom: 20px;
-            color: #aaaaaa;
-        }
+         
 
-        .footer .footer-menu {
+        .footer-menu {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            justify-content:space-around;
+            margin-top: 4%;
         }
 
-        .footer .footer-menu div {
-            margin: 10px 20px;
-        }
+       
 
-        .footer .footer-menu a {
+        .footer-menu a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 20px;
             display: block;
             margin-bottom: 5px;
+            display: flex;
+            justify-content: flex-start;
         }
 
-        .footer .footer-menu a:hover {
-            color: #aaaaaa;
-        }
+        
 
-        .footer .social-icons {
+        .social-icons {
             margin-bottom: 20px;
         }
 
-        .footer .social-icons a {
+        .social-icons a {
             color: white;
             text-decoration: none;
             font-size: 20px;
             margin: 0 10px;
         }
 
-        .footer .social-icons a:hover {
-            color: #aaaaaa;
-        }
+       
 
         .footer .copyright {
-            font-size: 12px;
+            font-size: 16px;
             color: #aaaaaa;
         }
 
-        hr {
+        .linea_footer {
             border: 0;
-            height: 1px;
-            background: #333;
-            margin: 20px 0;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 2px;
+            background: #d6d4d4;
+            margin-top: 4%;
+            
         }
 </style>
