@@ -13,12 +13,15 @@
             </h1>
         </div>
         <div id="redes"> 
-            <img src="../components/img/icons8-instagram-48.png" alt="" class="redes">
+            <img src="../components/img/icons8-instagram-96.png" alt="" class="redes">
             <img src="../components/img/icons8-facebook-30.png" alt="" class="redes">
-            <img src="../components/img/icons8-twitterx-50.png" alt="" class="redes">
+            <img src="../components/img/icons8-twitterx-100.png" alt="" class="redes">
         </div>
 
-
+        <div class="perfil_header">
+          <img src="../components/img/91724249-perfil-del-círculo-para-avatar_preview_rev_1.png" alt="" class="perfil_header_img">
+          <h1>Perfil</h1>
+        </div>
     </header>
     
 </template>
@@ -30,9 +33,29 @@
 
 
 <style>
+/* Estilos para el header */
+
+@media (min-width: 1200px) and (max-width: 1499px){
+
+
+}
+
+.perfil_header_img{
+  width: 100px;
+  
+}
+.perfil_header{
+  font-family: "Anek Devanagari", sans-serif;
+  font-optical-sizing: auto;
+  color: #3AACD9;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  margin-right: 5vh;
+}
 .container_header_sin{
-  background-color: #05080B; /* updated background color */
-  width: 1480px;
+  background-color: #05080B;
+  width: 100%;
   height: 220px;
   display: flex;
   justify-content: space-between;
