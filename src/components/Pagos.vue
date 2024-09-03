@@ -37,25 +37,26 @@ import header_sin_login from './header_sin_login.vue';
 
 <style>
 body{
-    background-color: #454f53; /* Color rojo intenso */
+    background-color: #454f53; 
 }
 .container_pagos{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
     width: 500px;
     height: 700px;
-    background-color: #081326; /* Color amarillo intenso */
+    background-color: #081326; 
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
     text-align: center;
     border-radius: 20px;
+    margin-bottom: 50px;
 }
 
 .sub_racadi{
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
     font-size: 50px;
-    color: #3aacd9; /* Color rojo intenso para el título */
+    color: #3aacd9; 
 }
 .logo_pagos{
     width: 330px;
