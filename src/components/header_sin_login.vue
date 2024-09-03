@@ -36,8 +36,6 @@
 /* Estilos para el header */
 
 @media (min-width: 1200px) and (max-width: 1499px){
-
-
 }
 
 .perfil_header_img{
@@ -87,11 +85,11 @@
 .texto {
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
-  color: #3AACD9; /* updated text color */
+  color: #3AACD9;
   width: 800px;
   text-align: center;
-  font-size: 40px; /* updated font size */
-  line-height: 1.2; /* updated line height */
+  font-size: 40px; 
+  line-height: 1.2; 
   text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 </style>
