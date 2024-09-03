@@ -1,8 +1,8 @@
 <script setup>
-import header_sin_login from './components/header_sin_login.vue';
+import pagina_pago_banco from './components/pagina_pago_banco.vue';
 </script>
 
 <template>
-<header_sin_login/>
+<pagina_pago_banco/>
 </template>
 
