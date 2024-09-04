@@ -42,7 +42,7 @@ body{
 .container_pagos{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
     width: 500px;
-    height: 700px;
+    height: 750px;
     background-color: #081326; 
     margin-left: auto;
     margin-right: auto;
