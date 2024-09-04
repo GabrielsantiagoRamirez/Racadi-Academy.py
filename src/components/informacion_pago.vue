@@ -83,7 +83,7 @@
             </tbody>
         </table>
     </div>
-    <button class="cancelar_pagos"> Confirmar para pago</button>
+    <button class="cancelar_pagos_info"> Confirmar para pago</button>
     <button class="cancelar_pagos_ing"> cancelar </button> 
 </body>
 </template>
@@ -142,7 +142,7 @@ body{
     text-align: center;
 }
 
-.cancelar_pagos {
+.cancelar_pagos_info {
 font-family: "Anek Devanagari", sans-serif;
 font-optical-sizing: auto;
 background-color: #081326;
