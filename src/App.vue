@@ -1,21 +1,18 @@
 <script setup>
-<<<<<<< HEAD
-import Footer from './components/footer.vue';
-</script>
-=======
->>>>>>> cf1113eba0032787012121f9beb88508fddd238e
 
+import Footer from './components/footer.vue';
 import Login from './components/Login.vue';
 import Pagos from './components/Pagos.vue';
-
-import Footer from './components/footer.vue';
 import HeaderRacadi from './components/header-Racadi.vue';
+import Main from './components/Main.vue';
 
 </script>
 <template>
     <!--<Pagos/>  -->
     <!--<Login/>-->
     <!--<HeaderRacadi/>-->
+    <!--<Footer/>-->
+    <Main/>
 </template>
 
  
