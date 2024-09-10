@@ -13,9 +13,9 @@
             </h1>
         </div>
         <div id="redes"> 
-            <img src="../components/img/icons8-instagram-48.png" alt="" class="redes">
+          <img src="../components/img/icons8-instagram-96.png" alt="" class="redes">
             <img src="../components/img/icons8-facebook-30.png" alt="" class="redes">
-            <img src="../components/img/icons8-twitterx-50.png" alt="" class="redes">
+            <img src="../components/img/icons8-twitterx-100.png" alt="" class="redes">
         </div>
 
         <div class="boton">
@@ -38,7 +38,7 @@
 
 }
 .container_header{
-  background-color: #05080B; /* updated background color */
+  background-color: #05080B; 
   width: 100%;
   height: 220px;
   display: flex;

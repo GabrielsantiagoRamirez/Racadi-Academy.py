@@ -9,18 +9,12 @@
         </div>
         <div class="texto">
             <h1>
-                RACADI ACADEMY
+                PORTAL DE PAGOS
             </h1>
         </div>
-        <div id="redes"> 
-            <img src="../components/img/icons8-instagram-96.png" alt="" class="redes">
-            <img src="../components/img/icons8-facebook-30.png" alt="" class="redes">
-            <img src="../components/img/icons8-twitterx-100.png" alt="" class="redes">
-        </div>
 
-        <div class="perfil_header">
-          <img src="../components/img/91724249-perfil-del-círculo-para-avatar_preview_rev_1.png" alt="" class="perfil_header_img">
-          <h1>Perfil</h1>
+        <div class="boton_pago">
+          <button>NECESITAS AYUDA?</button>
         </div>
     </header>
     
@@ -38,10 +32,6 @@
 @media (min-width: 1200px) and (max-width: 1499px){
 }
 
-.perfil_header_img{
-  width: 100px;
-  
-}
 .perfil_header{
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
@@ -64,16 +54,7 @@
   display: flex;
   align-items: center;
 }
-.redes {
-  width: 50px;
-  display: flex;
-  justify-content: space-between;
-}
-#redes{
-    width: 150px;
-    display: flex;
-    justify-content: end;
-}
+
 .texto {
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
@@ -84,4 +65,25 @@
   line-height: 1.2; 
   text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
+
+.boton_pago button{
+  margin-right: 20px;
+  margin: 20px;
+  background-color: #2090c2; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #DCD7DC; 
+  cursor: pointer;
+}
+
+.boton_pago button:hover {
+  background-color: #1d3d52; 
+  color: #DCD7DC; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
 </style>
