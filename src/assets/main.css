@@ -10,3 +10,6 @@ q:before, q:after { content:''; }
 html{
     scroll-behavior: unset;
 }
+body{
+    background-color: #454f53; 
+ }

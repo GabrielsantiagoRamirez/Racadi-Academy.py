@@ -99,10 +99,6 @@ import header_informacion_pago from './header_informacion_pago.vue';
 
 }
 
-
-body{
-    background-color: #454f53; 
-}
 .contenedor_tabla_pago{
     width: 98%;
     margin-left: auto;

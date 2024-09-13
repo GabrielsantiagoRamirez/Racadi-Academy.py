@@ -35,9 +35,6 @@ import Header_sin_login from './header_sin_login.vue';
 
 
 <style>
-body{
-    background-color: #454f53; 
-}
 
 ::-webkit-input-placeholder {
     color: #eee;

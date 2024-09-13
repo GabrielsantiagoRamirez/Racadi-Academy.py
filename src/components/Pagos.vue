@@ -36,9 +36,7 @@ import header_sin_login from './header_sin_login.vue';
 
 
 <style>
-body{
-    background-color: #454f53; 
-}
+
 .container_pagos{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
     width: 500px;

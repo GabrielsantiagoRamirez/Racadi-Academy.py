@@ -83,9 +83,7 @@ import Footer from './footer.vue';
 </template>
 
 <style>
-body{
-    background-color: #454f53; 
-}
+
 .MainCont_titulo{
    
     height: auto;
@@ -120,8 +118,6 @@ body{
     color: white;
     font-size: 4vh;
     text-align:center;
-
-
 }
 
 
