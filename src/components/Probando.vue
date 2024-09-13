@@ -1,6 +1,8 @@
 <script setup>import headerRacadi from './header-Racadi.vue';</script>
 <template>
-    <header class="header_prueba">
+
+    <div class="bodysimulation">
+        <header class="header_prueba">
         <div>
         <img src="..//components/img/logoRacadi.png" alt=""  class="logo_taste">
         </div>
@@ -62,6 +64,12 @@
     </div>
 
 
+    </div>
+
+
+ 
+
+
 
 
 </template>
@@ -79,6 +87,10 @@
 
 
 <style scoped> 
+
+.bodysimulation{
+    background-color: #f5f5f5;
+}
 
 .header_prueba{
     background-color: #0a0a0a;

@@ -9,6 +9,8 @@ import Probando from './components/Probando.vue';
 </script>
 
 <template>
+    <Probando/>
+     <!--<Main/> -->
 </template>
 
 
