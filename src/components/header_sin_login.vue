@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
         <header class="container_header_sin">
         <div>
-            <img src="../components/img/logoRacadi.png" alt="" class="logo">
+            <img src="../components/img/LogoRacadi.png" alt="" class="logo">
         
         </div>
         <div class="texto">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="perfil_header">
-          <img src="../components/img/91724249-perfil-del-círculo-para-avatar_preview_rev_1.png" alt="" class="perfil_header_img">
+          <img src="" alt="" class="fa fa-user">
           <h1>Perfil</h1>
         </div>
     </header>
@@ -45,19 +45,21 @@
 .perfil_header{
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
-  color: #3AACD9;
   color: white;
   text-align: center;
   font-size: 30px;
   margin-right: 5vh;
 }
 .container_header_sin{
-  background-color: #05080B;
+  background-color: #7FA1C3;
   width: 100%;
   height: 220px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0 15px 0 #263d53;
+
+  
 }
 .logo {
   width: 200px;
@@ -77,7 +79,7 @@
 .texto {
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
-  color: #3AACD9;
+  color: white;
   width: 800px;
   text-align: center;
   font-size: 40px; 

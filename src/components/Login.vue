@@ -14,23 +14,24 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
             <button class="submit_login">iniciar sesion</button>
-        <p class="fp">¿olvidaste tu contraseña?<a href="" class="back_link_login"> haz click aqui</a></p>
+        <p class="fp">¿olvidaste tu contraseña?<a href="" class="back_link_login">  <b>haz click aqui</b></a></p>
         <p class="go_back_login"> <a href="index.html"> <b>Volver</b></a> </p>  
 
         </form>
 
         <div class="banner_login">
-            <img src="../components/img/logoRacadi.png" alt="" class="logo_login">
+            <img src="../components/img/LogoRacadi.png" alt="" class="logo_login">
       
         </div>
     </div>
-    <br>
+    <Footer/>
     
 
 </template>
 
 <script setup>
-import Header_sin_login from './header_sin_login.vue';
+import Header_sin_login from './Header_sin_login.vue';
+import Footer from './Footer.vue';
 </script>
 
 
@@ -54,12 +55,13 @@ b {
     height: 65vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 3px solid  #3AACD9;
-    box-shadow: 0 0 50px 0 #00a6b6;
+    border: 3px solid  #7baad6;
+    box-shadow: 0 0 40px 0 #83B4FF;
     margin-top: 7vh;
     margin-left: auto;
     margin-right: auto;
-    background-color: #05080B;
+    background: linear-gradient(to right, #43607c,  #3562a7);
+
 }
 
 .form_login {
@@ -73,7 +75,7 @@ b {
 .title_login {
     font-size: 40px;
     margin-top: 30px;
-    color: #3AACD9;
+    color:white;
 }
 
 .inp {
@@ -102,7 +104,8 @@ b {
     border-radius: 40px;
     letter-spacing: 1px;
     cursor: pointer;
-    background: linear-gradient(45deg, #46cefc, #04364A);
+    background: linear-gradient(45deg, #4b8ef3, #7baad6);
+    color: white;
 }
 
 .fp {
@@ -113,8 +116,9 @@ b {
 }
 
 .back_link_login{
-    color: #3AACD9;
+    color: #83B4FF;
     text-decoration: none;
+    margin-left: 5px;
 }
 
 .banner_login {
@@ -123,26 +127,35 @@ b {
     right: 0;
     width: 80vh;
     height: 100%;
-    background: linear-gradient(to right, #3AACD9, #04364A);
+    background: linear-gradient(to right, #97c0ff, #43607c);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
     display: flex;
     justify-content: right;
+    padding-right: 9vh;
 }
 
 
 .go_back_login {
 font-size: 20px;
-margin-top: 5vh;
+margin-top: 10px;
+color: #83B4FF;
 }
 .logo_login{
-height: 55vh;
-width:55vh;
+height: 45vh;
+width:45vh;
+margin-top: 7vh;
 }
 .txt_container_login{
     text-align: left;
     width: 100%;
     padding-left: 35vh;
 }
+
+.fa-solid{
+    color: white;
+    font-size: 2vh;
+}
+
 </style>
 
 

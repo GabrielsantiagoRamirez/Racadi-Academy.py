@@ -1,110 +1,190 @@
 <template>
- <div class="footer">
-       
-        
-        <div class="footer-menu">
-           <img class="logo_footer" src="..//components/img/logoRacadi.png" alt="">
-            <div class="cont_a_footer">
-                <a href="#">Incio</a>
-                <a href="#">Paquetes</a>
-                <a href="#">Incio secion</a>
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Racadi<span>Academy</span></h3>
+            <p class="footer-links">
+                <a href="#">Home</a>
+                ·
+                <a href="#">Blog</a>
+                ·
+                <a href="#">About</a>
+                ·
+                <a href="#">Faq</a>
+                ·
+                <a href="#">Contact</a>
+            </p>
+            <p class="footer-company-name">Racadi Academy © 2024</p>
+        </div>
+    
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-globe"></i>
+                <p> Colombia</p>
             </div>
             <div>
-                <a href="#">Contacto</a>
-                <a href="#">Servicios</a>
+                <i class="fa fa-phone"></i>
+                <p>+57 318 428 2495</p>
             </div>
             <div>
-                <a href="#">Mision </a>
-                <a href="#">Vision</a>
-                <a href="#">Quines somos?</a>
+                <i class="fa fa-envelope"></i>
+                <p><a href="">RacadiAcademy@gmail.com</a></p>
             </div>
-           
         </div>
-        <div class="linea_footer"></div>
-        <div class="social-icons_footer">
-            <img class="icono_footer" src="..//components/img/icons8-facebook-30.png" alt="">
-            <img class="icono_footer" src="..//components/img/icons8-instagram-48.png" alt="">
-            <img class="icono_footer" src="..//components/img/icons8-twitterx-50.png" alt="">
-            
+    
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                En Racadi Academy facilitamos la gestión de horarios y reservas, optimizando tu tiempo para que programes tus clases de inglés de manera rápida y sencilla.
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa-brands fa-facebook-square"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+
         </div>
-        <div class="copyright">©Copyright. All rights reserved.</div>
-    </div>
-</template>
-
-<script setup> </script>
-
-<style>
-.footer {
-            background-color: #0a0a0a;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-         .logo_footer {
-            max-width: 20%;
-            height: auto; /* Mantiene la proporción del logo */
-            margin-top: -4%;
-            
-        }
-
-         
-
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            justify-content:space-around;
-            margin-top: 4%;
-        }
-
-       
-
-        .footer-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 120%;
-            display: block;
-            margin-bottom: 5px;
-            display: flex;
-            justify-content: flex-start;
-            
-        }
-
-        
-
-        .social-icons_footer {
-            width: 30%;
-            display: flex;
-            justify-content:space-evenly;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 6%;
-            
-        }
-
-        
-
-       
-
-        .footer .copyright {
-            font-size: 16px;
-            color: #aaaaaa;
-            margin-top: 1%;
-        }
-
-        .linea_footer {
-            border: 0;
-            width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            height: 2px;
-            background: #d6d4d4;
-            margin-top: 4%;
-            
-        }
-        .icono_footer{
-            width: 12%;
-            height: 12%;
-        }
-
-</style>
+    </footer>
+    
+    
+    </template>
+    
+    <script setup> </script>
+    
+    <style scoped>
+    .footer-distributed{
+        background-color: #7FA1C3;
+        box-shadow: 0 0 15px 0 #43607c;
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        font: bold 16px sans-serif;
+        padding: 55px 50px;
+        margin-top: 80px;
+    }
+    
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right{
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    .footer-distributed .footer-left{
+        width: 40%;
+    }
+    
+    .footer-distributed h3{
+        color: #ffffff;
+        font: normal 36px 'Cookie', cursive;
+        margin: 0;
+    }
+    
+    .footer-distributed h3 span{
+        color:  #43607c;
+    }
+    
+    .footer-distributed .footer-links{
+        color:  #ffffff;
+        margin: 20px 0 12px;
+        padding: 0;
+    }
+    
+    .footer-distributed .footer-links a{
+        display:inline-block;
+        line-height: 1.8;
+        text-decoration: none;
+        color:  inherit;
+    }
+    
+    .footer-distributed .footer-company-name{
+        color:  white;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .footer-distributed .footer-center{
+        width: 35%;
+    }
+    
+    .footer-distributed .footer-center i{
+        background-color: #43607c;
+        color: #ffffff;
+        font-size: 25px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 42px;
+        margin: 10px 15px;
+        vertical-align: middle;
+    }
+    
+    .footer-distributed .footer-center i.fa-envelope{
+        font-size: 17px;
+        line-height: 38px;
+    }
+    
+    .footer-distributed .footer-center p{
+        display: inline-block;
+        color: #ffffff;
+        vertical-align: middle;
+        margin:0;
+    }
+    
+    .footer-distributed .footer-center p span{
+        display:block;
+        font-weight: normal;
+        font-size:14px;
+        line-height:2;
+    }
+    
+    .footer-distributed .footer-center p a{
+        color:  #ffffff;
+        text-decoration: none;;
+    }
+    
+    .footer-distributed .footer-right{
+        width: 20%;
+    }
+    
+    .footer-distributed .footer-company-about{
+        line-height: 20px;
+        color:  #ffffff;
+        font-size: 15px;
+        font-weight: normal;
+        margin: 0;
+    }
+    
+    .footer-distributed .footer-company-about span{
+        display: block;
+        color:  #43607c;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .footer-distributed .footer-icons{
+        margin-top: 25px;
+    }
+    
+    .footer-distributed .footer-icons a{
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        background-color:  #43607c;
+        border-radius: 2px;
+    
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 35px;
+    
+        margin-right: 3px;
+        margin-bottom: 5px;
+    }
+    
+    
+    </style>

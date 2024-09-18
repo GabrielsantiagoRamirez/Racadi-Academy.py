@@ -41,7 +41,6 @@
 
 
 <script setup>
-import header_sin_login from './header_sin_login.vue';
 </script>
 
 

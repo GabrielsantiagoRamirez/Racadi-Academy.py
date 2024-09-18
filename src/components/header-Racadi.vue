@@ -38,7 +38,6 @@
 
 }
 .container_header{
-  background-color: #05080B; 
   width: 100%;
   height: 220px;
   display: flex;

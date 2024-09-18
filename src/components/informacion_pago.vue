@@ -4,7 +4,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
 
 
-<header_informacion_pago/>  
 
 
 <body>
@@ -90,7 +89,6 @@
 
 
 <script setup>
-import header_informacion_pago from './header_informacion_pago.vue';
 </script>
 
 
