@@ -12,10 +12,11 @@
                 RACADI ACADEMY
             </h1>
         </div>
-        <div id="redes"> 
-          <img src="../components/img/icons8-instagram-96.png" alt="" class="redes">
-            <img src="../components/img/icons8-facebook-30.png" alt="" class="redes">
-            <img src="../components/img/icons8-twitterx-100.png" alt="" class="redes">
+        <div class="container_redes"> 
+                <a href="#"><i class="fa-brands fa-facebook-square redes"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram redes"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp redes"></i></a>
+                <a href="#"><i class="fa-brands fa-github redes"></i></a>
         </div>
 
         <div class="boton">
@@ -38,33 +39,37 @@
 
 }
 .container_header{
+  background-color: #7FA1C3;
   width: 100%;
-  height: 220px;
+  height: 170px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0 15px 0 #263d53; 
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
   display: flex;
   align-items: center;
+  margin-left: 3vh;
 }
-.redes {
-  width: 50px;
-  display: flex;
-  justify-content:end;
-}
-#redes{
-    width: 150px;
-    display: flex;
-    justify-content: end;
+
+.texto {
+  font-family: "Anek Devanagari", sans-serif;
+  font-optical-sizing: auto;
+  color: white;
+  width: 800px;
+  text-align: center;
+  font-size: 40px; 
+  line-height: 1.2; 
+  text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 
 .boton button{
   margin-right: 20px;
   margin: 20px;
-  background-color: #3AACD9; 
+  background-color: #4e70b5; 
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -75,19 +80,10 @@
 }
 
 .boton button:hover {
-  background-color: #2090C2; 
+  background-color: #52639b; 
   color: #DCD7DC; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.texto {
-  font-family: "Anek Devanagari", sans-serif;
-  font-optical-sizing: auto;
-  color: #3AACD9; 
-  width: 800px;
-  text-align: center;
-  font-size: 40px; 
-  line-height: 1.2; 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+
 
 </style>
