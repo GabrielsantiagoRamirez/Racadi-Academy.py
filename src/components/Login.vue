@@ -1,37 +1,88 @@
 <template>
     <Header_sin_login/>
     <div class="wrapper_login">
-        <form action="" class="form_login">
+        <form @submit.prevent="handleLogin" class="form_login">
             <div class="txt_container_login">
-            <h1 class="title_login">LOGIN</h1>
+                <h1 class="title_login">LOGIN</h1>
             </div>
             <div class="inp">
-                <input type="text" class="input_login" placeholder="usuario">
+                <input v-model="usuario" type="text" class="input_login" placeholder="usuario">
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="inp">
-                <input type="password" class="input_login" placeholder="contraseña">
+                <input v-model="contraseña" type="password" class="input_login" placeholder="contraseña">
                 <i class="fa-solid fa-lock"></i>
             </div>
-            <button class="submit_login">iniciar sesion</button>
-        <p class="fp">¿olvidaste tu contraseña?<a href="" class="back_link_login">  <b>haz click aqui</b></a></p>
-        <p class="go_back_login"> <a href="index.html"> <b>Volver</b></a> </p>  
-
+            <button class="submit_login" type="submit">Iniciar sesión</button>
+            <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
+            <p class="go_back_login"><a href="index.html"><b>Volver</b></a></p>
         </form>
 
         <div class="banner_login">
             <img src="../components/img/LogoRacadi.png" alt="" class="logo_login">
-      
         </div>
     </div>
     <Footer/>
-    
-
 </template>
 
 <script setup>
-import Header_sin_login from './Header_sin_login.vue';
+import Header_sin_login from './header_sin_login.vue';
 import Footer from './Footer.vue';
+import Swal from 'sweetalert2';
+import { ref } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router'; 
+
+// Variables reactivas para los inputs
+const usuario = ref('');
+const contraseña = ref('');
+
+// Obtener el router
+const router = useRouter();
+
+// Función para manejar el inicio de sesión
+const handleLogin = async () => {
+    try {
+        // Hacer la solicitud POST a la API de login
+        const response = await axios.post('http://localhost:8000/login', {
+            usuario: usuario.value,
+            contraseña: contraseña.value,
+        });
+
+        // Mostrar el mensaje de éxito
+        Swal.fire({
+            icon: 'success',
+            title: 'Login exitoso',
+            text: `Has iniciado sesión como ${response.data.rol}`,
+        });
+
+        // Redireccionar según el rol
+        const rol = response.data.rol;
+        if (rol === 'administrador') {
+            router.push({ name: 'main_admin' }); // Ruta del administrador
+        } else if (rol === 'estudiante') {
+            console.log("si hola")
+            router.push('/main_estudiante'); // Ruta del estudiante
+        } else if (rol === 'profesor') {
+            router.push({ name: 'main_profesor' }); // Ruta del profesor
+        }
+    } catch (error) {
+        // Manejar errores
+        if (error.response && error.response.data.detail) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error.response.data.detail, // Muestra el mensaje de error devuelto por la API
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Algo salió mal. Intenta nuevamente.',
+            });
+        }
+    }
+};
 </script>
 
 
