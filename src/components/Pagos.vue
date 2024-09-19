@@ -3,7 +3,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
     
-    <header_sin_login/>
+    <Header_sin_login/>
     <body>
         <div class="container_pagos">
             <img src="../components/img/logoRacadi.png" alt="" class="logo_pagos">
@@ -31,7 +31,7 @@
 
 
 <script setup>
-import header_sin_login from './header_sin_login.vue';
+import Header_sin_login from './Header_sin_login.vue';
 </script>
 
 
