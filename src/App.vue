@@ -7,7 +7,8 @@ import informacion_pago from './components/informacion_pago.vue';
 </script>
 
 <template>
-     <pagina_pago_banco/> 
+      <!--<pagina_pago_banco/>-->
+      <Main/>
 </template>
 
 
