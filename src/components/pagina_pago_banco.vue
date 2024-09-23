@@ -51,8 +51,8 @@ import Footer from './Footer.vue';
 
 .container_pagos_banco{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
-    width: 500px;
-    height: 840px;
+    width: 70vh;
+    height: auto;
     background-color: #7FA1C3; 
     margin-left: auto;
     margin-right: auto;
@@ -60,6 +60,7 @@ import Footer from './Footer.vue';
     text-align: center;
     border-radius: 20px;
     margin-bottom: 50px;
+    padding: 20px;
 }
 
 .sub_racadi{
@@ -70,8 +71,10 @@ import Footer from './Footer.vue';
     text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 .logo_pagos_banco{
-    width: 330px;
-    height: 350px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-self: self-start;
 }
 .cancelar_pagos_banco {
 

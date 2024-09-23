@@ -19,7 +19,7 @@
         <div class="footer-center">
             <div>
                 <i class="fa fa-globe"></i>
-                <p> Colombia</p>
+                <p> Colombia <span>Cundinamarca</span></p>
             </div>
             <div>
                 <i class="fa fa-phone"></i>
