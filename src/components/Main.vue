@@ -1,4 +1,5 @@
 <script setup>
+import headerRacadi from './header-Racadi.vue';
 import Footer from './Footer.vue';
 import headerRacadi from './header-Racadi.vue';
 </script>
@@ -31,22 +32,22 @@ import headerRacadi from './header-Racadi.vue';
       <div class="Maincont_cardOfrcemos">
         <div class="Maincard_Ofrecemos">
             <img src="..//components/img/reloj.png" class="Mainicono">
-            <h2>Gestión Académica</h2>
+            <h2><strong>Gestión Académica</strong></h2>
             <p>Administre la información académica de sus estudiantes de principio a fin para mejorar procesos como: matrículas, programación de horarios, registro de notas y evaluación docente.</p>
         </div>
         <div class="Maincard_Ofrecemos">
             <img src="..//components/img/dinero (1).png" class="Mainicono">
-            <h2>Gestión Administrativa</h2>
+            <h2><strong>Gestión Administrativa</strong></h2>
             <p>Controle adecuadamente las cuentas por cobrar y los ingresos de sus estudiantes mediante órdenes de pago, recibos, facturas, créditos e informes, que faciliten tomar decisiones acertadamente.</p>
         </div>
         <div class="Maincard_Ofrecemos">
             <img src="..//components/img/conversacion (1).png" class="Mainicono">
-            <h2>Comunidad en Línea</h2>
+            <h2><strong>Comunidad en Línea</strong></h2>
             <p>Aumente sus canales de comunicación entre los estudiantes, docentes y administrativos por medio del chat institucional , SMS mensajes de texto, la App móvil y las campañas de Mailing enviadas directamente desde su plataforma.</p>
         </div>
         <div class="Maincard_Ofrecemos">
             <img src="..//components/img/bienestar.png" class="Mainicono">
-            <h2>Bienestar Institucional</h2>
+            <h2><strong>Bienestar Institucional</strong></h2>
             <p>Promueva la satisfacción de sus estudiantes por medio de encuestas, evaluación institucional y solicitudes en línea, además de tener accesos a una bolsa de empleo y gestionar las prácticas laborales en el mismo sistema.</p>
         </div>
 
@@ -59,11 +60,11 @@ import headerRacadi from './header-Racadi.vue';
             <a class="MainTextos">Te ofrecemos la certificacion de todos los niveles de ingles desde A1 hasta C2,iniciando desde el nivel que te encuentres hasta donde puedas llegar con nuestros planes.</a>
        <div class="contNiveles">
             <div class="niveles">A1</div>
-            <div class="niveles">A2</div>
-            <div class="niveles">B1</div>
-            <div class="niveles">B2</div>
-            <div class="niveles">C1</div>
-            <div class="niveles">C2</div>
+            <div class="niveles2">A2</div>
+            <div class="niveles3">B1</div>
+            <div class="niveles4">B2</div>
+            <div class="niveles5">C1</div>
+            <div class="niveles6">C2</div>
        </div>
 
 
@@ -72,8 +73,8 @@ import headerRacadi from './header-Racadi.vue';
 
 
     <div class="contNiveles_unete">
-        <img src="..//components/img/logoRacadi.png" class="logo_unete">
-        <div class="texto_unete">Logra tu meta de aprender hablar ingles on nosotros.</div>
+        <img src="..//components/img/LogoRacadiLetras.png" class="logo_unete">
+        <div class="texto_unete"><strong>Logra tu meta de aprender hablar ingles on nosotros.</strong></div>
     </div>
     
     
@@ -92,13 +93,13 @@ import headerRacadi from './header-Racadi.vue';
     align-items: center;
     padding: 0 7% ; /* Aplica 0 de padding arriba y abajo, y 20px a los lados */
     padding-bottom: 7%;
-    background-color: #262c2e;
+    background-color: white;
     border-radius: 4%;
     box-shadow: 10px 10px 20px rgba(0.842, 0.842, 0.842, 0.842);
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 8%;
     
 }
 .Mainicono{
@@ -115,7 +116,7 @@ import headerRacadi from './header-Racadi.vue';
 .MainTextos{
     font-family: "Anek Devanagari", sans-serif;
     
-    color: white;
+    color: black;
     font-size: 4vh;
     text-align:center;
 }
@@ -125,6 +126,7 @@ import headerRacadi from './header-Racadi.vue';
 .Maincont_Ofrecemos {
     text-align: center;
     height: auto;
+    margin-top: 10%;
 }
 
 /* Estilos para los títulos principales */
@@ -143,20 +145,22 @@ import headerRacadi from './header-Racadi.vue';
     gap: 9% 3%; /* Espacio entre filas y columnas */
     padding: 4%;
     height: auto;
-    
+    background-color: white;
     padding-bottom: 9%;
     margin: 0 auto; /* Centra el contenedor principal */
+    
 }
 
 /* Estilos para cada tarjeta */
 .Maincard_Ofrecemos {
-    background-color: #262c2e;
+    background-color:  #E2DAD6;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 30px;
     text-align: center;
     width: 90%;
     margin: 0 auto; /* Centra cada tarjeta dentro de su columna */
+    
 }
 
 /* Ajustes para los iconos */
@@ -168,14 +172,14 @@ import headerRacadi from './header-Racadi.vue';
 /* Estilos para los títulos dentro de las tarjetas */
 .Maincard_Ofrecemos h2 {
     font-size: 5vh;
-    color: #3AACD9;
+    color: #6bc8ec;
     font-family: "Anek Devanagari", sans-serif;
 }
 
 /* Estilos para los párrafos dentro de las tarjetas */
 .Maincard_Ofrecemos p {
     font-size: 3vh;
-    color: white;
+    color: black;
     font-family: "Anek Devanagari", sans-serif;
 }
 
@@ -228,8 +232,8 @@ import headerRacadi from './header-Racadi.vue';
 }
 
 .niveles {
-    background-color:#3AACD9;
-    border: 2px solid black;
+    background-color:rgba(255, 0, 0, 0.849);
+
     color: antiquewhite;
     display: flex;
     align-items: center;
@@ -239,25 +243,84 @@ import headerRacadi from './header-Racadi.vue';
     aspect-ratio: 1; /* Mantiene los divs cuadrados */
     border-radius: 10px; /* Bordes redondeados */
 }
-     
+.niveles2 {
+    background-color:rgba(255, 166, 0, 0.836);
+
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 320%;
+    font-family: "Anek Devanagari", sans-serif;
+    aspect-ratio: 1; /* Mantiene los divs cuadrados */
+    border-radius: 10px; /* Bordes redondeados */
+}
+.niveles3 {
+    background-color:rgba(40, 40, 252, 0.877);
+  
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 320%;
+    font-family: "Anek Devanagari", sans-serif;
+    aspect-ratio: 1; /* Mantiene los divs cuadrados */
+    border-radius: 10px; /* Bordes redondeados */
+}
+.niveles4 {
+    background-color:#3aacd9e5;
+    
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 320%;
+    font-family: "Anek Devanagari", sans-serif;
+    aspect-ratio: 1; /* Mantiene los divs cuadrados */
+    border-radius: 10px; /* Bordes redondeados */
+}
+.niveles5 {
+    background-color:rgba(255, 192, 203, 0.877);
+   
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 320%;
+    font-family: "Anek Devanagari", sans-serif;
+    aspect-ratio: 1; /* Mantiene los divs cuadrados */
+    border-radius: 10px; /* Bordes redondeados */
+}
+.niveles6 {
+    background-color:violet;
+   
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 320%;
+    font-family: "Anek Devanagari", sans-serif;
+    aspect-ratio: 1; /* Mantiene los divs cuadrados */
+    border-radius: 10px; /* Bordes redondeados */
+}     
      
 
 
 .contNiveles_unete{
-    background-color:#262c2e;
+    background-color:white;
     height: auto;
-    width: 94%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-bottom: 7%;
 }
 .logo_unete{
-    width: 50%;
+    width: 35%;
     height: auto;
 }
 .texto_unete{
