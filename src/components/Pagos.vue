@@ -3,11 +3,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
     
-    <header_sin_login/>
+    <Header_sin_login/>
     <body>
         <div class="container_pagos">
             <img src="../components/img/logoRacadi.png" alt="" class="logo_pagos">
-            <div class="sub_racadi">
+            <div class="sub_racadi_pagos">
                 <h1>PORTAL DE PAGOS</h1>
             </div>
             <div>
@@ -22,16 +22,18 @@
                 <div>
                     <textarea id="texto" name="texto" rows="2" cols="30" placeholder="Escribe aquí..."></textarea>
                 </div>
-                <button class="cancelar_pagos"> Cancelar</button>
-                <button class="cancelar_pagos"> Ingresar</button>
+                <button class="cancelar_pagos_pagos"> Cancelar</button>
+                <button class="cancelar_pagos_pagos"> Ingresar</button>
             </div>
         </div>
     </body>
+    <Footer/>
 </template>
 
 
 <script setup>
-import header_sin_login from './header_sin_login.vue';
+import Header_sin_login from './Header_sin_login.vue';
+import Footer from './footer.vue';
 </script>
 
 
@@ -41,7 +43,7 @@ import header_sin_login from './header_sin_login.vue';
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
     width: 500px;
     height: 750px;
-    background-color: #081326; 
+    background-color: #7FA1C3; 
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -50,19 +52,20 @@ import header_sin_login from './header_sin_login.vue';
     margin-bottom: 50px;
 }
 
-.sub_racadi{
+.sub_racadi_pagos{
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
     font-size: 50px;
-    color: #3aacd9; 
+    color: #fdfdfd; 
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 .logo_pagos{
     width: 330px;
     height: 350px;
 }
-.cancelar_pagos {
+.cancelar_pagos_pagos {
 
-    background-color: #2090c2;
+    background-color: #4e70b5; 
     color: white;
     padding: 12px 20px;
     border: none;
@@ -71,8 +74,8 @@ import header_sin_login from './header_sin_login.vue';
     margin-top: 10px;
     margin-left: 10px;
 }
-.cancelar_pagos:hover {
-    background-color: #27789d;
+.cancelar_pagos_pagos:hover {
+    background-color: #52639b; 
 }
 
 select {
@@ -87,6 +90,7 @@ select {
     font-optical-sizing: auto;
     margin-top: 20px;
     font-size: 24px;
-    color: #3aacd9;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 </style>

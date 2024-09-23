@@ -7,6 +7,7 @@
 
 
 <body>
+    <Header_sin_login/>
     <div class="contenedor_tabla_pago">
         <table class="tabla_pago">
             <thead class="contenedor_informacion_pago_header">
@@ -85,10 +86,13 @@
     <button class="cancelar_pagos_info"> Confirmar para pago</button>
     <button class="cancelar_pagos_ing"> cancelar </button> 
 </body>
+<Footer/>
 </template>
 
 
 <script setup>
+import Footer from './footer.vue';
+import Header_sin_login from './Header_sin_login.vue';
 </script>
 
 
@@ -101,15 +105,17 @@
     width: 98%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 50px;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 .contenedor_informacion_pago_header{
-    background-color: #081326;
+    background-color: #4e70b5;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-    color: #2090c2;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);  
 }
 .cabeza_tabla_pagos{
     font-family: "Anek Devanagari", sans-serif;
@@ -122,25 +128,26 @@
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
     text-align: center;
-    border: 2px solid #454f53;
+    border: 2px solid #53649b;
     font-size: 20px;
     padding: 8PX;
+    color: white;
 }
 
 .fondo_pago{
-    background-color: #6b7672;
+    background-color: #53649b;
 }
 
 .tabla_pago{
-    border: 2px solid #081326;
+    border: 2px solid #53649b;
     text-align: center;
 }
 
 .cancelar_pagos_info {
 font-family: "Anek Devanagari", sans-serif;
 font-optical-sizing: auto;
-background-color: #081326;
-color: #2090c2;
+background-color: #4e70b5; 
+color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
@@ -148,15 +155,15 @@ margin-top: 10px;
 margin-left: 10px;
 font-size: 20px;
 }
-.cancelar_pagos:hover {
-background-color: #05080b;
+.cancelar_pagos_info:hover {
+    background-color: #52639b; 
 }
 
 .cancelar_pagos_ing {
 font-family: "Anek Devanagari", sans-serif;
 font-optical-sizing: auto;
-background-color: #081326;
-color: #2090c2;
+background-color: #4e70b5; 
+color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
@@ -166,7 +173,7 @@ font-size: 20px;
 }
 
 .cancelar_pagos_ing:hover {
-background-color: #05080b;
+    background-color: #52639b; 
 }
 
 

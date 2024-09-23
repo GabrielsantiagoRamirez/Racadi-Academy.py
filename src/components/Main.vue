@@ -1,5 +1,6 @@
 <script setup>
 import Footer from './Footer.vue';
+import headerRacadi from './header-Racadi.vue';
 </script>
 
 <template>

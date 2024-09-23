@@ -3,7 +3,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
     
-    <header_sin_login/>
+    <Header_sin_login/>
     <body>
         <div class="container_pagos_banco">
             <img src="../components/img/logoRacadi.png" alt="" class="logo_pagos_banco">
@@ -37,10 +37,13 @@
             </div>
         </div>
     </body>
+    <Footer/>
 </template>
 
 
 <script setup>
+import Header_sin_login from './Header_sin_login.vue';
+import Footer from './footer.vue';
 </script>
 
 
@@ -48,30 +51,34 @@
 
 .container_pagos_banco{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
-    width: 500px;
-    height: 840px;
-    background-color: #081326; 
+    width: 70vh;
+    height: auto;
+    background-color: #7FA1C3; 
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
     text-align: center;
     border-radius: 20px;
     margin-bottom: 50px;
+    padding: 20px;
 }
 
 .sub_racadi{
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
     font-size: 50px;
-    color: #3aacd9; 
+    color: #ffffff; 
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 .logo_pagos_banco{
-    width: 330px;
-    height: 350px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-self: self-start;
 }
 .cancelar_pagos_banco {
 
-    background-color: #2090c2;
+    background-color: #4e70b5; 
     color: white;
     padding: 12px 20px;
     border: none;
@@ -81,7 +88,7 @@
     margin-left: 10px;
 }
 .cancelar_pagos_banco:hover {
-    background-color: #27789d;
+    background-color: #52639b;
 }
 
 select {
@@ -89,16 +96,18 @@ select {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    background-color: #dcd7dc;
+    background-color: rgb(83, 100, 155);
     margin-top: 10px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .subtitulo_pago_banco{
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
     font-size: 24px;
-    color: #dcd7dc;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 #numero_pago{
     font-family: "Anek Devanagari", sans-serif;
@@ -106,11 +115,12 @@ select {
     font-size: 20px;
     font-family: "Anek Devanagari", sans-serif;
     font-optical-sizing: auto;
-    background-color: #dcd7dc;
+    background-color: rgb(83, 100, 155);
     border-radius: 5px;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
+
 }
 
 .radio_pago{
@@ -123,5 +133,6 @@ select {
     margin-bottom: 10px;
     font-size: 18px;
     color: #dcd7dc;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 </style>

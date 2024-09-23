@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>ESTUDIANTE</h1>
-    </div>
+    <header_sin_login/>
 </template>
-<script setup></script>
+<script setup> 
+import Header_sin_login from './Header_sin_login.vue';
+</script>

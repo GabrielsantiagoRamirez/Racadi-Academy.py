@@ -1,35 +1,57 @@
 <template>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
-        <header class="container_header_sin">
-        <div>
-            <img src="../components/img/LogoRacadi.png" alt="" class="logo">
-        
-        </div>
-        <div class="texto">
-            <h1>
-                RACADI ACADEMY
-            </h1>
-        </div>
-        <div id="redes"> 
-            <img src="../components/img/icons8-instagram-96.png" alt="" class="redes">
-            <img src="../components/img/icons8-facebook-30.png" alt="" class="redes">
-            <img src="../components/img/icons8-twitterx-100.png" alt="" class="redes">
-        </div>
-
-        <div class="perfil_header">
-          <img src="" alt="" class="fa fa-user">
-          <h1>Perfil</h1>
-        </div>
-    </header>
-    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+  <header class="container_header_sin">
+      <div>
+          <img src="../components/img/LogoRacadi.png" alt="" class="logo">
+      </div>
+      <div class="texto">
+          <h1>
+              RACADI ACADEMY
+          </h1>
+      </div>
+      <div class="container_redes"> 
+          <a href="#"><i class="fa-brands fa-facebook-square redes"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram redes"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp redes"></i></a>
+          <a href="#"><i class="fa-brands fa-github redes"></i></a>
+      </div>
+      <router-link :to="perfilRuta">
+          <div class="perfil_header">
+              <i class="fa fa-user-circle perfil_sin" aria-hidden="true"></i>
+              <h1>Perfil</h1>
+          </div>
+      </router-link>
+  </header>
 </template>
 
-
 <script setup>
+import { ref, computed } from 'vue';
+import { jwtDecode } from "jwt-decode";
 
+// Estado para la ruta del perfil
+const perfilRuta = ref('/perfil_estudiante');
+
+// Al cargar el componente, decodifica el token y determina la ruta del perfil
+const token = localStorage.getItem('token');
+if (token) {
+  try {
+      const token_decodificado = jwtDecode(token);
+      const rol = token_decodificado.rol;
+
+      // Define la ruta del perfil según el rol
+      if (rol === 'administrador') {
+          perfilRuta.value = '/perfil_estudiante'; 
+      } else if (rol === 'profesor') {
+          perfilRuta.value = '/perfil_estudiante'; 
+      }
+  } catch (error) {
+      console.error('Error al decodificar el token:', error);
+  }
+}
 </script>
+
 
 
 <style>
@@ -38,10 +60,6 @@
 @media (min-width: 1200px) and (max-width: 1499px){
 }
 
-.perfil_header_img{
-  width: 100px;
-  
-}
 .perfil_header{
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
@@ -50,32 +68,40 @@
   font-size: 30px;
   margin-right: 5vh;
 }
+
 .container_header_sin{
   background-color: #7FA1C3;
   width: 100%;
-  height: 220px;
+  height: 170px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 15px 0 #263d53;
+  box-shadow: 0 0 15px 0 #263d53; 
+}
 
-  
-}
 .logo {
-  width: 200px;
+  width: 150px;
   display: flex;
   align-items: center;
+  margin-left: 3vh;
 }
-.redes {
-  width: 50px;
+
+.redes{
+  font-size: 35px;
+  color: white;
+}
+
+.perfil_sin{
+  font-size: 50px;
+}
+
+.container_redes{
+  width: 100%;
+  max-width: 160px;
   display: flex;
   justify-content: space-between;
 }
-#redes{
-    width: 150px;
-    display: flex;
-    justify-content: end;
-}
+
 .texto {
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;

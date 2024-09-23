@@ -1,21 +1,21 @@
 <template>
-    <Header_sin_login/>
+    <Header_login/>
     <div class="wrapper_login">
         <form @submit.prevent="handleLogin" class="form_login">
             <div class="txt_container_login">
                 <h1 class="title_login">LOGIN</h1>
             </div>
             <div class="inp">
-                <input v-model="usuario" type="text" class="input_login" placeholder="usuario">
+                <input v-model="usuario" type="text" class="input_login" placeholder="usuario" required >
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="inp">
-                <input v-model="contraseña" type="password" class="input_login" placeholder="contraseña">
+                <input v-model="contraseña" type="password"  class="input_login" placeholder="contraseña" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
             <button class="submit_login" type="submit">Iniciar sesión</button>
             <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
-            <p class="go_back_login"><a href="index.html"><b>Volver</b></a></p>
+            <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link ></p>
         </form>
 
         <div class="banner_login">
@@ -26,53 +26,60 @@
 </template>
 
 <script setup>
-import Header_sin_login from './header_sin_login.vue';
+import Header_login from './Header_login.vue';
 import Footer from './Footer.vue';
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'; 
+import { jwtDecode } from "jwt-decode";
 
-// Variables reactivas para los inputs
+
+// Variables para los inputs you know
 const usuario = ref('');
 const contraseña = ref('');
 
-// Obtener el router
+//tener el router para la redireccion
 const router = useRouter();
 
-// Función para manejar el inicio de sesión
+// funcion de inicio de sesion
 const handleLogin = async () => {
     try {
-        // Hacer la solicitud POST a la API de login
+        // Hacer la solicitud post a la API de login
         const response = await axios.post('http://localhost:8000/login', {
             usuario: usuario.value,
             contraseña: contraseña.value,
         });
-
-        // Mostrar el mensaje de éxito
+        
+        const token_decodificado=jwtDecode(response.data.access_token)
+        console.log(response.data)
+        console.log("funciona")
+        // mensaje bonito de exito
         Swal.fire({
             icon: 'success',
             title: 'Login exitoso',
-            text: `Has iniciado sesión como ${response.data.rol}`,
+            text: `Has iniciado sesión como ${token_decodificado.rol}`,
         });
+   
+        localStorage.setItem('token' ,response.data.access_token )
+        console.log(localStorage.getItem('token'))
+ 
 
         // Redireccionar según el rol
-        const rol = response.data.rol;
+        const rol = token_decodificado.rol;
         if (rol === 'administrador') {
-            router.push({ name: 'main_admin' }); // Ruta del administrador
+            router.push('/main_admin'); 
         } else if (rol === 'estudiante') {
-            console.log("si hola")
-            router.push('/main_estudiante'); // Ruta del estudiante
+            router.push('/main_estudiante'); 
         } else if (rol === 'profesor') {
-            router.push({ name: 'main_profesor' }); // Ruta del profesor
+            router.push('/main_profesor'); 
         }
     } catch (error) {
-        // Manejar errores
         if (error.response && error.response.data.detail) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: error.response.data.detail, // Muestra el mensaje de error devuelto por la API
+                text: error.response.data.detail// Muestra el mensaje de error devuelto por la API
             });
         } else {
             Swal.fire({
