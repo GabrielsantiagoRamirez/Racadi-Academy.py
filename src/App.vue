@@ -1,15 +1,16 @@
 <script setup>
+import Login from './components/Login.vue';
+import Pagos from './components/Pagos.vue';
+import Main from './components/Main.vue';
+import pagina_pago_banco from './components/pagina_pago_banco.vue';
+import informacion_pago from './components/informacion_pago.vue';
+import perfil from './components/perfil.vue';
+
 </script>
 
-<<<<<<< HEAD
+
 <template>
      <router-view></router-view>
-=======
-<template>  
-     <Login/> 
-      <!--<pagina_pago_banco/>-->
-      <Main/>
->>>>>>> 101fb710108882e61c613ce90076154d9a17744f
 </template>
 
 
