@@ -96,7 +96,7 @@ import axios from 'axios';
 
 // de tipo de documento y sede predefinidos
 const tipos_documento = ['cedula', 'cedula extranjera', 'tarjeta de identidad'];
-const sedes = ['madrid', 'mosquera', 'funza', 'faca', 'bogota'];
+const sedes = ['madrid', 'mosquera', 'funza', 'facatativa', 'bogota'];
 
 //variables para hacer el post 
 const documento =ref("")
