@@ -1,91 +1,105 @@
 <template>
-    <div class="form-container">
-      <h1 class="form-title">Añadir Profesor</h1>
-      <form @submit.prevent="añadir_estudiante" class="form">
-  
-        <!-- Documento -->
-        <div class="form-group">
-          <label for="documento">
-            <i class="fa fa-id-card"></i> Documento
-          </label>
-          <input type="text" v-model="documento" id="documento" required>
-        </div>
-  
-        <!-- Tipo de documento -->
-        <div class="form-group">
-          <label for="tipo_de_documento">
-            <i class="fa fa-file-alt"></i> Tipo de Documento
-          </label>
-          <select v-model="tipo_documento" id="tipo_de_documento" required>
-            <option v-for="tipo in tipos_documento" :key="tipo" :value="tipo">{{ tipo }}</option>
-          </select>
-        </div>
-  
-        <!-- Nombre -->
-        <div class="form-group">
-          <label for="nombre">
-            <i class="fa fa-user"></i> Nombre
-          </label>
-          <input type="text" v-model="nombre" id="nombre" required>
-        </div>
-  
-        <!-- Apellido -->
-        <div class="form-group">
-          <label for="apellido">
-            <i class="fa fa-user-tag"></i> Apellido
-          </label>
-          <input type="text" v-model="apellido" id="apellido" required>
-        </div>
-  
-        <!-- Celular -->
-        <div class="form-group">
-          <label for="celular">
-            <i class="fa fa-phone"></i> Celular
-          </label>
-          <input type="text" v-model="celular" id="celular" required>
-        </div>
-  
-        <!-- Correo -->
-        <div class="form-group">
-          <label for="correo">
-            <i class="fa fa-envelope"></i> Correo
-          </label>
-          <input type="email" v-model="correo" id="correo" required>
-        </div>
-  
-        <!-- Usuario -->
-        <div class="form-group">
-          <label for="usuario">
-            <i class="fa fa-user-circle"></i> Usuario
-          </label>
-          <input type="text" v-model="usuario" id="usuario" required>
-        </div>
-  
-        <!-- Contraseña -->
-        <div class="form-group">
-          <label for="contraseña">
-            <i class="fa fa-lock"></i> Contraseña
-          </label>
-          <input type="password" v-model="contraseña" id="contraseña" required>
-        </div>
-  
-        <!-- Botón de envío -->
-        <button type="submit" class="submit-button">
-          <i class="fa fa-save"></i> Guardar Profesor
-        </button>
-  
-      </form>
-    </div>
-  </template>
+  <div class="form-container">
+    <h1 class="form-title">Añadir Profesor</h1>
+    <form @submit.prevent="añadir_estudiante" class="form">
+      
+      <div class="form-group">
+        <label for="documento">
+          <i class="fa fa-id-card"></i> Documento
+        </label>
+        <input type="text" v-model="documento" id="documento" required>
+      </div>
 
+      <div class="form-group">
+        <label for="tipo_de_documento">
+          <i class="fa fa-file-alt"></i> Tipo de Documento
+        </label>
+        <select v-model="tipo_documento" id="tipo_de_documento" required>
+          <option v-for="tipo in tipos_documento" :key="tipo" :value="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nombre">
+          <i class="fa fa-user"></i> Nombre
+        </label>
+        <input type="text" v-model="nombre" id="nombre" required>
+      </div>
+
+      <div class="form-group">
+        <label for="apellido">
+          <i class="fa fa-user-tag"></i> Apellido
+        </label>
+        <input type="text" v-model="apellido" id="apellido" required>
+      </div>
+
+      <div class="form-group">
+        <label for="fecha_nacimiento">
+          <i class="fa fa-calendar-alt"></i> Fecha De Nacimiento
+        </label>
+        <input type="date" class="fninp"v-model="fecha_nacimiento" id="fecha_nacimiento" required>
+      </div>
+
+      <div class="form-group">
+        <label for="genero">
+          <i class="fa fa-venus-mars"></i> Género
+        </label>
+        <select v-model="genero" id="genero">
+          <option v-for="genero in generos" :key="genero" :value="genero">{{ genero }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="celular">
+          <i class="fa fa-phone"></i> Celular
+        </label>
+        <input type="text" v-model="celular" id="celular" required>
+      </div>
+
+      <div class="form-group">
+        <label for="correo">
+          <i class="fa fa-envelope"></i> Correo
+        </label>
+        <input type="email" v-model="correo" id="correo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">
+          <i class="fa fa-map-marker-alt"></i> Dirección
+        </label>
+        <input type="text" v-model="direccion" id="direccion" required>
+      </div>
+
+      <div class="form-group">
+        <label for="usuario">
+          <i class="fa fa-user-circle"></i> Usuario
+        </label>
+        <input type="text" v-model="usuario" id="usuario" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contraseña">
+          <i class="fa fa-lock"></i> Contraseña
+        </label>
+        <input type="password" v-model="contraseña" id="contraseña" required>
+      </div>
+
+      <button type="submit" class="submit-button">
+        <i class="fa fa-save"></i> Guardar Profesor
+      </button>
+    </form>
+  </div>
+</template>
 
 <script setup>
 import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import axios from 'axios';
 
-// tipo de documento predefinidos
+// tipo de documento y generos predefinidos
 const tipos_documento = ['cedula', 'cedula extranjera'];
+const generos =["masculino", "femenino", "otro"]
+
 
 
 //variables para hacer el post
@@ -93,10 +107,14 @@ const documento =ref("")
 const tipo_documento =ref("")
 const nombre =ref("")
 const apellido =ref("")
+const fecha_nacimiento=ref('')
+const genero=ref('')
 const celular =ref("")
 const correo =ref("")
+const direccion =ref("")
 const usuario =ref("")
 const contraseña =ref("")
+
 
 
 
@@ -107,10 +125,13 @@ const añadir_estudiante =async()=>{
         tipo_de_documento:tipo_documento.value,
         nombre:nombre.value,
         apellido:apellido.value,
+        fecha_nacimiento:fecha_nacimiento.value,
+        genero:genero.value,
         celular:celular.value,
         correo:correo.value,
+        direccion:direccion.value,
         usuario:usuario.value,
-        contraseña:contraseña.value,
+        contraseña:contraseña.value
         }
 
         )
@@ -148,7 +169,6 @@ const añadir_estudiante =async()=>{
 
 
 <style scoped>
-/* Contenedor principal del formulario */
 .form-container {
   background-color: #f5eded;
   padding: 2rem;
@@ -159,7 +179,7 @@ const añadir_estudiante =async()=>{
   transition: all 0.3s ease;
 }
 
-/* Título del formulario */
+
 .form-title {
   color: #7fa1c3;
   font-size: 2rem;
@@ -168,23 +188,29 @@ const añadir_estudiante =async()=>{
   margin-bottom: 1.5rem;
 }
 
-/* Estilos generales del formulario */
+
 .form {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1.2rem;
+  justify-content: space-between;
 }
 
-/* Estilos para cada grupo del formulario */
+
 .form-group {
   display: flex;
   flex-direction: column;
+  width: calc(50% - 0.6rem); 
 }
 
 .form-group label {
   font-size: 1rem;
   color: #83b4ff;
   margin-bottom: 0.5rem;
+}
+
+input[type="date"]::placeholder {
+    color: #83b4ff; 
 }
 
 .form-group input,
@@ -196,6 +222,8 @@ const añadir_estudiante =async()=>{
   transition: all 0.3s ease;
 }
 
+
+
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
@@ -203,7 +231,14 @@ const añadir_estudiante =async()=>{
   box-shadow: 0px 0px 8px rgba(131, 180, 255, 0.5);
 }
 
-/* Estilo del botón de envío */
+
+option {
+  background-color: #f5eded;
+  color: #333;
+  padding: 0.5rem;
+}
+
+
 .submit-button {
   background-color: #83b4ff;
   color: white;
@@ -215,13 +250,13 @@ const añadir_estudiante =async()=>{
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
 }
 
 .submit-button:hover {
   background-color: #7fa1c3;
 }
 
-/* Estilos para los iconos */
 .fa {
   margin-right: 0.5rem;
   color: #83b4ff;

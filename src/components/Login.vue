@@ -14,6 +14,7 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
             <button class="submit_login" type="submit">Iniciar sesión</button>
+            <div class="login_mensaje_error" v-if="mensaje_error">{{ mensaje_error }} </div>
             <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
             <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link ></p>
         </form>
@@ -28,7 +29,6 @@
 <script setup>
 import Header_login from './Header_login.vue';
 import Footer from './Footer.vue';
-import Swal from 'sweetalert2';
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'; 
@@ -38,6 +38,7 @@ import { jwtDecode } from "jwt-decode";
 // Variables para los inputs you know
 const usuario = ref('');
 const contraseña = ref('');
+const mensaje_error= ref('')
 
 //tener el router para la redireccion
 const router = useRouter();
@@ -53,14 +54,8 @@ const handleLogin = async () => {
         
         const token_decodificado=jwtDecode(response.data.access_token)
         console.log(response.data)
-        console.log("funciona")
-        // mensaje bonito de exito
-        Swal.fire({
-            icon: 'success',
-            title: 'Login exitoso',
-            text: `Has iniciado sesión como ${token_decodificado.rol}`,
-        });
-   
+
+        // guardamos el token el el local storage
         localStorage.setItem('token' ,response.data.access_token )
         console.log(localStorage.getItem('token'))
  
@@ -76,17 +71,9 @@ const handleLogin = async () => {
         }
     } catch (error) {
         if (error.response && error.response.data.detail) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: error.response.data.detail// Muestra el mensaje de error devuelto por la API
-            });
+            mensaje_error.value=error.response.data.detail//devuelvo el error que retorna la api
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Algo salió mal. Intenta nuevamente.',
-            });
+            mensaje_error.value='Algo salió mal. Intenta nuevamente'
         }
     }
 };
@@ -105,6 +92,15 @@ a {
 
 b {
     color: rgb(70, 199, 199);
+}
+.login_mensaje_error{
+    color: red;
+    font-size: 18px;
+    display: flex;
+    align-self: self-start;
+    margin-left: 9vh;
+    margin-top: 5px;
+    
 }
 
 .wrapper_login {
@@ -168,9 +164,9 @@ b {
 
 .fp {
     letter-spacing: 0.5px;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
-    margin-top: 5vh;
+    margin-top: 5px;
 }
 
 .back_link_login{
@@ -194,7 +190,7 @@ b {
 
 
 .go_back_login {
-font-size: 20px;
+font-size: 18px;
 margin-top: 10px;
 color: #83B4FF;
 }

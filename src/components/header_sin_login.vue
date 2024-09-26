@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, } from 'vue';
 import { jwtDecode } from "jwt-decode";
 
 // Estado para la ruta del perfil
@@ -40,14 +40,13 @@ if (token) {
       const token_decodificado = jwtDecode(token);
       const rol = token_decodificado.rol;
 
-      // Define la ruta del perfil según el rol
-      if (rol === 'administrador') {
-          perfilRuta.value = '/perfil_estudiante'; 
-      } else if (rol === 'profesor') {
-          perfilRuta.value = '/perfil_estudiante'; 
-      }
+      if (rol === 'profesor') {
+          perfilRuta.value = '/perfil_profesor'; }
+
   } catch (error) {
-      console.error('Error al decodificar el token:', error);
+    perfilRuta.value = '/login'
+
+      
   }
 }
 </script>

@@ -10,9 +10,7 @@ import Añadir_profesor from './Añadir_profesor.vue';
 import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
-
-
-
+import perfil_profesor from './Perfil_profesor.vue';
 const routes = [
     {path:'/',
     name:'main',
@@ -42,6 +40,10 @@ const routes = [
     path: '/perfil_estudiante',
     name: 'perfil_estudiante',
     component: Perfil_estudiante
+  },
+  {
+    path: '/perfil_profesor',
+    component: perfil_profesor
   },
 
   {

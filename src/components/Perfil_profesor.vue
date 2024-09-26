@@ -1,13 +1,13 @@
 <template>
   <Header_sin_login/>
-  <div class="perfil-estudiante">
-    <router-link to="/main_estudiante">
+  <div class="perfil-profesor">
+    <router-link to="/main_profesor">
       <button class="back-button">
         <i class="fa fa-arrow-left"></i> Volver
       </button>
     </router-link>
     
-    <h1>Perfil Estudiante</h1>
+    <h1>Perfil Profesor</h1>
     <div v-if="usuario">
       <div class="foto-perfil">
         <img src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" alt="Foto de perfil">
@@ -26,11 +26,8 @@
       <div class="info-adicional">
         <h2>Información Adicional</h2>
         <p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
-        <p><strong>Sede:</strong> {{ usuario.sede }}</p>
         <p><strong>Usuario:</strong> {{ usuario.usuario }}</p>
-        <p><strong>Nivel Actual:</strong> {{ usuario.nivel_actual }}</p>
-        <p><strong>Fecha de Inscripción:</strong> {{ usuario.fecha_inscripcion }}</p>
-        <p><strong>Plan:</strong> {{ usuario.plan }}</p>
+        <p><strong>Fecha de Contratacion:</strong> {{ usuario.fecha_contratacion }}</p>
       </div>
     </div>
     <div v-else>
@@ -89,7 +86,7 @@
   </script>
   
   <style scoped>
-.perfil-estudiante {
+.perfil-profesor {
   background-color: #f5eded; 
   padding: 20px;
   border-radius: 10px;
