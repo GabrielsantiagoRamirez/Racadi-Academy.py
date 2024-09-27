@@ -60,7 +60,7 @@
         </table>
     </div>
     <div class="container_info_botones">
-        <button class="cancelar_pagos_info"> Confirmar para pago</button>
+        <RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button> </RouterLink>
        <RouterLink to="/main_estudiante"> <button class="cancelar_pagos_ing"> cancelar </button></RouterLink> 
     </div>
 </body>
