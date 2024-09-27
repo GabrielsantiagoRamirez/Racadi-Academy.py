@@ -69,7 +69,7 @@
   
             <button type="submit" class="submit-btn">Crear Clase</button>
           </form>
-          <div v-if="error_mensaje" class="clase_error"> <i fa fa-error></i> {{ error_mensaje }}</div>
+          <div v-if="error_mensaje" class="clase_error"> <i class="fa fa-exclamation"></i>&nbsp;{{ error_mensaje }}</div>
         </div>
   
         <div class="profesores-container">
