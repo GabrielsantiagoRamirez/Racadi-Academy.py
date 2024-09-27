@@ -11,6 +11,9 @@ import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
+import Añadir_clase from './Añadir_clase.vue';
+
+
 const routes = [
     {path:'/',
     name:'main',
@@ -59,6 +62,11 @@ const routes = [
         component: Añadir_profesor 
       }
     ]
+  },
+
+  {
+    path: '/anadir_clase',
+    component: Añadir_clase
   },
 
   {

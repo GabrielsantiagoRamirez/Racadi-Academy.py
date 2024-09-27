@@ -17,6 +17,12 @@
     </div>
 </router-link>
 
+<router-link to="/anadir_clase">
+    <div>Crear Clase</div>
+</router-link>
+
+
+
 
     <Footer/>
 
