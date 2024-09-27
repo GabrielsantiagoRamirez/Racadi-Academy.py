@@ -6,6 +6,7 @@
     <Header_sin_login/>
     <body>
         <div class="container_pagos">
+            <form @submit.prevent="verificar_usuario">
             <img src="../components/img/logoRacadi.png" alt="" class="logo_pagos">
             <div class="sub_racadi_pagos">
                 <h1>PORTAL DE PAGOS</h1>
@@ -23,7 +24,9 @@
                     <RouterLink to="/main_estudiante"> <button class="cancelar_pagos_pagos"> Cancelar</button></RouterLink>
                     <button type="submit" class="cancelar_pagos_pagos"> Ingresar</button>
                 </form>
+
             </div>
+        </form>
         </div>
     </body>
     <Footer/>
@@ -51,6 +54,7 @@ const documento = ref('')
 const tipo_documento= ref('')
 
 
+
 //tener el router para la redireccion
 const router = useRouter();
 
@@ -72,10 +76,9 @@ const verificar_usuario = async()=>{
         const token_decodificado=jwtDecode(response.data.access_token)
         console.log(response.data)
 
-        // guardamos el token el el local storage
-        localStorage.setItem('token' ,response.data.access_token )
+        // guardamos el token en el local storage
+        localStorage.setItem('token' , response.data.access_token )
         console.log(localStorage.getItem('token'))
-
         //se redireccion a donde tiene la informacion del pago
         router.push('/info_pago')
     }catch (error) {
@@ -93,6 +96,7 @@ const verificar_usuario = async()=>{
                 text: mensajeError // Muestra el detalle del error
             });
         }else {
+
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

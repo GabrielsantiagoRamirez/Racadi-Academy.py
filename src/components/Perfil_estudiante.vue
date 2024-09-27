@@ -73,7 +73,6 @@
           });
           usuario.value = response.data; // Asigna los datos del usuario
           console.log(usuario)
-
         } catch (error) {
           console.error('Error fetching user profile:', error); // Manejo de errores
           localStorage.removeItem('token');

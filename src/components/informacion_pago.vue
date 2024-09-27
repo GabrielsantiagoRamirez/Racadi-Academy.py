@@ -62,6 +62,7 @@
 		<RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button></RouterLink>
 		<RouterLink to="/main_estudiante">  <button class="cancelar_pagos_ing"> cancelar </button> </RouterLink>
 	</form>
+	
 </body>
 <Footer/>
 </template>
@@ -193,7 +194,6 @@ font-size: 20px;
 .cancelar_pagos_ing:hover {
 	background-color: #52639b; 
 }
-
 .contenedor_botones_info_pago{
 	width: 23%;
 	margin-left: auto;
@@ -202,3 +202,4 @@ font-size: 20px;
 }
 	
 	</style>
+

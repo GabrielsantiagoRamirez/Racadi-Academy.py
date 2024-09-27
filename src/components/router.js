@@ -17,6 +17,7 @@ import Pagina_pago_banco from './pagina_pago_banco.vue';
 import { compile } from 'vue';
 
 
+
 const routes = [
     {path:'/',
     name:'main',
@@ -94,7 +95,12 @@ const routes = [
     path:'/pagina_pago',
     name:'Pagina_pago_banco',
     component: Pagina_pago_banco,
-  }
+  },  
+  {
+    path: '/portal_pagos',
+    name: 'portal_de_pagos',
+    component: Pagos
+  },
 ];
 
 const router = createRouter({
