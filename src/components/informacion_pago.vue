@@ -11,88 +11,109 @@
     <div class="contenedor_tabla_pago">
         <table class="tabla_pago">
             <thead class="contenedor_informacion_pago_header">
-                <th colspan="10" class="cabeza_tabla_pagos">
+                <th colspan="6" class="cabeza_tabla_pagos">
                     Creditos activos
                 </th>
                 <tr>
                     <td class="cabeza_tabla_pagos">
-                        Periodo
+                        Pagare
                     </td>
                     <td class="cabeza_tabla_pagos">
-                        Descripción
+                        Documento
                     </td>
                     <td class="cabeza_tabla_pagos">
-                        Fecha Vencimiento
+                        Saldo
                     </td>
                     <td class="cabeza_tabla_pagos">
-                        Valor Inicial
+                        Pago Minimo
                     </td>
                     <td class="cabeza_tabla_pagos">
-                        Capital
+                        Fecha del proximo pago
                     </td>
                     <td class="cabeza_tabla_pagos">
-                        Saldo Interes Corriente
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Saldo Interes Mora
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Deuda total
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Valor Pago Sugerido
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Valor a pagar
+                        Dias de mora
                     </td>
                 </tr>
             </thead>
-            <tbody class="fondo_pago">
+            <tbody class="fondo_pago" v-if="cuenta">
                 <tr>
                     <td class="informacion_pago">
-                        Ejemplo1
+                        {{ cuenta.Pagare }}
                     </td>
                     <td class="informacion_pago">
-                        Descripción1
+                        {{ cuenta.Documento }}
                     </td>
                     <td class="informacion_pago">
-                        01/01/2024
+                        {{ cuenta.Saldo }}
                     </td>
                     <td class="informacion_pago">
-                        1000
+                        {{ cuenta['Pago Minimo']}}
                     </td>
                     <td class="informacion_pago">
-                        500
+                        {{ cuenta['Fecha del proximo pago'] }}
                     </td>
                     <td class="informacion_pago">
-                        50
-                    </td>
-                    <td class="informacion_pago">
-                        10
-                    </td>
-                    <td class="informacion_pago">
-                        560
-                    </td>
-                    <td class="informacion_pago">
-                        100
-                    </td>
-                    <td class="informacion_pago">
-                        660
+                        {{ cuenta['Dias de mora'] }}
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button class="cancelar_pagos_info"> Confirmar para pago</button>
-    <button class="cancelar_pagos_ing"> cancelar </button> 
+    <div class="container_info_botones">
+        <button class="cancelar_pagos_info"> Confirmar para pago</button>
+       <RouterLink to="/main_estudiante"> <button class="cancelar_pagos_ing"> cancelar </button></RouterLink> 
+    </div>
 </body>
 <Footer/>
 </template>
 
 
-<script setup>
-import Footer from './footer.vue';
-import Header_sin_login from './Header_sin_login.vue';
+<script>
+//Importaciones para que funcione el archivo
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+
+
+//COmponente para el Headder y el Footer
+import Footer from './Footer.vue';
+import Header_sin_login from './header_sin_login.vue';
+
+
+export default {
+    components: {
+        Footer,
+        Header_sin_login
+    },
+    setup() {
+        const cuenta = ref(null);
+        const router = useRouter();
+
+        const info_pagos = async () => {
+            const token = localStorage.getItem('token');
+            if(!token){
+                router.push("/login")
+                return;
+            }
+            try{
+                const response = axios.get('http://localhost:8000/datos_cuenta',{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                cuenta.value = response.data;
+                console.log(cuenta);
+            } catch(error){  
+            console.error('Error fetching user profile:', error); // Manejo de errores
+          localStorage.removeItem('token');
+          router.push('/login'); // Redirige a login en caso de error
+        }
+        };
+
+        onMounted(info_pagos);
+        return { cuenta };
+    },
+}
 </script>
 
 
@@ -102,7 +123,7 @@ import Header_sin_login from './Header_sin_login.vue';
 }
 
 .contenedor_tabla_pago{
-    width: 98%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -151,8 +172,6 @@ color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
-margin-top: 10px;
-margin-left: 10px;
 font-size: 20px;
 }
 .cancelar_pagos_info:hover {
@@ -167,7 +186,6 @@ color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
-margin-top: 10px;
 margin-left: 10px;
 font-size: 20px;
 }
@@ -176,6 +194,13 @@ font-size: 20px;
     background-color: #52639b; 
 }
 
+
+.container_info_botones{
+margin-top: 10px;
+width: 23%;
+margin-right: auto;
+margin-left: auto;
+}
 
 
 </style>

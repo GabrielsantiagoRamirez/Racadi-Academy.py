@@ -1,5 +1,7 @@
 <template>
     <Header_sin_login/>
+
+    <RouterLink to="/portal_pagos"> <button> Quiero pagar re ya</button></RouterLink>
     <Footer/>
 </template>
 <script setup>

@@ -169,9 +169,7 @@ const añadir_estudiante =async()=>{
         contraseña:contraseña.value,
         nivel_actual:nivel_actual.value,
         plan:plan.value
-        }
-
-        )
+        })
         Swal.fire({
             icon: 'success',
             title: 'Estudiante Registrado',
