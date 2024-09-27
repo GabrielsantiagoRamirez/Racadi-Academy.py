@@ -11,6 +11,12 @@ import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
+import Pagos from './Pagos.vue';
+import informacion_pago from './informacion_pago.vue';
+import Pagina_pago_banco from './pagina_pago_banco.vue';
+import { compile } from 'vue';
+
+
 const routes = [
     {path:'/',
     name:'main',
@@ -69,9 +75,26 @@ const routes = [
         component:Editar_eliminar_estudiantes
       }
     ]
+  },
 
+  {
+    path: '/portal_pagos',
+    name:'portal_pagos',
+    component: Pagos,
+
+  },
+
+  {
+    path:'/info_pago',
+    name:'Informacion_pagos',
+    component: informacion_pago,
+  },
+
+  {
+    path:'/pagina_pago',
+    name:'Pagina_pago_banco',
+    component: Pagina_pago_banco,
   }
-
 ];
 
 const router = createRouter({

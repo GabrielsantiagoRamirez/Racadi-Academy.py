@@ -3,96 +3,117 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
 
-
-
-
 <body>
-    <Header_sin_login/>
-    <div class="contenedor_tabla_pago">
-        <table class="tabla_pago">
-            <thead class="contenedor_informacion_pago_header">
-                <th colspan="10" class="cabeza_tabla_pagos">
-                    Creditos activos
-                </th>
-                <tr>
-                    <td class="cabeza_tabla_pagos">
-                        Periodo
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Descripción
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Fecha Vencimiento
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Valor Inicial
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Capital
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Saldo Interes Corriente
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Saldo Interes Mora
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Deuda total
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Valor Pago Sugerido
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Valor a pagar
-                    </td>
-                </tr>
-            </thead>
-            <tbody class="fondo_pago">
-                <tr>
-                    <td class="informacion_pago">
-                        Ejemplo1
-                    </td>
-                    <td class="informacion_pago">
-                        Descripción1
-                    </td>
-                    <td class="informacion_pago">
-                        01/01/2024
-                    </td>
-                    <td class="informacion_pago">
-                        1000
-                    </td>
-                    <td class="informacion_pago">
-                        500
-                    </td>
-                    <td class="informacion_pago">
-                        50
-                    </td>
-                    <td class="informacion_pago">
-                        10
-                    </td>
-                    <td class="informacion_pago">
-                        560
-                    </td>
-                    <td class="informacion_pago">
-                        100
-                    </td>
-                    <td class="informacion_pago">
-                        660
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <button class="cancelar_pagos_info"> Confirmar para pago</button>
-    <button class="cancelar_pagos_ing"> cancelar </button> 
+	<Header_sin_login/>
+	<div class="contenedor_tabla_pago">
+		<table class="tabla_pago">
+			<thead class="contenedor_informacion_pago_header">
+				<th colspan="6" class="cabeza_tabla_pagos">
+					Creditos activos
+				</th>
+				<tr>
+					<td class="cabeza_tabla_pagos">
+						Pagare
+					</td>
+					<td class="cabeza_tabla_pagos">
+						Documento
+					</td>
+					<td class="cabeza_tabla_pagos">
+						Saldo
+					</td>
+					<td class="cabeza_tabla_pagos">
+						Pago Minimo
+					</td>
+					<td class="cabeza_tabla_pagos">
+						Fecha del proximo pago
+					</td>
+					<td class="cabeza_tabla_pagos">
+						Dias de mora
+					</td>
+				</tr>
+			</thead>
+			<tbody class="fondo_pago" v-if="cuenta">
+				<tr>
+					<td class="informacion_pago">
+						{{ cuenta.Pagare }}
+					</td>
+					<td class="informacion_pago">
+						{{ cuenta.Documento }}
+					</td>
+					<td class="informacion_pago">
+						{{ cuenta.Saldo }}
+					</td>
+					<td class="informacion_pago">
+						<!--Revisen como hacen el return en sus documentos en el metodo get, 
+						por que como lo mandan es como se debe escribir la variable aca-->
+						{{ cuenta['Pago Minimo'] }}
+					</td>
+					<td class="informacion_pago">
+						{{ cuenta['Fecha del proximo pago'] }}
+					</td>
+					<td class="informacion_pago">
+						{{ cuenta['Dias de mora'] }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<form action="" class="contenedor_botones_info_pago" v-if="cuenta">
+		<RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button></RouterLink>
+		<RouterLink to="/main_estudiante">  <button class="cancelar_pagos_ing"> cancelar </button> </RouterLink>
+	</form>
 </body>
 <Footer/>
 </template>
 
 
-<script setup>
-import Footer from './footer.vue';
+<script>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import Footer from './Footer.vue';
 import Header_sin_login from './Header_sin_login.vue';
+
+
+
+export default {
+	components: {
+	Footer, 
+	Header_sin_login
+},
+setup() {
+	const cuenta = ref(null);
+	const router = useRouter();
+
+	const info_cuenta = async () => {
+		//Se trae la informacion del token
+		const token = localStorage.getItem('token');
+
+		if(!token){
+			router.push('/login');
+			console.log(token);
+			return;
+		}
+		try{
+			const response = await axios.get('http://localhost:8000/datos_cuenta', {
+				headers: {
+					'Authorization': `Bearer ${token}`,
+				}
+			});
+			cuenta.value = response.data;// Asigna los datos del usuario
+			console.log(cuenta)
+		} catch(error){
+			console.error('Error fetching user profile:', error); // Manejo de errores
+			localStorage.removeItem('token');
+			router.push('/login'); // Redirige a login en caso de error
+		}
+	};
+
+	onMounted(info_cuenta); // Llama a la función al montar el componente
+
+	return{cuenta};// Retorna la cuenta para usar en el template
+},
+};
 </script>
 
 
@@ -102,45 +123,45 @@ import Header_sin_login from './Header_sin_login.vue';
 }
 
 .contenedor_tabla_pago{
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
 }
 .contenedor_informacion_pago_header{
-    background-color: #4e70b5;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);  
+	background-color: #4e70b5;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	color: #ffffff;
+	text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);  
 }
 .cabeza_tabla_pagos{
-    font-family: "Anek Devanagari", sans-serif;
-    font-optical-sizing: auto;
-    border: 2px solid #2090c2;
-    font-size: 20px;
-    padding: 15PX;
+	font-family: "Anek Devanagari", sans-serif;
+	font-optical-sizing: auto;
+	border: 2px solid #2090c2;
+	font-size: 20px;
+	padding: 15PX;
 }
 .informacion_pago{
-    font-family: "Anek Devanagari", sans-serif;
-    font-optical-sizing: auto;
-    text-align: center;
-    border: 2px solid #53649b;
-    font-size: 20px;
-    padding: 8PX;
-    color: white;
+	font-family: "Anek Devanagari", sans-serif;
+	font-optical-sizing: auto;
+	text-align: center;
+	border: 2px solid #53649b;
+	font-size: 20px;
+	padding: 8PX;
+	color: white;
 }
 
 .fondo_pago{
-    background-color: #53649b;
+	background-color: #53649b;
 }
 
 .tabla_pago{
-    border: 2px solid #53649b;
-    text-align: center;
+	border: 2px solid #53649b;
+	text-align: center;
 }
 
 .cancelar_pagos_info {
@@ -151,12 +172,10 @@ color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
-margin-top: 10px;
-margin-left: 10px;
 font-size: 20px;
 }
 .cancelar_pagos_info:hover {
-    background-color: #52639b; 
+	background-color: #52639b; 
 }
 
 .cancelar_pagos_ing {
@@ -167,15 +186,19 @@ color: #ffffff;
 padding: 12px 20px;
 border-radius: 10px;
 cursor: pointer;
-margin-top: 10px;
 margin-left: 10px;
 font-size: 20px;
 }
 
 .cancelar_pagos_ing:hover {
-    background-color: #52639b; 
+	background-color: #52639b; 
 }
 
-
-
-</style>
+.contenedor_botones_info_pago{
+	width: 23%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+	
+	</style>
