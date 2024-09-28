@@ -11,6 +11,7 @@ import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
+<<<<<<< HEAD
 import Pagos from './Pagos.vue';
 import informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
@@ -18,6 +19,10 @@ import { compile } from 'vue';
 
 
 
+=======
+import obserador_admin from '@/obserador_admin.vue';
+import observador_estudiante from '@/observador_estudiante.vue';
+>>>>>>> sebas
 const routes = [
     {path:'/',
     name:'main',
@@ -78,10 +83,22 @@ const routes = [
     ]
   },
 
+<<<<<<< HEAD
   {
     path: '/portal_pagos',
     name:'portal_pagos',
     component: Pagos,
+=======
+  },
+  {
+    path:"/agregarobservacion",
+    component:obserador_admin
+  },
+  {
+    path:"/observacionEstudiante",
+    component:observador_estudiante
+  }
+>>>>>>> sebas
 
   },
 

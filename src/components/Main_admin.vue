@@ -17,6 +17,22 @@
     </div>
 </router-link>
 
+<router-link to="/agregarobservacion">
+    <div>
+        Agregar Observaciones
+        <i class="fa fa-plus-circle"></i>
+    </div>
+</router-link>
+<router-link to="/observacionEstudiante">
+    <div>
+        Observaciones estudiantes
+        <i class="fa fa-plus-circle"></i>
+    </div>
+</router-link>
+
+
+
+
 
     <Footer/>
 
