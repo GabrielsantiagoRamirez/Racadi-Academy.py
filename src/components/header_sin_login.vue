@@ -1,36 +1,56 @@
 <template>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
-        <header class="container_header_sin">
-        <div>
-            <img src="../components/img/LogoRacadi.png" alt="" class="logo">
-        
-        </div>
-        <div class="texto">
-            <h1>
-                RACADI ACADEMY
-            </h1>
-        </div>
-        <div class="container_redes"> 
-                <a href="#"><i class="fa-brands fa-facebook-square redes"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram redes"></i></a>
-                <a href="#"><i class="fa-brands fa-whatsapp redes"></i></a>
-                <a href="#"><i class="fa-brands fa-github redes"></i></a>
-        </div>
-
-        <div class="perfil_header">
-          <i class="fa fa-user-circle perfil_sin" aria-hidden="true"></i>
-          <h1>Perfil</h1>
-        </div>
-    </header>
-    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
+  <header class="container_header_sin">
+      <div>
+          <img src="../components/img/LogoRacadi.png" alt="" class="logo">
+      </div>
+      <div class="texto">
+          <h1>
+              RACADI ACADEMY
+          </h1>
+      </div>
+      <div class="container_redes"> 
+          <a href="#"><i class="fa-brands fa-facebook-square redes"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram redes"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp redes"></i></a>
+          <a href="#"><i class="fa-brands fa-github redes"></i></a>
+      </div>
+      <router-link :to="perfilRuta">
+          <div class="perfil_header">
+              <i class="fa fa-user-circle perfil_sin" aria-hidden="true"></i>
+              <h1>Perfil</h1>
+          </div>
+      </router-link>
+  </header>
 </template>
 
-
 <script setup>
+import { ref, } from 'vue';
+import { jwtDecode } from "jwt-decode";
 
+// Estado para la ruta del perfil
+const perfilRuta = ref('/perfil_estudiante');
+
+// Al cargar el componente, decodifica el token y determina la ruta del perfil
+const token = localStorage.getItem('token');
+if (token) {
+  try {
+      const token_decodificado = jwtDecode(token);
+      const rol = token_decodificado.rol;
+
+      if (rol === 'profesor') {
+          perfilRuta.value = '/perfil_profesor'; }
+
+  } catch (error) {
+    perfilRuta.value = '/login'
+
+      
+  }
+}
 </script>
+
 
 
 <style>

@@ -1,4 +1,116 @@
 <script setup>
+import {ref,onMounted}from 'vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
+
+
+const documento = ref('')
+const descripcion = ref('')
+const usuario=ref(null)
+const router = useRouter();
+
+
+const añadir_observacion=async()=>{
+  try{
+   const response= await axios.post("http://127.0.0.1:8000/añadirObservacion",{
+    descripcion:descripcion.value,
+    documento:documento.value,
+    creada_por:usuario.value.usuario
+    
+   })
+   Swal.fire({
+    icon:'success',
+    title:'Observacion registrada',
+    text:'Observacion agregada exitosamente'
+
+   })
+  }catch (error) {
+        if (error.response && error.response.data.detail) {
+            let mensajeError = error.response.data.detail;
+
+            // Si mensajeError es un objeto se convierte a string para mostrarlo
+            if (typeof mensajeError === 'object') {
+                mensajeError = JSON.stringify(mensajeError);
+            }
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: mensajeError // Muestra el detalle del error
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Algo salió mal. Intenta nuevamente.',
+            });
+        }
+    }
+}
+const fetchUserProfile = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push("/login");
+          return; // Salir de la función si no hay token
+        }
+        try {
+          const response = await axios.get('http://localhost:8000/users/me', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          usuario.value = response.data; // Asigna los datos del usuario
+          console.log(usuario)
+
+        } catch (error) {
+          console.error('Error fetching user profile:', error); // Manejo de errores
+          localStorage.removeItem('token');
+          router.push('/login'); // Redirige a login en caso de error
+        }
+
+      };
+  
+      onMounted(fetchUserProfile); // Llama a la función al montar el componente
+  
+
+const documentoFiltro = ref('')
+const observaciones = ref([]); // Lista para almacenar las observaciones obtenidas
+const buscarObservaciones = async () => {
+  try {
+    // Realiza la solicitud GET al endpoint de FastAPI
+    const response = await axios.get(`http://127.0.0.1:8000/filtro_ObservadoresDocumento/${documentoFiltro.value}`);
+    
+    // Asigna la respuesta a la variable observaciones
+    observaciones.value = response.data;
+
+    // Mostrar notificación de éxito si se encontraron observaciones
+    if (observaciones.value.length > 0) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Observaciones encontradas',
+        text: `Se encontraron ${observaciones.value.length} observaciones para el documento ${documentoFiltro.value}`
+      });
+    } else {
+      // Notificación si no se encontraron observaciones
+      Swal.fire({
+        icon: 'warning',
+        title: 'Sin observaciones',
+        text: `No se encontraron observaciones para el documento ${documentoFiltro.value}`
+      });
+    }
+  } catch (error) {
+    // Manejo de errores
+    console.error('Error al buscar observaciones:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: error.response?.data?.detail || 'Ocurrió un error al buscar las observaciones'
+    });
+    observaciones.value=null
+  }
+};
+
 </script>
 
 <template>
@@ -8,39 +120,42 @@
       <h2 class="titulos_observadorAdmnin ">Observaciones</h2>
       <div class="muestra_observacionesAdmin">
         <!-- Aquí se mostrarán las observaciones -->
-        <div class="observation-item">
-          <p><strong>Fecha:</strong> 24/09/2024</p>
-          <p><strong>Documento:</strong> 12345678</p>
-          <p>Texto de la observación aquí...</p>
+        
+        <div v-if=" observaciones">
+         <div class="observation-item" v-for="observacion in observaciones" :key="observacion.id">
+           <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
+           <p><strong>Documento:</strong> {{ observacion.documento }}</p>
+           <p>{{ observacion.descripcion }}</p>
         </div>
-        <div class="observation-item">
-          <p><strong>Fecha:</strong> 23/09/2024</p>
-          <p><strong>Documento:</strong> 87654321</p>
-          <p>Otra observación de ejemplo...</p>
+       </div>
+       <div v-else>
+          No hay observaciones
         </div>
+        
+        
         <!-- Más observaciones -->
       </div>
 
       <div class="seccion_Filtrar_ObservacionesAdmin">
         <h2 class="titulos_observadorAdmnin ">Filtrar por documento</h2>
-        <input type="text" id="filter-doc" placeholder="Ingrese documento">
-        <button class="btnFiltar_ObservacionesAdmin">Filtrar</button>
+        <input v-model="documentoFiltro" required type="text" id="filter-doc" placeholder="Ingrese documento">
+        <button @click="buscarObservaciones" class="btnFiltar_ObservacionesAdmin">Filtrar</button>
       </div>
     </div>
 
     <div class="cont_AgregarObservador">
       <h2 class="titulos_observadorAdmnin ">Agregar Observación</h2>
-      <form class="Form_Agregarobservacion">
+      <form @submit.prevent="añadir_observacion"   class="Form_Agregarobservacion">
         
 
         <div class="contTitulo_seccionesAgregrarObservaciones">
           <label for="document">Documento:</label>
-          <input type="text" id="document" name="document">
+          <input type="text" id="document" name="document" v-model="documento" required>
         </div>
 
         <div class="contTitulo_seccionesAgregrarObservaciones">
           <label for="text">Observación:</label>
-          <textarea id="text" name="text" rows="4" placeholder="Escribe la observación..."></textarea>
+          <input  id="text" name="text" type="text" placeholder="Escribe la observación..." v-model="descripcion" required>
         </div>
 
         <button type="submit" class="btn_AgregarObseracionAdmin">Agregar Observación</button>

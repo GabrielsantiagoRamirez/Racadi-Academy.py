@@ -1,37 +1,84 @@
 <template>
-    <Header_sin_login/>
+    <Header_login/>
     <div class="wrapper_login">
-        <form action="" class="form_login">
+        <form @submit.prevent="handleLogin" class="form_login">
             <div class="txt_container_login">
-            <h1 class="title_login">LOGIN</h1>
+                <h1 class="title_login">LOGIN</h1>
             </div>
             <div class="inp">
-                <input type="text" class="input_login" placeholder="usuario">
+                <input v-model="usuario" type="text" class="input_login" placeholder="usuario" required >
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="inp">
-                <input type="password" class="input_login" placeholder="contraseña">
+                <input v-model="contraseña" type="password"  class="input_login" placeholder="contraseña" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
-            <button class="submit_login">iniciar sesion</button>
-        <p class="fp">¿olvidaste tu contraseña?<a href="" class="back_link_login">  <b>haz click aqui</b></a></p>
-        <p class="go_back_login"> <a href="index.html"> <b>Volver</b></a> </p>  
-
+            <button class="submit_login" type="submit">Iniciar sesión</button>
+            <div class="login_mensaje_error" v-if="mensaje_error">{{ mensaje_error }} </div>
+            <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
+            <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link ></p>
         </form>
 
         <div class="banner_login">
             <img src="../components/img/LogoRacadi.png" alt="" class="logo_login">
-      
         </div>
     </div>
     <Footer/>
-    
-
 </template>
 
 <script setup>
 import Header_sin_login from './header_sin_login.vue';
-import Footer from './footer.vue';
+
+import Header_login from './Header_login.vue';
+import Footer from './Footer.vue';
+import { ref } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router'; 
+import { jwtDecode } from "jwt-decode";
+
+
+// Variables para los inputs you know
+const usuario = ref('');
+const contraseña = ref('');
+const mensaje_error= ref('')
+
+//tener el router para la redireccion
+const router = useRouter();
+
+// funcion de inicio de sesion
+const handleLogin = async () => {
+    try {
+        // Hacer la solicitud post a la API de login
+        const response = await axios.post('http://localhost:8000/login', {
+            usuario: usuario.value,
+            contraseña: contraseña.value,
+        });
+        
+        const token_decodificado=jwtDecode(response.data.access_token)
+        console.log(response.data)
+
+        // guardamos el token el el local storage
+        localStorage.setItem('token' ,response.data.access_token )
+        console.log(localStorage.getItem('token'))
+ 
+
+        // Redireccionar según el rol
+        const rol = token_decodificado.rol;
+        if (rol === 'administrador') {
+            router.push('/main_admin'); 
+        } else if (rol === 'estudiante') {
+            router.push('/main_estudiante'); 
+        } else if (rol === 'profesor') {
+            router.push('/main_profesor'); 
+        }
+    } catch (error) {
+        if (error.response && error.response.data.detail) {
+            mensaje_error.value=error.response.data.detail//devuelvo el error que retorna la api
+        } else {
+            mensaje_error.value='Algo salió mal. Intenta nuevamente'
+        }
+    }
+};
 </script>
 
 
@@ -47,6 +94,15 @@ a {
 
 b {
     color: rgb(70, 199, 199);
+}
+.login_mensaje_error{
+    color: red;
+    font-size: 18px;
+    display: flex;
+    align-self: self-start;
+    margin-left: 9vh;
+    margin-top: 5px;
+    
 }
 
 .wrapper_login {
@@ -110,9 +166,9 @@ b {
 
 .fp {
     letter-spacing: 0.5px;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
-    margin-top: 5vh;
+    margin-top: 5px;
 }
 
 .back_link_login{
@@ -136,7 +192,7 @@ b {
 
 
 .go_back_login {
-font-size: 20px;
+font-size: 18px;
 margin-top: 10px;
 color: #83B4FF;
 }

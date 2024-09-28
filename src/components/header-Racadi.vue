@@ -20,7 +20,11 @@
         </div>
 
         <div class="boton">
+          <router-link to="/login">
             <button>Login</button>
+          </router-link>
+       
+
         </div>
 
     </header>
@@ -46,6 +50,16 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 15px 0 #263d53; 
+}
+.container_redes{
+  width: 100%;
+  max-width: 160px;
+  display: flex;
+  justify-content: space-between;
+}
+.redes{
+  font-size: 35px;
+  color: white;
 }
 
 .logo {

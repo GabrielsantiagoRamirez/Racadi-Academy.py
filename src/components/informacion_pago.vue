@@ -91,7 +91,7 @@
 
 
 <script setup>
-import Footer from './Footer.vue';
+import Footer from './footer.vue';
 import Header_sin_login from './Header_sin_login.vue';
 </script>
 
