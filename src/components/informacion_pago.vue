@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody class="fondo_pago" v-if="cuenta">
-                <tr>
+                <tr >
                     <td class="informacion_pago">
                         {{ cuenta.Pagare }}
                     </td>
@@ -76,7 +76,7 @@ import { useRouter } from 'vue-router';
 
 
 //COmponente para el Headder y el Footer
-import Footer from './Footer.vue';
+import Footer from './footer.vue';
 import Header_sin_login from './header_sin_login.vue';
 
 
@@ -91,17 +91,20 @@ export default {
 
         const info_pagos = async () => {
             const token = localStorage.getItem('token');
+            console.log(token);
+            console.log("Estamos revisando el token");
             if(!token){
                 router.push("/login")
                 return;
             }
             try{
-                const response = axios.get('http://localhost:8000/datos_cuenta',{
+                const response = await axios.get('http://localhost:8000/datos_cuenta',{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
                 cuenta.value = response.data;
+                console.log("Me encuentro aqui")
                 console.log(cuenta);
             } catch(error){  
             console.error('Error fetching user profile:', error); // Manejo de errores

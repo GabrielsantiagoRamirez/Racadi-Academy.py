@@ -14,6 +14,7 @@ import perfil_profesor from './Perfil_profesor.vue';
 import Pagos from './Pagos.vue';
 import Informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
+import Solicitudes from './Solicitudes.vue';
 
 
 const routes = [
@@ -91,6 +92,12 @@ const routes = [
     path: '/pagina_pago',
     name: 'pagina_pago',
     component: Pagina_pago_banco
+  },
+
+  {
+    path: '/solicitudes',
+    name: 'solicitudes',
+    component: Solicitudes
   }
 
 ];

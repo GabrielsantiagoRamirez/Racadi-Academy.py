@@ -28,7 +28,7 @@
 
 <script setup>
 import Header_login from './Header_login.vue';
-import Footer from './Footer.vue';
+import Footer from './footer.vue';
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'; 

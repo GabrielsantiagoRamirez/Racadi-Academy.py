@@ -41,7 +41,7 @@ import { jwtDecode } from 'jwt-decode';
 
 //Componenetes del Header y el Footer
 import Header_sin_login from './header_sin_login.vue';
-import Footer from './Footer.vue';
+import Footer from './footer.vue';
 
 
 //tener el router para la redireccion
