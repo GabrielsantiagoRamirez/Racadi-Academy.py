@@ -5,4 +5,4 @@
     </div>
 </template>
 <script setup>
-import Header_sin_login from './header_sin_login.vue';</script>
+import Header_sin_login from './Header_sin_login.vue';</script>

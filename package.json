@@ -14,7 +14,7 @@
     "jwt-decode": "^4.0.0",
     "server": "^1.0.39",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.14.0",
+    "sweetalert2": "^11.14.1",
     "vue": "^3.4.29",
     "vue-router": "^4.4.5"
   },

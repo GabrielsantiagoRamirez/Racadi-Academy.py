@@ -12,13 +12,19 @@ import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
 import Pagos from './Pagos.vue';
-import Informacion_pago from './informacion_pago.vue';
+import informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
+<<<<<<< HEAD
 import Solicitudes from './Solicitudes.vue';
+=======
+import obserador_admin from '@/obserador_admin.vue';
+import observador_estudiante from '@/observador_estudiante.vue';
+>>>>>>> 5914643bf872e1f6e0cc29a3f8b5862b05b0ee71
 
 
 const routes = [
-    {path:'/',
+    {
+      path:'/',
     name:'main',
     component: Main
     },
@@ -75,12 +81,40 @@ const routes = [
         component:Editar_eliminar_estudiantes
       }
     ]
+  },
+
+  {
+    path: '/portal_pagos',
+    name:'portal_pagos',
+    component: Pagos,
+
+  },
+  {
+    path:"/agregarobservacion",
+    component:obserador_admin
+  },
+  {
+    path:"/observacionEstudiante",
+    component:observador_estudiante
+  },
+
+  {
+    path:'/info_pago',
+    name:'Informacion_pagos',
+    component: informacion_pago,
+  },
+
+  {
+    path:'/pagina_pago',
+    name:'Pagina_pago_banco',
+    component: Pagina_pago_banco,
   },  
   {
     path: '/portal_pagos',
     name: 'portal_de_pagos',
     component: Pagos
   },
+<<<<<<< HEAD
 
   {
     path: '/info_pago',
@@ -100,6 +134,8 @@ const routes = [
     component: Solicitudes
   }
 
+=======
+>>>>>>> 5914643bf872e1f6e0cc29a3f8b5862b05b0ee71
 ];
 
 const router = createRouter({

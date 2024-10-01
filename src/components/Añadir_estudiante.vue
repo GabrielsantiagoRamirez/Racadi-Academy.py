@@ -2,7 +2,6 @@
   <div class="form-container">
     <h1 class="form-title">Añadir Estudiante</h1>
     <form @submit.prevent="añadir_estudiante" class="form">
-      
       <div class="form-group">
         <label for="documento">
           <i class="fa fa-id-card"></i> Documento
@@ -110,7 +109,6 @@
           <option v-for="nombre in nombre_planes" :key="nombre" :value="nombre">{{ nombre }}</option>
         </select>
       </div>
-
       <button type="submit" class="submit-button">
         <i class="fa fa-save"></i> Guardar Estudiante
       </button>
@@ -169,7 +167,8 @@ const añadir_estudiante =async()=>{
         contraseña:contraseña.value,
         nivel_actual:nivel_actual.value,
         plan:plan.value
-        })
+        }
+        )
         Swal.fire({
             icon: 'success',
             title: 'Estudiante Registrado',
