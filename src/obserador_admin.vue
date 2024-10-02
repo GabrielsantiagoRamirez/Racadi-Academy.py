@@ -1,4 +1,6 @@
 <script setup>
+import header_sin_login from './components/Header_sin_login.vue';
+import Footer from './components/Footer.vue';
 import {ref,onMounted}from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -114,6 +116,7 @@ const buscarObservaciones = async () => {
 </script>
 
 <template>
+  <header_sin_login/>
 
 <div class="containerMadre_observadorAdmin">
     <div class="cont_MostrarObservacionesAdmin">
@@ -162,6 +165,7 @@ const buscarObservaciones = async () => {
       </form>
     </div>
   </div>
+  <Footer/>
 
 </template>
 

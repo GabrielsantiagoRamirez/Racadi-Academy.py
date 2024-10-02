@@ -3,6 +3,9 @@ import {ref,onMounted}from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useRouter } from 'vue-router';
+import header_sin_login from './components/Header_sin_login.vue';
+import Footer from './components/Footer.vue';
+
 
 const usuario=ref(null)
 const observaciones = ref([]); // Lista para almacenar las observaciones obtenidas
@@ -20,14 +23,7 @@ const buscarObservaciones = async () => {
     if (observaciones.value.length > 0) {
       console.log(response.data)
 
-    } else {
-      // Notificación si no se encontraron observaciones
-      Swal.fire({
-        icon: 'warning',
-        title: 'Sin observaciones',
-        text: `No se encontraron observaciones para el documento `
-      });
-    }
+    } 
   } catch (error) {
     // Manejo de errores
     console.error('Error al buscar observaciones:', error);
@@ -50,22 +46,15 @@ const buscarObservacionesFeceha = async () => {
     // Mostrar notificación de éxito si se encontraron observaciones
     if (observaciones.value.length > 0) {
       console.log(response.data)
-
-    } else {
-      // Notificación si no se encontraron observaciones
-      Swal.fire({
-        icon: 'warning',
-        title: 'Sin observaciones',
-        text: `No se encontraron observaciones para el documento `
-      });
-    }
+    } 
+    
   } catch (error) {
-    // Manejo de errores
     console.error('Error al buscar observaciones:', error);
     Swal.fire({
       icon: 'error',
-      title: 'Error',
-      text: error.response?.data?.detail || 'Ocurrió un error al buscar las observaciones'
+      title: 'Recuerda colocar la fecha ;)',
+      timer:2000,
+      showConfirmButton: false
     });
   }
 };
@@ -83,7 +72,7 @@ const fetchUserProfile = async () => {
             }
           });
           usuario.value = response.data; // Asigna los datos del usuario
-          console.log(usuario)
+          console.log(usuario.value.documento)
           await buscarObservaciones()
         } catch (error) {
           console.error('Error fetching user profile:', error); // Manejo de errores
@@ -105,17 +94,23 @@ const fetchUserProfile = async () => {
 
 </script>
 
+
 <template>
+
+<header_sin_login/>  
 <div class="containerMadre_observadorEstudiante">
   <div class="cont_MostrarObservacionesEstudiante">
     <h2 class="titulos_observadorEstudiante ">Observaciones</h2>
-    <div class="muestra_observacionesEstudiante" >
+    <div class="muestra_observacionesEstudiante" v-if="observaciones.length > 0 " >
       <!-- Aquí se mostrarán las observaciones -->
       <div class="observation-item" v-for="observacion in observaciones" :key="observacion
     .id_observacion">
         <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
         <p>{{ observacion.descripcion }}</p>
       </div>
+    </div>
+    <div v-else>
+      Sin Observaciones
     </div>
     
     <div class="seccion_Filtrar_ObservacionesEstudiante">
@@ -130,6 +125,8 @@ const fetchUserProfile = async () => {
     </div>
   </div>
 </div>
+<Footer/>  
+
 
 </template>
 
