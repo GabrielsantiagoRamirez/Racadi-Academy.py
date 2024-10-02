@@ -1,10 +1,9 @@
 <template>
     <Header_sin_login/>
-<<<<<<< HEAD
     <RouterLink to="/portal_pagos">
         <button>Quiero Pagar re YA</button>
     </RouterLink>
-=======
+
 
     <router-link to="/observacionEstudiante">
     <div>
@@ -12,7 +11,6 @@
         <i class="fa fa-plus-circle"></i>
     </div>
 </router-link>
->>>>>>> sebas
     <Footer/>
 
 
@@ -20,7 +18,7 @@
 
 </template>
 <script setup>
-import Header_sin_login from './Header_sin_login.vue';
+import Header_sin_login from './header_sin_login.vue';
 import Footer from './Footer.vue';
 
  

@@ -47,7 +47,7 @@
   import axios from 'axios';
   import { useRouter } from 'vue-router';
   import Footer from './Footer.vue';
-  import Header_sin_login from './Header_sin_login.vue';
+  import Header_sin_login from './header_sin_login.vue';
 
   
   export default {

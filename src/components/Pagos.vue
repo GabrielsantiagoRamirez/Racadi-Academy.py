@@ -42,7 +42,7 @@ import { useRouter } from 'vue-router';
 import { jwtDecode } from 'jwt-decode';
 
 //COmponenetes del Header y Footer
-import Header_sin_login from './Header_sin_login.vue';
+import Header_sin_login from './header_sin_login.vue';
 import Footer from './Footer.vue';
 
 //variable predeterminada para el tipo_documento
