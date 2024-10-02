@@ -3,10 +3,6 @@
         <h1 class="titulo_solicitud"> Añadir Solicitud</h1>
         <form @submit.prevent="añadir_solicitud" class="formulario_solicitud">
             <div class="formulario_grupo_añadir">
-                <label for="documento">
-                    <i class="fa fa-id-card"></i> Documento
-                </label>
-                <input type="text" v-model="documento" id="documento" required>
             </div>
 
             <div class="formulario_grupo_añadir">
@@ -25,26 +21,33 @@
 
 <script setup>
 // Variables para el método POST
-const documento = ref('');
 const descripcion = ref('');
+const usuario = ref(null)
 
 // Importaciones necesarias para Vue
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter();
+
 
 const añadir_solicitud = async () => {
     try {
         const response = await axios.post('http://127.0.0.1:8000/añadir_Solicitud', {
-            documento: documento.value,
+            documento: usuario.value.documento,
             descripcion: descripcion.value
         });
+        console.log(response.data)
+
 
         Swal.fire({
             icon: 'success',
-            title: 'Solicitud registrada',
-            text: 'Solicitud agregada exitosamente'
+            title: 'Solicitud registrada con exito',
         });
+
     } catch (error) {
         let mensajeError = error.response?.data?.detail || 'Algo salió mal. Intenta nuevamente.';
 
@@ -57,8 +60,34 @@ const añadir_solicitud = async () => {
             title: 'Error',
             text: mensajeError
         });
+        info_solicitudes()
     }
 };
+
+const fetchUserProfile = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push("/login");
+          return; // Salir de la función si no hay token
+        }
+        try {
+          const response = await axios.get('http://localhost:8000/users/me', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          usuario.value = response.data; // Asigna los datos del usuario
+          console.log(usuario.value.documento)
+        } catch (error) {
+          console.error('Error fetching user profile:', error); // Manejo de errores
+          localStorage.removeItem('token');
+          router.push('/login'); // Redirige a login en caso de error
+        }
+
+      };
+  
+
+      onMounted(fetchUserProfile);
 </script>
 
 <style>

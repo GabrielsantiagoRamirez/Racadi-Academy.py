@@ -1,6 +1,6 @@
 <script setup>
-import header_sin_login from './components/Header_sin_login.vue';
-import Footer from './components/Footer.vue';
+import header_sin_login from './header_sin_login.vue';
+import Footer from './Footer.vue';
 import {ref,onMounted}from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';

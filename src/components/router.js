@@ -15,16 +15,13 @@ import Pagos from './Pagos.vue';
 import informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
 import Solicitudes from './Solicitudes.vue';
-import obserador_admin from '@/obserador_admin.vue';
-import observador_estudiante from '@/observador_estudiante.vue';
+import observador_estudiante from './observador_estudiante.vue';
+import obserador_admin from './obserador_admin.vue';
 import Añadir_clase from './Añadir_clase.vue';
 import Reserva_clase from './Reserva_clase.vue';
-<<<<<<< HEAD
-=======
 import Añadir_solicitud from './añadir_solicitud.vue';
 import Editar_solicitud from './editar_solicitud.vue';
 import Eliminar_solicitud from './eliminar_solicitud.vue';
->>>>>>> 2b2e957f91cec129b3346f094663572abfa680b5
 
 
 const routes = [
@@ -142,8 +139,7 @@ const routes = [
     children:
     [
       {      
-        path : 'añadir_solicitud',
-        name: 'añadir_solicitud',
+        path : 'anadir_solicitud',
         component: Añadir_solicitud
       },
       {      

@@ -31,11 +31,13 @@ const editar_solicitud = async () => {
             id:id.value,
         });
 
+
         Swal.fire({
             icon: 'success',
             title: 'Solicitud Eliminada',
             text: 'Su solicitud ha sido eliminada de manera correcta'
         });
+
     } catch (error) {
         let mensajeError = error.response?.data?.detail || 'Algo salió mal. Intenta nuevamente.';
 
