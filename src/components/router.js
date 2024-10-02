@@ -26,11 +26,6 @@ import Eliminar_solicitud from './eliminar_solicitud.vue';
 
 
 
-
-
-import obserador_admin from '@/obserador_admin.vue';
-import observador_estudiante from '@/observador_estudiante.vue';
-
 const routes = [
     {
       path:'/',
