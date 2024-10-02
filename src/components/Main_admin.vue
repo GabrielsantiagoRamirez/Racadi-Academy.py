@@ -29,6 +29,7 @@
         <i class="fa fa-plus-circle"></i>
     </div>
 </router-link>
+<<<<<<< HEAD
 
 <router-link to="/anadir_clase">
     <div>Crear Clase</div>
@@ -38,6 +39,14 @@
 
 
 
+=======
+<router-link to="/anadir_clase">
+    <div>Crear Clase</div>
+
+</router-link>
+
+
+>>>>>>> 2b2e957f91cec129b3346f094663572abfa680b5
     <Footer/>
 
 </template>
