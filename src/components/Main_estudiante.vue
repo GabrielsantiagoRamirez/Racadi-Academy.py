@@ -1,18 +1,26 @@
 <template>
     <Header_sin_login/>
-<<<<<<< HEAD
-    <RouterLink to="/portal_pagos">
-        <button>Quiero Pagar re YA</button>
-    </RouterLink>
-=======
+    <h1 class="h1_portal_Admin">Portal de estudiantes</h1>
 
-    <router-link to="/observacionEstudiante">
-    <div>
-        Observaciones estudiantes
-        <i class="fa fa-plus-circle"></i>
+<div class="cont_acciones_admin">
+    
+    <RouterLink to="/portal_pagos" class="acciones_Admin">
+        <i  id="Icon_acciones_Admin" class="fa fa-credit-card-alt" aria-hidden="true"></i>
+        <a href="">Pagos de plan</a>
+    </RouterLink>
+
+
+    <router-link to="/observacionEstudiante" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-file-text" aria-hidden="true"></i>
+    <a href="">Observaciones de estudiantes</a>
+
+    </router-link>
+
+    <div class="acciones_Admin">
+        
     </div>
-</router-link>
->>>>>>> sebas
+</div>
     <Footer/>
 
 
