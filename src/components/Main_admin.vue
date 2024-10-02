@@ -1,21 +1,23 @@
 <template>
     <Header_sin_login/>
 
-    <h1>Portal administrador</h1>
+    <h1 class="h1_portal_Admin">Portal de administrador</h1>
 
-<router-link to="/crear_cuentas">
-    <div>
-        crear cuentas
-        <i class="fa fa-plus-circle"></i>
-    </div>
+<div class="cont_acciones_admin">
+<router-link to="/crear_cuentas" class="acciones_Admin">
+    
+        <i id="Icon_acciones_Admin" class="fa fa-user-plus" aria-hidden="true"></i>
+        <a href="">Creacion de usuarios</a>
+        
+    
 </router-link>
 
-<router-link to="/editar_eliminar_cuentas">
-    <div>
-        Editar y Eliminar Cuentas
-        <i class="fa fa-plus-circle"></i>
-    </div>
+<router-link to="/editar_eliminar_cuentas" class="acciones_Admin">
+    
+        <i id="Icon_acciones_Admin" class="fa fa-cog" aria-hidden="true"></i>
+        <a href="">Eliminar y Editar Cuentas</a>
 </router-link>
+
 
 <router-link to="/agregarobservacion">
     <div>
@@ -28,6 +30,19 @@
 
 </router-link>
 
+
+<router-link to="/agregarobservacion" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-pencil-square" aria-hidden="true"></i>
+        <a href="">Agregar Observaciones</a>
+   
+</router-link>
+
+</div>
+
+
+
+
     <Footer/>
 
 </template>
@@ -37,3 +52,56 @@
 import Header_sin_login from './header_sin_login.vue';
 import Footer from './Footer.vue';
 </script>
+
+<style>
+.h1_portal_Admin{
+    text-align: center;
+    font-size: 40px;
+    color: #6bc8ec;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 4%;
+    margin-bottom: 3%;
+
+}
+
+.cont_acciones_admin{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+
+.acciones_Admin{
+    background-color: #6bc8ec;
+    height: auto;
+    width: 8%;
+    display: flex;
+  flex-direction: column;
+  padding:2%;
+  justify-content: space-around;
+  color: white;
+  align-items: center;
+
+}
+.acciones_Admin:hover{
+background-color: rgba(250, 235, 215, 0.726);
+
+}
+.acciones_Admin a{
+    color: white;
+    text-align:center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+    margin-top: 15%;
+    
+    
+}
+#Icon_acciones_Admin{
+    font-size: 60px;
+    
+    background-color: rgba(250, 235, 215, 0);
+
+}
+
+</style>
