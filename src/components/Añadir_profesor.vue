@@ -137,8 +137,9 @@ const añadir_estudiante =async()=>{
         )
         Swal.fire({
             icon: 'success',
-            title: 'Profesor Registrado',
-            text: `se añadio el profesor exitosamente`,
+            title: 'Profesor Registrado con exito',
+            timer:2000,
+            showConfirmButton:false
         });
 
     }catch (error) {
@@ -152,14 +153,12 @@ const añadir_estudiante =async()=>{
 
             Swal.fire({
                 icon: 'error',
-                title: 'Error',
-                text: mensajeError // Muestra el detalle del error
+                title: mensajeError,
             });
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Error',
-                text: 'Algo salió mal. Intenta nuevamente.',
+                title: 'Algo salió mal. Intenta nuevamente.',
             });
         }
     }
