@@ -1,6 +1,7 @@
 <template>
     <Header_sin_login/>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <RouterLink to="/portal_pagos">
         <button>Quiero Pagar re YA</button>
     </RouterLink>
@@ -13,11 +14,28 @@
     </div>
 </router-link>
 >>>>>>> sebas
+=======
+
+    <router-link to="/reserva_clase">
+        <div>Reservar Clases </div>
+    </router-link>
+
+
+
+
+>>>>>>> oscarin
     <Footer/>
 
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> oscarin
 </template>
 <script setup>
 import Header_sin_login from './Header_sin_login.vue';

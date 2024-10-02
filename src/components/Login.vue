@@ -14,7 +14,7 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
             <button class="submit_login" type="submit">Iniciar sesión</button>
-            <div class="login_mensaje_error" v-if="mensaje_error">{{ mensaje_error }} </div>
+            <div class="login_mensaje_error" v-if="mensaje_error"> <i class="fa fa-exclamation"></i>&nbsp;{{mensaje_error }} </div>
             <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
             <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link></p>
         </form>
