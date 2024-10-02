@@ -17,6 +17,7 @@
     </div>
 </router-link>
 
+<<<<<<< HEAD
 <router-link to="/agregarobservacion">
     <div>
         Agregar Observaciones
@@ -28,11 +29,18 @@
         Observaciones estudiantes
         <i class="fa fa-plus-circle"></i>
     </div>
+=======
+<router-link to="/anadir_clase">
+    <div>Crear Clase</div>
+>>>>>>> oscarin
 </router-link>
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> oscarin
 
     <Footer/>
 
