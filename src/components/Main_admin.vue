@@ -19,15 +19,9 @@
 </router-link>
 
 
-<router-link to="/agregarobservacion">
-    <div>
-        Agregar Observaciones
-        <i class="fa fa-plus-circle"></i>
-    </div>
-</router-link>
-<router-link to="/anadir_clase">
-    <div>Crear Clase</div>
-
+<router-link to="/anadir_clase" class="acciones_Admin">
+    <i id="Icon_acciones_Admin" class="fa fa-calendar-plus" aria-hidden="true"></i>
+    <a href="">Crear clases</a>
 </router-link>
 
 
@@ -85,7 +79,7 @@ import Footer from './Footer.vue';
 
 }
 .acciones_Admin:hover{
-background-color: rgba(250, 235, 215, 0.726);
+background-color: #6bc7ec56;
 
 }
 .acciones_Admin a{

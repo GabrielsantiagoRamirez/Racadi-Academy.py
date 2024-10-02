@@ -1,20 +1,8 @@
 <template>
     <Header_sin_login/>
 
-    <RouterLink to="/portal_pagos"> <div> Portal de pagos </div></RouterLink>
-    <RouterLink to="/solicitudes"> <div>Solicitudes</div> </RouterLink>
-    <router-link to="/observacionEstudiante">
-    <div>
-        Observaciones estudiantes
-        <i class="fa fa-plus-circle"></i>
-    </div>
-</router-link>
-
-
-
-    <router-link to="/reserva_clase">
-        <div>Reservar Clases </div>
-    </router-link>
+    
+    
 
     <h1 class="h1_portal_Admin">Portal de estudiantes</h1>
 
@@ -33,9 +21,17 @@
 
     </router-link>
 
-    <div class="acciones_Admin">
-        
-    </div>
+    <RouterLink to="/solicitudes" class="acciones_Admin"> 
+        <i id="Icon_acciones_Admin" class="fa fa-comments" aria-hidden="true"></i>
+        <a>Solicitudes</a> 
+    </RouterLink>
+    
+    <router-link to="/reserva_clase" class="acciones_Admin">
+        <i id="Icon_acciones_Admin" class="fa fa-calendar-plus" aria-hidden="true"></i>
+        <a>Reservar Clases </a>
+    </router-link>
+
+    
 </div>
 
     <Footer/>
