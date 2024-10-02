@@ -58,12 +58,12 @@ import Footer from './Footer.vue';
         <h1 class="tituloNiveles">Las certificaciones que te ofrecemos</h1>
             <a class="MainTextos">Te ofrecemos la certificacion de todos los niveles de ingles desde A1 hasta C2,iniciando desde el nivel que te encuentres hasta donde puedas llegar con nuestros planes.</a>
        <div class="contNiveles">
-            <div class="niveles">A1</div>
-            <div class="niveles2">A2</div>
-            <div class="niveles3">B1</div>
-            <div class="niveles4">B2</div>
-            <div class="niveles5">C1</div>
-            <div class="niveles6">C2</div>
+            <div class="niveles"><strong>A1</strong></div>
+            <div class="niveles2"><strong>A2</strong></div>
+            <div class="niveles3"><strong>B1</strong></div>
+            <div class="niveles4"><STRong>B2</STRong></div>
+            <div class="niveles5"><strong>C1</strong></div>
+            <div class="niveles6"><Strong>C2</Strong></div>
        </div>
 
 

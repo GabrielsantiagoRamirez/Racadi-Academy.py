@@ -29,7 +29,7 @@
                 </table>
             </div>
             <div class="container_solicitud_botones">
-                <RouterLink to="/solicitudes/añadir_solicitud">
+                <RouterLink to="/solicitudes/anadir_solicitud">
                     <i class="fa fa-folder-o"></i>
                     <button class="agregar_solicitud_info"> Agregar</button> 
                 </RouterLink>
@@ -47,57 +47,47 @@
     <Footer/>
 </template>
 
-
-<script>
-// Contenedores predeterminados
-import Header_sin_login from './header_sin_login.vue';
-import Footer from './Footer.vue';
-
-
-//Importaciones para que funcione vue
-import { ref, onMounted } from 'vue';
+<script setup>
+import { ref, onMounted, nextTick } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import Header_sin_login from './header_sin_login.vue';
+import Footer from './Footer.vue';
+// Declaración de referencias reactivas y router
+const solicitud = ref([]);
+const router = useRouter();
 
-
-export default {
-    components: {
-        Footer,
-        Header_sin_login
-    },
-    setup() {
-        const solicitud = ref([]);
-        const router = useRouter();
-
-        const info_solicitudes = async () => {
-            const token = localStorage.getItem('token');
-            if(!token){
-                router.push('/login')
-                return;
+// Función para obtener la información de las solicitudes
+const info_solicitudes = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        router.push('/login');
+        return;
+    }
+    try {
+        const response = await axios.get('http://127.0.0.1:8000/traer_datos_solicitudes', {
+            headers: {
+                Authorization: `Bearer ${token}`
             }
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/traer_datos_solicitudes',{
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                solicitud.value = response.data;
-                console.log(solicitud);
-                console.log("Me encuentro aqui")
-        } catch (error){
-            console.error('Error fetching user profile:', error); // Manejo de errores
-          localStorage.removeItem('token');
-          router.push('/login'); // Redirige a login en caso de error
-        }
-    };
+        });
+        solicitud.value = response.data;
+        console.log(solicitud);
+        console.log("Me encuentro aquí");
 
-    onMounted(info_solicitudes);
-
-
-    return {solicitud};
-},
+    } catch (error) {
+        console.error('Error fetching solicitudes:', error);
+        localStorage.removeItem('token');
+        router.push('/login'); // Redirige a login en caso de error
+    }
 };
+
+// Montar la función cuando el componente está listo
+onMounted(info_solicitudes);
+
 </script>
+
+
+
 
 <style>
 @media (min-width: 1200px) and (max-width: 1499px){

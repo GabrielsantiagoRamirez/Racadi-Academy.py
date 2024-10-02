@@ -1,33 +1,45 @@
 <template>
     <Header_sin_login/>
-<<<<<<< HEAD
 
-    <RouterLink to="/portal_pagos">
-        <button>Quiero Pagar re YA</button>
-    </RouterLink>
-
-=======
-    <RouterLink to="/portal_pagos"> <button> Quiero pagar re ya</button></RouterLink>
-    <RouterLink to="/solicitudes"> <button>Quiero ver mis solicitudes zungas</button> </RouterLink>
->>>>>>> 2b2e957f91cec129b3346f094663572abfa680b5
+    <RouterLink to="/portal_pagos"> <div> Portal de pagos </div></RouterLink>
+    <RouterLink to="/solicitudes"> <div>Solicitudes</div> </RouterLink>
     <router-link to="/observacionEstudiante">
     <div>
         Observaciones estudiantes
         <i class="fa fa-plus-circle"></i>
     </div>
 </router-link>
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 2b2e957f91cec129b3346f094663572abfa680b5
+
     <router-link to="/reserva_clase">
         <div>Reservar Clases </div>
     </router-link>
 
+    <h1 class="h1_portal_Admin">Portal de estudiantes</h1>
+
+<div class="cont_acciones_admin">
+    
+    <RouterLink to="/portal_pagos" class="acciones_Admin">
+        <i  id="Icon_acciones_Admin" class="fa fa-credit-card-alt" aria-hidden="true"></i>
+        <a href="">Pagos de plan</a>
+    </RouterLink>
+
+
+    <router-link to="/observacionEstudiante" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-file-text" aria-hidden="true"></i>
+    <a href="">Observaciones de estudiantes</a>
+
+    </router-link>
+
+    <div class="acciones_Admin">
+        
+    </div>
+</div>
+
     <Footer/>
 
-<<<<<<< HEAD
 
 
 
@@ -35,9 +47,6 @@
 
 
 
-
-=======
->>>>>>> 2b2e957f91cec129b3346f094663572abfa680b5
 </template>
 <script setup>
 import Header_sin_login from './header_sin_login.vue';

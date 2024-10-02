@@ -9,13 +9,6 @@
                 <input type="text" v-model="id" id="id" required>
             </div>
             <div class="formulario_grupo_editar">
-                <label for="documento">
-                    <i class="fa fa-id-card"></i> Documento
-                </label>
-                <input type="text" v-model="documento" id="documento" required>
-            </div>
-
-            <div class="formulario_grupo_editar">
                 <label for="descripcion">
                     <i class="fa fa-commenting-o"></i> Descripción
                 </label>
@@ -32,19 +25,21 @@
 <script setup>
 // Variables para el método POST
 const id = ref('');
-const documento = ref('');
 const descripcion = ref('');
 
 // Importaciones necesarias para Vue
-import { ref } from 'vue';
+import { ref , onMounted} from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const usuario = ref([])
 
 const editar_solicitud = async () => {
     try {
         const response = await axios.put(`http://127.0.0.1:8000/actualizar_solicitud/${id.value}`, {
-            id:id.value,
-            documento: documento.value,
+            documento: usuario.value.documento,
             descripcion: descripcion.value
         });
 
@@ -53,6 +48,7 @@ const editar_solicitud = async () => {
             title: 'Solicitud registrada',
             text: 'Solicitud agregada exitosamente'
         });
+
     } catch (error) {
         let mensajeError = error.response?.data?.detail || 'Algo salió mal. Intenta nuevamente.';
 
@@ -67,6 +63,31 @@ const editar_solicitud = async () => {
         });
     }
 };
+
+
+const fetchUserProfile = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          router.push("/login");
+          return; // Salir de la función si no hay token
+        }
+        try {
+          const response = await axios.get('http://localhost:8000/users/me', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          usuario.value = response.data; // Asigna los datos del usuario
+          console.log(usuario.value.documento)
+        } catch (error) {
+          console.error('Error fetching user profile:', error); // Manejo de errores
+          localStorage.removeItem('token');
+          router.push('/login'); // Redirige a login en caso de error
+        }
+
+      };
+
+      onMounted(fetchUserProfile);
 </script>
 
 <style>

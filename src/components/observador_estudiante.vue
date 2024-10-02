@@ -3,9 +3,9 @@ import {ref,onMounted}from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useRouter } from 'vue-router';
-import header_sin_login from './components/Header_sin_login.vue';
-import Footer from './components/Footer.vue';
 
+import header_sin_login from './header_sin_login.vue';
+import Footer from './Footer.vue';
 
 const usuario=ref(null)
 const observaciones = ref([]); // Lista para almacenar las observaciones obtenidas
@@ -107,6 +107,7 @@ const fetchUserProfile = async () => {
     .id_observacion">
         <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
         <p>{{ observacion.descripcion }}</p>
+        <p><strong>Creada por:</strong> {{ observacion.creada_por }}</p>
       </div>
     </div>
     <div v-else>
