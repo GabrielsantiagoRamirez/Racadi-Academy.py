@@ -11,16 +11,17 @@ import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
-<<<<<<< HEAD
 import Pagos from './Pagos.vue';
 import informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
+import Solicitudes from './Solicitudes.vue';
 import obserador_admin from '@/obserador_admin.vue';
 import observador_estudiante from '@/observador_estudiante.vue';
-=======
 import Añadir_clase from './Añadir_clase.vue';
 import Reserva_clase from './Reserva_clase.vue';
->>>>>>> oscarin
+import Añadir_solicitud from './añadir_solicitud.vue';
+import Editar_solicitud from './editar_solicitud.vue';
+import Eliminar_solicitud from './eliminar_solicitud.vue';
 
 
 const routes = [
@@ -83,24 +84,20 @@ const routes = [
     path:"/editar_eliminar_cuentas",
     component:Editar_eliminar_cuentas,
     children:[
-      {path:"editar_eliminar_estudiantes",
+      {
+        path:"editar_eliminar_estudiantes",
         component:Editar_eliminar_estudiantes
       }
     ]
   },
 
-<<<<<<< HEAD
   {
     path: '/portal_pagos',
     name:'portal_pagos',
     component: Pagos,
-=======
   },
   {path:"/reserva_clase",
     component:Reserva_clase
-  }
->>>>>>> oscarin
-
   },
   {
     path:"/agregarobservacion",
@@ -127,6 +124,38 @@ const routes = [
     name: 'portal_de_pagos',
     component: Pagos
   },
+
+
+  {
+    path: '/pagina_pago',
+    name: 'pagina_pago',
+    component: Pagina_pago_banco
+  },
+
+  {
+    path: '/solicitudes',
+    component: Solicitudes,
+    children:
+    [
+      {      
+        path : 'añadir_solicitud',
+        name: 'añadir_solicitud',
+        component: Añadir_solicitud
+      },
+      {      
+        path : 'editar_solicitud',
+        name: 'editar_solicitud',
+        component: Editar_solicitud
+      },
+      {      
+        path : 'eliminar_solicitud',
+        name: 'eliminarr_solicitud',
+        component: Eliminar_solicitud
+      }
+    ]
+  }
+
+
 ];
 
 const router = createRouter({

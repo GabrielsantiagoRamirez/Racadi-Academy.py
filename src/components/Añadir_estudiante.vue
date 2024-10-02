@@ -8,7 +8,6 @@
         </label>
         <input type="text" v-model="documento" id="documento" required>
       </div>
-
       <div class="form-group">
         <label for="tipo_de_documento">
           <i class="fa fa-file-alt"></i> Tipo de Documento
@@ -274,6 +273,7 @@ input[type="date"]::placeholder {
   border: 1px solid #e2dad6;
   border-radius: 8px;
   transition: all 0.3s ease;
+  background-color: #ffffff;
 }
 
 

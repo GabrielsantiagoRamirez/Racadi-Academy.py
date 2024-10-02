@@ -4,65 +4,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
 
 <body>
-	<Header_sin_login/>
-	<div class="contenedor_tabla_pago">
-		<table class="tabla_pago">
-			<thead class="contenedor_informacion_pago_header">
-				<th colspan="6" class="cabeza_tabla_pagos">
-					Creditos activos
-				</th>
-				<tr>
-					<td class="cabeza_tabla_pagos">
-						Pagare
-					</td>
-					<td class="cabeza_tabla_pagos">
-						Documento
-					</td>
-					<td class="cabeza_tabla_pagos">
-						Saldo
-					</td>
-					<td class="cabeza_tabla_pagos">
-						Pago Minimo
-					</td>
-					<td class="cabeza_tabla_pagos">
-						Fecha del proximo pago
-					</td>
-					<td class="cabeza_tabla_pagos">
-						Dias de mora
-					</td>
-				</tr>
-			</thead>
-			<tbody class="fondo_pago" v-if="cuenta">
-				<tr>
-					<td class="informacion_pago">
-						{{ cuenta.Pagare }}
-					</td>
-					<td class="informacion_pago">
-						{{ cuenta.Documento }}
-					</td>
-					<td class="informacion_pago">
-						{{ cuenta.Saldo }}
-					</td>
-					<td class="informacion_pago">
-						<!--Revisen como hacen el return en sus documentos en el metodo get, 
-						por que como lo mandan es como se debe escribir la variable aca-->
-						{{ cuenta['Pago Minimo'] }}
-					</td>
-					<td class="informacion_pago">
-						{{ cuenta['Fecha del proximo pago'] }}
-					</td>
-					<td class="informacion_pago">
-						{{ cuenta['Dias de mora'] }}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<form action="" class="contenedor_botones_info_pago" v-if="cuenta">
-		<RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button></RouterLink>
-		<RouterLink to="/main_estudiante">  <button class="cancelar_pagos_ing"> cancelar </button> </RouterLink>
-	</form>
-	
+    <Header_sin_login/>
+    <div class="contenedor_tabla_pago">
+        <table class="tabla_pago">
+            <thead class="contenedor_informacion_pago_header">
+                <th colspan="6" class="cabeza_tabla_pagos">
+                    Creditos activos
+                </th>
+                <tr>
+                    <td class="cabeza_tabla_pagos">
+                        Pagare
+                    </td>
+                    <td class="cabeza_tabla_pagos">
+                        Documento
+                    </td>
+                    <td class="cabeza_tabla_pagos">
+                        Saldo
+                    </td>
+                    <td class="cabeza_tabla_pagos">
+                        Pago Minimo
+                    </td>
+                    <td class="cabeza_tabla_pagos">
+                        Fecha del proximo pago
+                    </td>
+                    <td class="cabeza_tabla_pagos">
+                        Dias de mora
+                    </td>
+                </tr>
+            </thead>
+            <tbody class="fondo_pago" v-if="cuenta">
+                <tr >
+                    <td class="informacion_pago">
+                        {{ cuenta.Pagare }}
+                    </td>
+                    <td class="informacion_pago">
+                        {{ cuenta.Documento }}
+                    </td>
+                    <td class="informacion_pago">
+                        {{ cuenta.Saldo }}
+                    </td>
+                    <td class="informacion_pago">
+                        {{ cuenta['Pago Minimo']}}
+                    </td>
+                    <td class="informacion_pago">
+                        {{ cuenta['Fecha del proximo pago'] }}
+                    </td>
+                    <td class="informacion_pago">
+                        {{ cuenta['Dias de mora'] }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container_info_botones">
+        <RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button> </RouterLink>
+       <RouterLink to="/main_estudiante"> <button class="cancelar_pagos_ing"> cancelar </button></RouterLink> 
+    </div>
 </body>
 <Footer/>
 </template>
@@ -72,8 +69,12 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+
+
+
+//COmponente para el Headder y el Footer
 import Footer from './Footer.vue';
-import Header_sin_login from './Header_sin_login.vue';
+import Header_sin_login from './header_sin_login.vue';
 
 
 
@@ -85,32 +86,31 @@ export default {
 setup() {
 	const cuenta = ref(null);
 	const router = useRouter();
+        const info_pagos = async () => {
+            const token = localStorage.getItem('token');
+            console.log(token);
+            console.log("Estamos revisando el token");
+            if(!token){
+                router.push("/login")
+                return;
+            }
+            try{
+                const response = await axios.get('http://localhost:8000/datos_cuenta',{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                cuenta.value = response.data;
+                console.log("Me encuentro aqui")
+                console.log(cuenta);
+            } catch(error){  
+            console.error('Error fetching user profile:', error); // Manejo de errores
+          localStorage.removeItem('token');
+          router.push('/login'); // Redirige a login en caso de error
+        }
+        };
 
-	const info_cuenta = async () => {
-		//Se trae la informacion del token
-		const token = localStorage.getItem('token');
-
-		if(!token){
-			router.push('/login');
-			console.log(token);
-			return;
-		}
-		try{
-			const response = await axios.get('http://localhost:8000/datos_cuenta', {
-				headers: {
-					'Authorization': `Bearer ${token}`,
-				}
-			});
-			cuenta.value = response.data;// Asigna los datos del usuario
-			console.log(cuenta)
-		} catch(error){
-			console.error('Error fetching user profile:', error); // Manejo de errores
-			localStorage.removeItem('token');
-			router.push('/login'); // Redirige a login en caso de error
-		}
-	};
-
-	onMounted(info_cuenta); // Llama a la función al montar el componente
+	onMounted(info_pagos); // Llama a la función al montar el componente
 
 	return{cuenta};// Retorna la cuenta para usar en el template
 },
@@ -201,5 +201,5 @@ font-size: 20px;
 	margin-top: 10px;
 }
 	
-	</style>
+</style>
 
