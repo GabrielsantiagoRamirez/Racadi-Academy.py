@@ -14,7 +14,7 @@
             <div>
                 <form @submit.prevent="verificar_usuario">
                     <h1 class="subtitulo_pago">Tipo de Documento</h1>
-                    <select v-model="tipo_documento" id="tipo_de_documento" required>
+                    <select class="pago_select" v-model="tipo_documento" id="tipo_de_documento" required>
                         <option v-for="tipo in tipos_documento" :key="tipo" :value="tipo">{{ tipo }}</option>
                     </select>
                     <h1 class="subtitulo_pago">Documento</h1>
@@ -44,7 +44,7 @@ import { jwtDecode } from 'jwt-decode';
 
 //Componenetes del Header y el Footer
 import Header_sin_login from './header_sin_login.vue';
-import Footer from './footer.vue';
+import Footer from './Footer.vue';
 
 
 //variable predeterminada para el tipo_documento
@@ -137,7 +137,6 @@ const verificar_usuario = async()=>{
     height: 350px;
 }
 .cancelar_pagos_pagos {
-
     background-color: #4e70b5; 
     color: white;
     padding: 12px 20px;
@@ -151,11 +150,13 @@ const verificar_usuario = async()=>{
     background-color: #52639b; 
 }
 
-select {
+.pago_select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    background-color: #ccc;
+    color: black;
 }
 
 .subtitulo_pago{

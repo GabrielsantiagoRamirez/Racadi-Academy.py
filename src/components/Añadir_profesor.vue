@@ -220,6 +220,7 @@ input[type="date"]::placeholder {
   border: 1px solid #e2dad6;
   border-radius: 8px;
   transition: all 0.3s ease;
+  background-color: #ffffff;
 }
 
 

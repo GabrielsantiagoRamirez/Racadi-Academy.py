@@ -73,7 +73,7 @@ import { useRouter } from 'vue-router';
 
 
 //COmponente para el Headder y el Footer
-import Footer from './footer.vue';
+import Footer from './Footer.vue';
 import Header_sin_login from './header_sin_login.vue';
 
 
@@ -201,5 +201,5 @@ font-size: 20px;
 	margin-top: 10px;
 }
 	
-	</style>
+</style>
 

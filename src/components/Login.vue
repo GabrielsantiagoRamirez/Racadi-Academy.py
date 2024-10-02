@@ -30,7 +30,7 @@
 import Header_sin_login from './header_sin_login.vue';
 
 import Header_login from './Header_login.vue';
-import Footer from './footer.vue';
+import Footer from './Footer.vue';
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'; 
