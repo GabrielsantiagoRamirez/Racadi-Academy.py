@@ -118,7 +118,7 @@ setup() {
 </script>
 
 
-<style>
+<style scoped>
 @media (min-width: 1200px) and (max-width: 1499px){
 
 }

@@ -90,7 +90,7 @@ const fetchUserProfile = async () => {
       onMounted(fetchUserProfile);
 </script>
 
-<style>
+<style scoped>
 @media (min-width: 1200px) and (max-width: 1499px){
 }
 .formulario_solicitud {

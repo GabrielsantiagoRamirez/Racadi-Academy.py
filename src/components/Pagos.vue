@@ -109,7 +109,7 @@ const verificar_usuario = async()=>{
 </script>
 
 
-<style>
+<style scoped>
 
 .container_pagos{
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.6);
