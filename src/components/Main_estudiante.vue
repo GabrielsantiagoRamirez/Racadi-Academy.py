@@ -8,7 +8,7 @@
 
 <div class="cont_acciones_admin">
     
-    <RouterLink to="/portal_pagos" class="acciones_Admin">
+    <RouterLink to="/info_pago" class="acciones_Admin">
         <i  id="Icon_acciones_Admin" class="fa fa-credit-card-alt" aria-hidden="true"></i>
         <a href="">Pagos de plan</a>
     </RouterLink>

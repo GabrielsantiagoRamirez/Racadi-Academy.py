@@ -1,205 +1,170 @@
 <template>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
-
-<body>
     <Header_sin_login/>
-    <div class="contenedor_tabla_pago">
+    <div class="contenedor_tabla_pago" v-if="cuenta">
         <table class="tabla_pago">
             <thead class="contenedor_informacion_pago_header">
-                <th colspan="6" class="cabeza_tabla_pagos">
-                    Creditos activos
-                </th>
                 <tr>
-                    <td class="cabeza_tabla_pagos">
-                        Pagare
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Documento
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Saldo
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Pago Minimo
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Fecha del proximo pago
-                    </td>
-                    <td class="cabeza_tabla_pagos">
-                        Dias de mora
-                    </td>
+                    <th colspan="6" class="cabeza_tabla_pagos">Creditos Activos</th>
+                </tr>
+                <tr class="fila_titulo">
+                    <td>Pagare</td>
+                    <td>Documento</td>
+                    <td>Saldo</td>
+                    <td>Pago Minimo</td>
+                    <td>Fecha del Próximo Pago</td>
+                    <td>Días de Mora</td>
                 </tr>
             </thead>
-            <tbody class="fondo_pago" v-if="cuenta">
-                <tr >
-                    <td class="informacion_pago">
-                        {{ cuenta.Pagare }}
-                    </td>
-                    <td class="informacion_pago">
-                        {{ cuenta.Documento }}
-                    </td>
-                    <td class="informacion_pago">
-                        {{ cuenta.Saldo }}
-                    </td>
-                    <td class="informacion_pago">
-                        {{ cuenta['Pago Minimo']}}
-                    </td>
-                    <td class="informacion_pago">
-                        {{ cuenta['Fecha del proximo pago'] }}
-                    </td>
-                    <td class="informacion_pago">
-                        {{ cuenta['Dias de mora'] }}
-                    </td>
+            <tbody>
+                <tr class="informacion_fila">
+                    <td>{{ cuenta.pagare }}</td>
+                    <td>{{ cuenta.documento }}</td>
+                    <td>{{ cuenta.saldo }}</td>
+                    <td>{{ cuenta.pago_minimo }}</td>
+                    <td>{{ cuenta.fecha_proximo_pago }}</td>
+                    <td>{{ cuenta.dias_mora }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="container_info_botones">
-        <RouterLink to="/pagina_pago"> <button class="cancelar_pagos_info"> Confirmar para pago</button> </RouterLink>
-       <RouterLink to="/main_estudiante"> <button class="cancelar_pagos_ing"> cancelar </button></RouterLink> 
+    <div class="contenedor_botones">
+        <RouterLink to="/pagina_pago">
+            <button class="boton_confirmar">Confirmar para pago</button>
+        </RouterLink>
+        <RouterLink to="/main_estudiante">
+            <button class="boton_cancelar">Cancelar</button>
+        </RouterLink>
     </div>
-</body>
-<Footer/>
+    <Footer/>
 </template>
 
-
-<script>
+<script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
+const usuario = ref(null);
+const cuenta = ref(null);
+const router = useRouter();
 
-
-//COmponente para el Headder y el Footer
+// Componente para el Header y Footer
 import Footer from './Footer.vue';
 import Header_sin_login from './header_sin_login.vue';
 
-
-
-export default {
-	components: {
-	Footer, 
-	Header_sin_login
-},
-setup() {
-	const cuenta = ref(null);
-	const router = useRouter();
-        const info_pagos = async () => {
-            const token = localStorage.getItem('token');
-            console.log(token);
-            console.log("Estamos revisando el token");
-            if(!token){
-                router.push("/login")
-                return;
-            }
-            try{
-                const response = await axios.get('http://localhost:8000/datos_cuenta',{
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                cuenta.value = response.data;
-                console.log("Me encuentro aqui")
-                console.log(cuenta);
-            } catch(error){  
-            console.error('Error fetching user profile:', error); // Manejo de errores
-          localStorage.removeItem('token');
-          router.push('/login'); // Redirige a login en caso de error
-        }
-        };
-
-	onMounted(info_pagos); // Llama a la función al montar el componente
-
-	return{cuenta};// Retorna la cuenta para usar en el template
-},
+const info_pagos = async () => {
+    try {
+        const response = await axios.get(`http://localhost:8000/datos_cuenta/${usuario.value.documento}`);
+        cuenta.value = response.data;
+    } catch (error) {
+        console.error('Error al obtener los datos de cuenta:', error);
+    }
 };
+
+const fetchUserProfile = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        router.push("/login");
+        return;
+    }
+    try {
+        const response = await axios.get('http://localhost:8000/users/me', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        usuario.value = response.data;
+        if (usuario.value && usuario.value.documento) {
+            await info_pagos();
+        }
+    } catch (error) {
+        console.error('Error al obtener el perfil del usuario:', error);
+        localStorage.removeItem('token');
+        router.push('/login');
+    }
+};
+
+onMounted(fetchUserProfile);
 </script>
 
+<style scoped>
+@media (min-width: 1200px) and (max-width: 1499px) {}
 
-<style>
-@media (min-width: 1200px) and (max-width: 1499px){
-
-}
-
-.contenedor_tabla_pago{
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 50px;
-	text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
-}
-.contenedor_informacion_pago_header{
-	background-color: #4e70b5;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	color: #ffffff;
-	text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);  
-}
-.cabeza_tabla_pagos{
-	font-family: "Anek Devanagari", sans-serif;
-	font-optical-sizing: auto;
-	border: 2px solid #2090c2;
-	font-size: 20px;
-	padding: 15PX;
-}
-.informacion_pago{
-	font-family: "Anek Devanagari", sans-serif;
-	font-optical-sizing: auto;
-	text-align: center;
-	border: 2px solid #53649b;
-	font-size: 20px;
-	padding: 8PX;
-	color: white;
+.contenedor_tabla_pago {
+    width: 60%;
+    margin: 50px auto;
+    background-color: #E2DAD6;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
 }
 
-.fondo_pago{
-	background-color: #53649b;
+.cabeza_tabla_pagos {
+    font-family: 'Anek Devanagari', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: #7FA1C3;
 }
 
-.tabla_pago{
-	border: 2px solid #53649b;
-	text-align: center;
+.fila_titulo {
+    background-color: #83B4FF;
+    color: white;
+    text-align: center;
 }
 
-.cancelar_pagos_info {
-font-family: "Anek Devanagari", sans-serif;
-font-optical-sizing: auto;
-background-color: #4e70b5; 
-color: #ffffff;
-padding: 12px 20px;
-border-radius: 10px;
-cursor: pointer;
-font-size: 20px;
-}
-.cancelar_pagos_info:hover {
-	background-color: #52639b; 
+.informacion_fila {
+    background-color: #F5EDED;
+    color: #53649b;
+    font-size: 18px;
+    text-align: center;
 }
 
-.cancelar_pagos_ing {
-font-family: "Anek Devanagari", sans-serif;
-font-optical-sizing: auto;
-background-color: #4e70b5; 
-color: #ffffff;
-padding: 12px 20px;
-border-radius: 10px;
-cursor: pointer;
-margin-left: 10px;
-font-size: 20px;
+.tabla_pago {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
 }
 
-.cancelar_pagos_ing:hover {
-	background-color: #52639b; 
+.tabla_pago th,
+.tabla_pago td {
+    padding: 12px;
+    border-bottom: 2px solid #83B4FF;
 }
-.contenedor_botones_info_pago{
-	width: 23%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
+
+.contenedor_botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
-	
+
+.boton_confirmar, .boton_cancelar {
+    font-family: 'Anek Devanagari', sans-serif;
+    background-color: #83B4FF;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.boton_confirmar:hover {
+    background-color: #7FA1C3;
+}
+
+.boton_cancelar {
+    margin-left: 15px;
+}
+
+.boton_cancelar:hover {
+    background-color: #E2DAD6;
+    color: #53649b;
+}
+
+.boton_confirmar:focus, .boton_cancelar:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #83B4FF;
+}
+
 </style>
 
