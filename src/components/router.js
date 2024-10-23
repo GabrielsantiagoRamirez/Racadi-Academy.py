@@ -26,6 +26,8 @@ import Eliminar_solicitud from './eliminar_solicitud.vue';
 
 
 
+
+
 const routes = [
     {
       path:'/',
@@ -159,6 +161,7 @@ const routes = [
         name: 'eliminarr_solicitud',
         component: Eliminar_solicitud
       }
+      
     ]
   }
 
