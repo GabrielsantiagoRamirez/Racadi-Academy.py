@@ -6,6 +6,7 @@
             <div class="contenedor_tabla_solicitud">
                 <table class="tabla_solicitud">
                     <thead class="contenedor_informacion_solicitud_header">
+                        <td class="cabeza_tabla_solicitudes" colspan="5">Solicitudes hechas por los Estudiantes</td>
                         <tr>
                             <td class="cabeza_tabla_solicitudes">Id</td>
                             <td class="cabeza_tabla_solicitudes">Documento</td>
@@ -20,8 +21,7 @@
                             <td class="informacion_solicitud">{{ s.documento }}</td>
                             <td class="informacion_solicitud">{{ s.descripcion }}</td>
                             <td class="informacion_solicitud">
-                                <span v-if="s.respuesta === ''">No te han enviado respuesta aún</span>
-                                <span v-else>{{ s.respuesta }}</span>
+                                <span>{{ s.respuesta }}</span>
                             </td>
                             <td class="informacion_solicitud">{{ s.fecha_creacion }}</td>
                         </tr>
@@ -29,16 +29,9 @@
                 </table>
             </div>
             <div class="container_solicitud_botones">
-                <RouterLink to="/solicitudes/anadir_solicitud">
+                <RouterLink to="/solicitudes_admin/editar_solicitud_admin">
                     <i class="fa fa-folder-o"></i>
-                    <button class="agregar_solicitud_info"> Agregar</button> 
-                </RouterLink>
-                <RouterLink to="/solicitudes/editar_solicitud">
-                    <i class="fa fa-folder-o"></i>
-                    <button class="agregar_solicitud_info"> Editar </button>
-                </RouterLink>
-                <RouterLink to="/solicitudes/eliminar_solicitud">
-                    <button class="eliminar_solicitud_ing"> Eliminar </button>
+                    <button class="agregar_solicitud_info"> Agregar Respuesta </button>
                 </RouterLink>
                 <RouterView/>
             </div>
@@ -48,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue';
+import { ref, onMounted} from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import Header_sin_login from './header_sin_login.vue';
@@ -126,7 +119,7 @@ onMounted(info_solicitudes);
     text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
     font-size: 20px;
     padding: 15px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     border-bottom: 3px solid #2090c2; /* Azul fuerte */
 }

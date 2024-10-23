@@ -14,7 +14,7 @@ const fecha=  ref('')
 const buscarObservaciones = async () => {
   try {
     // Realiza la solicitud GET al endpoint de FastAPI
-    const response = await axios.get(`http://127.0.0.1:8000/filtro_ObservadoresDocumento/${usuario.value.documento}`);
+    const response = await axios.get(`http://127.0.0.1:8000/filtro_ObservadoresDocumento/${usuario.value.documento}` ) ;
     
     // Asigna la respuesta a la variable observaciones
     observaciones.value = response.data;

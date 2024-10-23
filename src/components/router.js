@@ -21,6 +21,9 @@ import Reserva_clase from './Reserva_clase.vue';
 import Añadir_solicitud from './añadir_solicitud.vue';
 import Editar_solicitud from './editar_solicitud.vue';
 import Eliminar_solicitud from './eliminar_solicitud.vue';
+import Solicitudes_admin from './solicitudes_admin.vue';
+import Editar_solicitud_admin from './editar_solicitud_admin.vue';
+import Comunicados from './comunicados.vue';
 
 
 
@@ -139,7 +142,28 @@ const routes = [
         component: Eliminar_solicitud
       }
     ]
-  }
+  },
+  
+  {
+    path:'/solicitudes_admin',
+    name:'solicitudes_admin',
+    component: Solicitudes_admin,
+    children:
+    [
+      {      
+        path : 'editar_solicitud_admin',
+        component: Editar_solicitud_admin
+      }
+    ]
+  },
+  
+  {
+    path:'/comunicados_admin',
+    name:'Comunicados_admin',
+    component: Comunicados,
+  },  
+
+  
 
 
 ];

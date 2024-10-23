@@ -32,6 +32,21 @@
    
 </router-link>
 
+
+<router-link to="/solicitudes_admin" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-check-square" aria-hidden="true"></i>
+        <a href="">Ver Solicitudes</a>
+   
+</router-link>
+
+
+<router-link to="/comunicados_admin" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-anchor" aria-hidden="true"></i>
+        <a href="">Enviar Comunicados</a>
+   
+</router-link>
 </div>
 
 
