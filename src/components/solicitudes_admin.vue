@@ -89,7 +89,7 @@ onMounted(info_solicitudes);
 
 
 
-<style scoped>
+<style>
 @media (min-width: 1200px) and (max-width: 1499px){
 
 }
