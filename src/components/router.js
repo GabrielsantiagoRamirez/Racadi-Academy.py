@@ -11,8 +11,6 @@ import Crear_cuentas from './Crear_cuentas.vue';
 import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
 import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
 import perfil_profesor from './Perfil_profesor.vue';
-
-import Pagos from './Pagos.vue';
 import informacion_pago from './informacion_pago.vue';
 import Pagina_pago_banco from './pagina_pago_banco.vue';
 import Solicitudes from './Solicitudes.vue';
@@ -93,13 +91,6 @@ const routes = [
     ]
   },
 
-
-  {
-    path: '/portal_pagos',
-    name:'portal_pagos',
-    component: Pagos,
-
-  },
   {path:"/reserva_clase",
     component:Reserva_clase
   },
@@ -127,18 +118,6 @@ const routes = [
     name:'Pagina_pago_banco',
     component: Pagina_pago_banco,
   },  
-  {
-    path: '/portal_pagos',
-    name: 'portal_de_pagos',
-    component: Pagos
-  },
-
-
-  {
-    path: '/pagina_pago',
-    name: 'pagina_pago',
-    component: Pagina_pago_banco
-  },
 
   {
     path: '/solicitudes',

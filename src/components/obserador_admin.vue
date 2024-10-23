@@ -25,6 +25,7 @@ const añadir_observacion=async()=>{
     icon:'success',
     title:'Observacion registrada',
     text:'Observacion agregada exitosamente'
+    
 
    })
   }catch (error) {
@@ -86,21 +87,6 @@ const buscarObservaciones = async () => {
     // Asigna la respuesta a la variable observaciones
     observaciones.value = response.data;
 
-    // Mostrar notificación de éxito si se encontraron observaciones
-    if (observaciones.value.length > 0) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Observaciones encontradas',
-        text: `Se encontraron ${observaciones.value.length} observaciones para el documento ${documentoFiltro.value}`
-      });
-    } else {
-      // Notificación si no se encontraron observaciones
-      Swal.fire({
-        icon: 'warning',
-        title: 'Sin observaciones',
-        text: `No se encontraron observaciones para el documento ${documentoFiltro.value}`
-      });
-    }
   } catch (error) {
     // Manejo de errores
     console.error('Error al buscar observaciones:', error);
@@ -120,11 +106,11 @@ const buscarObservaciones = async () => {
 
 <div class="containerMadre_observadorAdmin">
     <div class="cont_MostrarObservacionesAdmin">
-      <h2 class="titulos_observadorAdmnin ">Observaciones</h2>
+      <h2 class="titulos_observadorAdmnin ">Busca Observaciones De Un Estudiante</h2>
       <div class="muestra_observacionesAdmin">
         <!-- Aquí se mostrarán las observaciones -->
         
-        <div v-if=" observaciones">
+        <div v-if=" observaciones.length">
          <div class="observation-item" v-for="observacion in observaciones" :key="observacion.id">
            <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
            <p><strong>Documento:</strong> {{ observacion.documento }}</p>
