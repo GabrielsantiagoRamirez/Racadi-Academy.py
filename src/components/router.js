@@ -21,9 +21,17 @@ import Reserva_clase from './Reserva_clase.vue';
 import Añadir_solicitud from './añadir_solicitud.vue';
 import Editar_solicitud from './editar_solicitud.vue';
 import Eliminar_solicitud from './eliminar_solicitud.vue';
+
 import Solicitudes_admin from './solicitudes_admin.vue';
 import Editar_solicitud_admin from './editar_solicitud_admin.vue';
 import Comunicados from './comunicados.vue';
+
+import horario_estudiante from './horario_estudiante.vue';
+import horario_profesor from './horario_profesor.vue';
+
+
+
+
 
 
 
@@ -107,7 +115,7 @@ const routes = [
     component:observador_estudiante
 
   },
-
+  
 
 
   {
@@ -141,8 +149,10 @@ const routes = [
         name: 'eliminarr_solicitud',
         component: Eliminar_solicitud
       }
+      
     ]
   },
+
   
   {
     path:'/solicitudes_admin',
@@ -164,6 +174,18 @@ const routes = [
   },  
 
   
+
+  {
+    path:"/HorarioEstudiante",
+    component:horario_estudiante
+
+  },
+  {
+    path:"/HorarioProfesor",
+    component:horario_profesor
+
+  }
+
 
 
 ];

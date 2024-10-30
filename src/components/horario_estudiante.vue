@@ -6,7 +6,7 @@
         <i class="fa fa-arrow-left"></i> Volver
       </button>
     </router-link>
-    <h1 class="titulo">Horario</h1>
+    <h1 class="titulo">Horario de clases</h1>
     <div class="semana">
       <div v-for="dia in diasSemana" :key="dia.fecha" class="dia">
         <h2>{{ dia.nombre }}</h2>
@@ -15,19 +15,13 @@
         <div v-if="dia.clases.length">
           <div v-for="clase in dia.clases" :key="clase.hora_inicio" class="clase">
             <p><strong>Horario:</strong> {{ convertir_hora_texto(clase.hora_inicio) }} - {{ convertir_hora_texto(clase.hora_fin) }}</p>
-            <p><strong>Docente:</strong> {{ clase.profesor }}</p>
+            <p><strong>Docente:</strong> {{ clase.documento_profesor }}</p>
             <p><strong>Cupos:</strong> {{ clase.cupos }}</p>
-            <button 
-              class="btn-reservar" 
-              :class="{ 'reservado': existeReserva(clase) }"
-              @click="existeReserva(clase) ? cancelarReserva(clase.id_clase) : reservarClase(clase.id_clase)">
-              <i class="fas" :class="existeReserva(clase) ? 'fa-calendar-times' : 'fa-calendar-plus'"></i> 
-              {{ existeReserva(clase) ? 'Cancelar' : 'Reservar' }}
-            </button>
+           
           </div>
         </div>
         <div v-else>
-          <p style="text-align: center;">No hay clases disponibles.</p>
+          <p style="text-align: center;">No hay clases agendadas.</p>
         </div>
       </div>
     </div>
@@ -73,7 +67,7 @@ const fetchUserProfile = async () => {
 
 const obtener_clases = async () => {
   try {
-      const response = await axios.get(`http://localhost:8000/obtenerclasesestudiante/${usuario.value.sede}/${usuario.value.nivel_actual}`);
+      const response = await axios.get(`http://localhost:8000/clases_reservadas/${usuario.value.documento}`);
       clases.value = response.data;
   } catch (error) {
       console.log('Error fetching classes', error.response?.data || error.message);

@@ -11,6 +11,13 @@
    
 </router-link>
 
+<router-link to="/HorarioProfesor" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-calendar" ></i>
+    <a>Tu Horario de clases </a>
+   
+</router-link>
+
 </div>
 </template>
 <script setup>
