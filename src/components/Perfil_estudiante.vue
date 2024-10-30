@@ -10,7 +10,7 @@
     <h1>Perfil Estudiante</h1>
     <div v-if="usuario">
       <div class="foto-perfil">
-        <img src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" alt="Foto de perfil">
+        <img :src="`http://localhost:8000${usuario.foto_perfil}`" alt="Foto de perfil">
       </div>
       <div class="info-basica">
         <h2>Información Básica</h2>
@@ -40,53 +40,51 @@
   <Footer/>
 </template>
 
+<script>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import Footer from './Footer.vue';
+import Header_sin_login from './header_sin_login.vue';
 
-  
-  <script>
-  import { ref, onMounted } from 'vue';
-  import axios from 'axios';
-  import { useRouter } from 'vue-router';
-  import Footer from './Footer.vue';
-  import Header_sin_login from './header_sin_login.vue';
-
-  
-  export default {
-    components: {
+export default {
+  components: {
     Footer,
     Header_sin_login 
   },
-    setup() {
-      const usuario = ref(null);
-      const router = useRouter();
-  
-      const fetchUserProfile = async () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          router.push("/login");
-          return; // Salir de la función si no hay token
-        }
-        try {
-          const response = await axios.get('http://localhost:8000/users/me', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          usuario.value = response.data; // Asigna los datos del usuario
-          console.log(usuario)
+  setup() {
+    const usuario = ref(null);
+    const router = useRouter();
 
-        } catch (error) {
-          console.error('Error fetching user profile:', error); // Manejo de errores
-          localStorage.removeItem('token');
-          router.push('/login'); // Redirige a login en caso de error
-        }
-      };
-  
-      onMounted(fetchUserProfile); // Llama a la función al montar el componente
-  
-      return { usuario }; // Retorna el usuario para usar en el template
-    },
-  };
-  </script>
+    const fetchUserProfile = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        router.push("/login");
+        return; // Salir de la función si no hay token
+      }
+      try {
+        const response = await axios.get('http://localhost:8000/users/me', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        usuario.value = response.data; // Asigna los datos del usuario
+        console.log(usuario.value) // Usa usuario.value para ver el valor real en la consola
+
+      } catch (error) {
+        console.error('Error fetching user profile:', error); // Manejo de errores
+        localStorage.removeItem('token');
+        router.push('/login'); // Redirige a login en caso de error
+      }
+    };
+
+    onMounted(fetchUserProfile); // Llama a la función al montar el componente
+
+    return { usuario }; // Retorna el usuario para usar en el template
+  },
+};
+</script>
+
   
   <style scoped>
 .perfil-estudiante {
