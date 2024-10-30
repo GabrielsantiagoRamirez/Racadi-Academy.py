@@ -35,7 +35,7 @@
         <label for="fecha_nacimiento">
           <i class="fa fa-calendar-alt"></i> Fecha De Nacimiento
         </label>
-        <input type="date" class="fninp"v-model="fecha_nacimiento" id="fecha_nacimiento" required>
+        <input type="date" v-model="fecha_nacimiento" id="fecha_nacimiento" required>
       </div>
 
       <div class="form-group">
@@ -108,6 +108,17 @@
           <option v-for="nombre in nombre_planes" :key="nombre" :value="nombre">{{ nombre }}</option>
         </select>
       </div>
+<<<<<<< HEAD
+=======
+
+      <div class="form-group">
+        <label for="file">
+          <i class="fa fa-image"></i> Foto de Perfil
+        </label>
+        <input type="file" @change="onFileChange" id="file" required>
+      </div>
+
+>>>>>>> oscarin
       <button type="submit" class="submit-button">
         <i class="fa fa-save"></i> Guardar Estudiante
       </button>
@@ -115,40 +126,35 @@
   </div>
 </template>
 
-
-
-
 <script setup>
-
 import Swal from 'sweetalert2';
-import { ref , onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// tipo de documento sede generos predefinidos
 const tipos_documento = ['cedula', 'cedula extranjera', 'tarjeta de identidad'];
 const sedes = ['madrid', 'mosquera', 'funza', 'facatativa', 'bogota'];
-const generos =["masculino", "femenino", "otro"]
+const generos = ["masculino", "femenino", "otro"];
 
-//variables para hacer el post 
-const documento =ref("")
-const tipo_documento =ref("")
-const nombre =ref("")
-const apellido =ref("")
-const fecha_nacimiento=ref('')
-const genero=ref('')
-const celular =ref("")
-const correo =ref("")
-const direccion =ref("")
-const usuario =ref("")
-const contraseña =ref("")
-const sede =ref("")
-const nivel_actual =ref("")
-const plan =ref("")
+const documento = ref("");
+const tipo_documento = ref("");
+const nombre = ref("");
+const apellido = ref("");
+const fecha_nacimiento = ref("");
+const genero = ref("");
+const celular = ref("");
+const correo = ref("");
+const direccion = ref("");
+const usuario = ref("");
+const contraseña = ref("");
+const sede = ref("");
+const nivel_actual = ref("");
+const plan = ref("");
+const file = ref(null);
 
-//lista para guardar los nombres de los planes y niveles
-const nombre_planes=ref([])
-const nombre_niveles=ref([])
+const nombre_planes = ref([]);
+const nombre_niveles = ref([]);
 
+<<<<<<< HEAD
 const añadir_estudiante =async()=>{
     try{
         const response = await axios.post('http://localhost:8000/añadirestudiante',{
@@ -174,51 +180,72 @@ const añadir_estudiante =async()=>{
             timer: 2000,
             showConfirmButton:false,
         });
+=======
+const onFileChange = (event) => {
+  file.value = event.target.files[0];
+};
 
-    }catch (error) {
-        if (error.response && error.response.data.detail) {
-            let mensajeError = error.response.data.detail;
+const añadir_estudiante = async () => {
+  try {
+    const formData = new FormData();
+    formData.append("documento", documento.value);
+    formData.append("tipo_de_documento", tipo_documento.value);
+    formData.append("nombre", nombre.value);
+    formData.append("apellido", apellido.value);
+    formData.append("fecha_nacimiento", fecha_nacimiento.value);
+    formData.append("genero", genero.value);
+    formData.append("celular", celular.value);
+    formData.append("correo", correo.value);
+    formData.append("direccion", direccion.value);
+    formData.append("sede", sede.value);
+    formData.append("usuario", usuario.value);
+    formData.append("contraseña", contraseña.value);
+    formData.append("nivel_actual", nivel_actual.value);
+    formData.append("plan", plan.value);
+    formData.append("file", file.value); // Añade el archivo al FormData
+>>>>>>> oscarin
 
-            // Si mensajeError es un objeto se convierte a string para mostrarlo
-            if (typeof mensajeError === 'object') {
-                mensajeError = JSON.stringify(mensajeError);
-            }
+    const response = await axios.post("http://localhost:8000/añadirestudiante", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-            Swal.fire({
-                icon: 'error',
-                title: mensajeError,              
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Algo salió mal. Intenta nuevamente.',
-            });
-        }
-    }
+    Swal.fire({
+      icon: "success",
+      title: "Estudiante registrado con éxito",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  } catch (error) {
+  console.error("Error de entidad:", error);
+  const mensajeError = error.response?.data.detail || "Algo salió mal. Intenta nuevamente.";
+  Swal.fire({
+    icon: "error",
+    title: mensajeError,
+  });
 }
 
-const consultar_planes = async()=>{
-  try{
-     const response= await axios.get('http://localhost:8000/obtenernombreplanes')
-     nombre_planes.value=response.data
-  }
-  catch (error){
-    console.log("error al capturar los planes",error)
-  }
-}
+};
 
-const consultar_niveles = async()=>{
-  try{
-     const response= await axios.get('http://localhost:8000/obtenernombreniveles')
-     nombre_niveles.value=response.data
+const consultar_planes = async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/obtenernombreplanes");
+    nombre_planes.value = response.data;
+  } catch (error) {
+    console.log("Error al capturar los planes", error);
   }
-  catch (error){
-    console.log("error al capturar los niveles",error)
-  }
-}
-onMounted(consultar_niveles)
-onMounted(consultar_planes)
+};
 
+const consultar_niveles = async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/obtenernombreniveles");
+    nombre_niveles.value = response.data;
+  } catch (error) {
+    console.log("Error al capturar los niveles", error);
+  }
+};
+
+onMounted(consultar_niveles);
+onMounted(consultar_planes);
 </script>
 
 <style scoped>
