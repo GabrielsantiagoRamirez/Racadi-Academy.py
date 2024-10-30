@@ -31,6 +31,13 @@
         <a>Reservar Clases </a>
     </router-link>
 
+    <router-link to="/HorarioEstudiante" class="acciones_Admin" >
+        <i id="Icon_acciones_Admin" class="fa fa-calendar" ></i>
+        <a>Tu Horario de clases </a>
+    </router-link>
+
+    
+
     
 </div>
 
