@@ -24,10 +24,12 @@ import Eliminar_solicitud from './eliminar_solicitud.vue';
 
 import Solicitudes_admin from './solicitudes_admin.vue';
 import Editar_solicitud_admin from './editar_solicitud_admin.vue';
-import Comunicados from './comunicados.vue';
-
+import Crear_comunicados from './Crear_comunicados.vue';
 import horario_estudiante from './horario_estudiante.vue';
 import horario_profesor from './horario_profesor.vue';
+import Crear_notas from './Crear_notas.vue';
+import Ver_comunicados from './Ver_comunicados.vue';
+
 
 
 
@@ -168,9 +170,8 @@ const routes = [
   },
   
   {
-    path:'/comunicados_admin',
-    name:'Comunicados_admin',
-    component: Comunicados,
+    path:'/crear_comunicados',
+    component: Crear_comunicados,
   },  
 
   
@@ -183,6 +184,16 @@ const routes = [
   {
     path:"/HorarioProfesor",
     component:horario_profesor
+
+  },
+  {
+    path:"/add_notes",
+    component:Crear_notas
+
+  },
+  {
+    path:"/ver_comunicados",
+    component:Ver_comunicados
 
   }
 

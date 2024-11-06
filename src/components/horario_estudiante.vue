@@ -16,7 +16,8 @@
           <div v-for="clase in dia.clases" :key="clase.hora_inicio" class="clase">
             <p><strong>Horario:</strong> {{ convertir_hora_texto(clase.hora_inicio) }} - {{ convertir_hora_texto(clase.hora_fin) }}</p>
             <p><strong>Docente:</strong> {{ clase.documento_profesor }}</p>
-            <p><strong>Cupos:</strong> {{ clase.cupos }}</p>
+            <p><strong>Sede:</strong> {{ clase.sede }}</p>
+            <p><strong>Nivel:</strong> {{ clase.nivel }}</p>
            
           </div>
         </div>
@@ -99,15 +100,22 @@ const calcularDiasDeLaSemana = () => {
 
 const filtrarClasesPorDia = (dias) => {
   dias.forEach((dia) => {
-      const [diaStr, mesStr, añoStr] = dia.fecha.split('/');
-      const fechaDia = new Date(`${añoStr}-${mesStr}-${diaStr}`).setHours(0, 0, 0, 0);
+    const [diaStr, mesStr, añoStr] = dia.fecha.split('/');
+    const fechaDia = new Date(`${añoStr}-${mesStr}-${diaStr}`).setHours(0, 0, 0, 0);
 
-      dia.clases = clases.value.filter((clase) => {
-          const fechaClase = new Date(clase.fecha).setHours(0, 0, 0, 0);
-          return fechaClase === fechaDia;
+    dia.clases = clases.value
+      .filter((clase) => {
+        const fechaClase = new Date(clase.fecha).setHours(0, 0, 0, 0);
+        return fechaClase === fechaDia;
+      })
+      .sort((a, b) => {
+        const horaInicioA = a.hora_inicio.split(':').map(Number);
+        const horaInicioB = b.hora_inicio.split(':').map(Number);
+        return horaInicioA[0] - horaInicioB[0] || horaInicioA[1] - horaInicioB[1];
       });
   });
 };
+
 
 const convertir_hora_texto = (hora) => {
   const [horaNum, minutos] = hora.split(':');
@@ -119,76 +127,6 @@ const convertir_hora_texto = (hora) => {
 };
 
 
-// RESERVA DE CLASES 
-const reservarClase = async (idClase) => {
-  try {
-      const response = await axios.post("http://localhost:8000/reservar_clase", {
-          documento_estudiante: usuario.value.documento,
-          id_clase: idClase
-      });
-
-      Swal.fire({
-          icon: 'success',
-          title: 'Clase Agendada',
-          timer: 1500,
-          showConfirmButton: false
-      });
-      await obtenerReservas();
-  } catch (error) {
-      let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
-      Swal.fire({
-          icon: 'error',
-          title: mensajeError,
-          timer:1500,
-          showConfirmButton:false
-      });
-  }
-};
-
-// CANCELAR RESERVA DE CLASES
-const cancelarReserva = async (idClase) => {
-  try {
-      await axios.delete('http://localhost:8000/cancelar_reserva', {
-          data: {
-              documento_estudiante: usuario.value.documento,
-              id_clase: idClase
-          }
-      });
-
-      Swal.fire({
-          icon: 'success',
-          title: 'Reserva Cancelada',
-          timer: 1500,
-          showConfirmButton: false
-      });
-
-      await obtenerReservas();
-      filtrarClasesPorDia(diasSemana.value); 
-      await nextTick(); // Forzar actualización de Vue reactivamente
-
-  } catch (error) {
-      let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
-      Swal.fire({
-          icon: 'error',
-          title: mensajeError,
-      });
-  }
-};
-
-// COMPROBAR SI EXISTE RESERVA
-const existeReserva = (clase) => {
-  return reservas.value.some(reserva => reserva.id_clase === clase.id_clase);
-};
-
-// OBTENER RESERVAS
-const obtenerReservas = async () => {
-  try {
-      const response = await axios.get(`http://localhost:8000/obtener_reservas/${usuario.value.documento}`);
-      reservas.value = response.data.length ? response.data : [];
-  } catch (error) {
-      console.log("Error al obtener reservas", error.response?.data || error.message);
-  }
-};
 
 onMounted(async () => {
   await fetchUserProfile();

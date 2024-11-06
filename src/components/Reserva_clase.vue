@@ -6,7 +6,9 @@
         <i class="fa fa-arrow-left"></i> Volver
       </button>
     </router-link>
-    <h1 class="titulo">Horario</h1>
+    <h1 class="titulo">Reserva De Clases <br>
+    <span class="subtitulo"v-if="usuario">{{usuario.sede}}--{{ usuario.nivel_actual}}</span>
+    </h1>
     <div class="semana">
       <div v-for="dia in diasSemana" :key="dia.fecha" class="dia">
         <h2>{{ dia.nombre }}</h2>
@@ -20,7 +22,7 @@
             <button 
               class="btn-reservar" 
               :class="{ 'reservado': existeReserva(clase) }"
-              @click="existeReserva(clase) ? cancelarReserva(clase.id_clase) : reservarClase(clase.id_clase)">
+              @click="existeReserva(clase) ? cancelarReserva(clase.id_clase,clase.sede,clase.fecha,clase.hora_inicio,clase.hora_fin) : reservarClase(clase.id_clase,clase.sede,clase.fecha,clase.hora_inicio,clase.hora_fin)">
               <i class="fas" :class="existeReserva(clase) ? 'fa-calendar-times' : 'fa-calendar-plus'"></i> 
               {{ existeReserva(clase) ? 'Cancelar' : 'Reservar' }}
             </button>
@@ -105,15 +107,22 @@ const calcularDiasDeLaSemana = () => {
 
 const filtrarClasesPorDia = (dias) => {
   dias.forEach((dia) => {
-      const [diaStr, mesStr, añoStr] = dia.fecha.split('/');
-      const fechaDia = new Date(`${añoStr}-${mesStr}-${diaStr}`).setHours(0, 0, 0, 0);
+    const [diaStr, mesStr, añoStr] = dia.fecha.split('/');
+    const fechaDia = new Date(`${añoStr}-${mesStr}-${diaStr}`).setHours(0, 0, 0, 0);
 
-      dia.clases = clases.value.filter((clase) => {
-          const fechaClase = new Date(clase.fecha).setHours(0, 0, 0, 0);
-          return fechaClase === fechaDia;
+    dia.clases = clases.value
+      .filter((clase) => {
+        const fechaClase = new Date(clase.fecha).setHours(0, 0, 0, 0);
+        return fechaClase === fechaDia;
+      })
+      .sort((a, b) => {
+        const horaInicioA = a.hora_inicio.split(':').map(Number);
+        const horaInicioB = b.hora_inicio.split(':').map(Number);
+        return horaInicioA[0] - horaInicioB[0] || horaInicioA[1] - horaInicioB[1];
       });
   });
 };
+
 
 const convertir_hora_texto = (hora) => {
   const [horaNum, minutos] = hora.split(':');
@@ -126,13 +135,18 @@ const convertir_hora_texto = (hora) => {
 
 
 // RESERVA DE CLASES 
-const reservarClase = async (idClase) => {
+const reservarClase = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
   try {
       const response = await axios.post("http://localhost:8000/reservar_clase", {
           documento_estudiante: usuario.value.documento,
           id_clase: idClase
       });
 
+      const observador_response = await axios.post("http://localhost:8000/añadirObservacion",{
+        descripcion:`El estudiante reservo la clase del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
+        documento:usuario.value.documento,
+        creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
+      })
       Swal.fire({
           icon: 'success',
           title: 'Clase Agendada',
@@ -152,7 +166,7 @@ const reservarClase = async (idClase) => {
 };
 
 // CANCELAR RESERVA DE CLASES
-const cancelarReserva = async (idClase) => {
+const cancelarReserva = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
   try {
       await axios.delete('http://localhost:8000/cancelar_reserva', {
           data: {
@@ -160,6 +174,12 @@ const cancelarReserva = async (idClase) => {
               id_clase: idClase
           }
       });
+
+      const observador_response_cancelar = await axios.post("http://localhost:8000/añadirObservacion",{
+        descripcion:`El estudiante cancelo la clase reservada del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
+        documento:usuario.value.documento,
+        creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
+      })
 
       Swal.fire({
           icon: 'success',
@@ -208,17 +228,13 @@ onMounted(async () => {
 
 
 
-
-
-
 <style scoped>
-/* Estructura general */
 .contenedor-horario {
-  background-color: #ffffff; /* Beige claro */
+  background-color: #ffffff; 
   padding: 20px;
   margin: 0 auto;
   max-width: 1200px;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
 .titulo {
@@ -226,6 +242,12 @@ onMounted(async () => {
   color: #83B4FF; /* Azul */
   margin-bottom: 20px;
   font-size: 2rem;
+}
+.subtitulo {
+  text-align: center;
+  color: #83B4FF; /* Azul */
+  margin-bottom: 20px;
+  font-size: 1.4rem;
 }
 
 /* Estilo de los días de la semana */
@@ -236,29 +258,29 @@ onMounted(async () => {
 }
 
 .dia {
-  background-color: #fff; /* Fondo blanco */
+  background-color: #fff; 
   padding: 15px;
-  border-left: 1px solid #7FA1C3; /* Borde azul claro */
-  border-right: 1px solid #7FA1C3; /* Borde azul claro */
+  border-left: 1px solid #7FA1C3; 
+  border-right: 1px solid #7FA1C3; 
 }
 
 .dia h2 {
   text-align: center;
-  color: #83B4FF; /* Azul */
+  color: #83B4FF; 
   margin-bottom: 5px;
   font-size: 1.2rem;
 }
 
 .fecha {
   text-align: center;
-  color: #7FA1C3; /* Azul claro */
+  color: #7FA1C3; 
   margin-bottom: 15px;
   font-size: 1rem;
 }
 
 /* Estilo de las clases */
 .clase {
-  border: 1px solid #83B4FF; /* Borde azul */
+  border: 1px solid #83B4FF; 
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -270,7 +292,7 @@ onMounted(async () => {
 
 /* Botón de reserva */
 .btn-reservar {
-  background-color: #83B4FF; /* Azul */
+  background-color: #83B4FF; 
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -315,8 +337,6 @@ onMounted(async () => {
 .btn-reservar.reservado i {
   font-size: 1rem;
 }
-
-
 
 
 .back-button {
