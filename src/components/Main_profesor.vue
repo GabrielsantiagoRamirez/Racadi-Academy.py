@@ -1,6 +1,6 @@
 <template>
     <Header_sin_login/>
-    <h1 class="h1_portal_Admin">Portal de administrador</h1>
+    <h1 class="h1_portal_Admin">Portal de Profesor</h1>
 
 <div class="cont_acciones_admin">
 

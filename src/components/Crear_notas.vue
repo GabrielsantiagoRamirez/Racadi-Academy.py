@@ -28,7 +28,7 @@
               <label for="spaking">
                 <i class="fa fa-comments"></i> Speaking
               </label>
-              <input type=number v-model="speaking" required>
+              <input type=number step="0.1" v-model="speaking" required>
             </div>
 
 
@@ -37,7 +37,7 @@
               <label for="listening">
                 <i class="fa fa-volume-up"></i> Listening
               </label>
-              <input type=number v-model="listening" required>
+              <input type=number step="0.1" v-model="listening" required>
             </div>
 
 
@@ -46,7 +46,7 @@
               <label for="reading">
                 <i class="fa fa-book"></i> Reading Comprehension
               </label>
-              <input type=number v-model="reading" required>
+              <input type=number step="0.1" v-model="reading" required>
             </div>
 
 
@@ -55,7 +55,16 @@
               <label for="writing">
                 <i class="fa fa-pencil-alt"></i> Writing
               </label>
-              <input type=number v-model="writing" required>
+              <input type=number step="0.1" v-model="writing" required>
+            </div>
+
+
+            
+            <div class="form-group">
+              <label for="grammar">
+                <i class="fa fa-language"></i> Grammar
+              </label>
+              <input type=number step="0.1" v-model="grammar" required>
             </div>
   
   
@@ -106,6 +115,7 @@
   const listening = ref('');
   const reading = ref('');
   const writing = ref('');
+  const grammar = ref('');
 
   const error_mensaje= ref('');
   
@@ -115,7 +125,6 @@
   const busquedaEstudiante = ref('');
   
   const agregar_notas = async () => {
-    // Función para agregar clase
     try {
         const response = await axios.post('http://localhost:8000/add_notas', null, {
             params: {
@@ -123,7 +132,8 @@
                 speaking: speaking.value,
                 listening: listening.value,
                 reading: reading.value,
-                writing: writing.value
+                writing: writing.value,
+                grammar: grammar.value
             }
         });
         Swal.fire({
@@ -140,7 +150,6 @@
 
   
   const obtener_estudiantes = async () => {
-    // Función para obtener profesores
     try {
         const response = await axios.get('http://localhost:8000/obtenerestudiantes');
         estudiantes.value = response.data;
@@ -150,7 +159,6 @@
   };
   
   const buscarEstudiantes = async () => {
-    // Función para buscar profesores
     try {
         const response = await axios.get('http://localhost:8000/buscarestudiantes', {
             params: { nombre: busquedaEstudiante.value }

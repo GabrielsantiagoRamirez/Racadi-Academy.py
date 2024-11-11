@@ -1,7 +1,7 @@
 <template>
     <header_sin_login />
     <div class="contenedor-horario">
-      <router-link to="/main_estudiante">
+      <router-link to="/main_profesor">
         <button class="back-button">
           <i class="fa fa-arrow-left"></i> Volver
         </button>
@@ -18,6 +18,11 @@
               <p><strong>Sede:</strong> {{ clase.sede }}</p>
               <p><strong>Nivel:</strong> {{ clase.nivel }}</p>
               <p><strong>Estudiantes:</strong> {{ clase.estudiantes }}</p>
+              <router-link :to="{ path: '/HorarioProfesor/asistencia', query: { id_clase: clase.id_clase , nombre:usuario.nombre , apellido:usuario.apellido} }">
+                <button class="btn-tomar-asistencia">
+                   Tomar Asistencia
+                </button>
+              </router-link>
              
             </div>
           </div>
@@ -26,6 +31,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <router-view/>
     </div>
     <Footer />
   </template>
@@ -266,4 +274,28 @@
     .back-button:hover {
       color: #83b4ff;
     }
+
+    .btn-tomar-asistencia {
+    background-color: #83B4FF;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 5px ;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    margin-top: 10px;
+  }
+
+  .btn-tomar-asistencia:hover {
+    background-color: #7FA1C3; 
+    transform: scale(1.05); 
+  }
+
+  .btn-tomar-asistencia i {
+    font-size: 1.2rem;
+  }
+
+
   </style>

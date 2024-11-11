@@ -21,7 +21,7 @@ import Reserva_clase from './Reserva_clase.vue';
 import Añadir_solicitud from './añadir_solicitud.vue';
 import Editar_solicitud from './editar_solicitud.vue';
 import Eliminar_solicitud from './eliminar_solicitud.vue';
-
+import Asistencias from './Asistencias.vue';
 import Solicitudes_admin from './solicitudes_admin.vue';
 import Editar_solicitud_admin from './editar_solicitud_admin.vue';
 import Crear_comunicados from './Crear_comunicados.vue';
@@ -29,6 +29,8 @@ import horario_estudiante from './horario_estudiante.vue';
 import horario_profesor from './horario_profesor.vue';
 import Crear_notas from './Crear_notas.vue';
 import Ver_comunicados from './Ver_comunicados.vue';
+import obtener_notas from './obtener_notas.vue';
+import Obtener_notas from './obtener_notas.vue';
 
 
 
@@ -183,7 +185,13 @@ const routes = [
   },
   {
     path:"/HorarioProfesor",
-    component:horario_profesor
+    component:horario_profesor,
+    children:[
+      {
+        path:'asistencia',
+        component:Asistencias
+      }
+    ]
 
   },
   {
@@ -194,6 +202,11 @@ const routes = [
   {
     path:"/ver_comunicados",
     component:Ver_comunicados
+
+  },
+  {
+    path:"/obtener_notas",
+    component:Obtener_notas
 
   }
 

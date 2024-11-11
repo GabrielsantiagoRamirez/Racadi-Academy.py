@@ -26,7 +26,7 @@
 
 <router-link to="/add_notes" class="acciones_Admin">
     <i id="Icon_acciones_Admin" class="fa fa-book" aria-hidden="true"></i>
-    <a href="">Subir Resultados De Evaluacion</a>
+    <a href="">Agregar Calificaciones</a>
 </router-link>
 
 

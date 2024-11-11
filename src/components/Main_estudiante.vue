@@ -21,6 +21,13 @@
 
     </router-link>
 
+    <router-link to="/obtener_notas" class="acciones_Admin">
+    
+    <i id="Icon_acciones_Admin" class="fa fa-line-chart" aria-hidden="true"></i>
+    <a href="">Resultados De Evaluacion</a>
+
+    </router-link>
+
     
     <router-link to="/ver_comunicados" class="acciones_Admin">
     
