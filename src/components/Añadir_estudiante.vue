@@ -108,8 +108,6 @@
           <option v-for="nombre in nombre_planes" :key="nombre" :value="nombre">{{ nombre }}</option>
         </select>
       </div>
-<<<<<<< HEAD
-=======
 
       <div class="form-group">
         <label for="file">
@@ -118,7 +116,6 @@
         <input type="file" @change="onFileChange" id="file" required>
       </div>
 
->>>>>>> oscarin
       <button type="submit" class="submit-button">
         <i class="fa fa-save"></i> Guardar Estudiante
       </button>
@@ -154,33 +151,6 @@ const file = ref(null);
 const nombre_planes = ref([]);
 const nombre_niveles = ref([]);
 
-<<<<<<< HEAD
-const añadir_estudiante =async()=>{
-    try{
-        const response = await axios.post('http://localhost:8000/añadirestudiante',{
-        documento:documento.value,
-        tipo_de_documento:tipo_documento.value,
-        nombre:nombre.value,
-        apellido:apellido.value,
-        fecha_nacimiento:fecha_nacimiento.value,
-        genero:genero.value,
-        celular:celular.value,
-        correo:correo.value,
-        direccion:direccion.value,
-        sede:sede.value,
-        usuario:usuario.value,
-        contraseña:contraseña.value,
-        nivel_actual:nivel_actual.value,
-        plan:plan.value
-        }
-        )
-        Swal.fire({
-            icon: 'success',
-            title: 'Estudiante Registrado con exito',
-            timer: 2000,
-            showConfirmButton:false,
-        });
-=======
 const onFileChange = (event) => {
   file.value = event.target.files[0];
 };
@@ -203,7 +173,6 @@ const añadir_estudiante = async () => {
     formData.append("nivel_actual", nivel_actual.value);
     formData.append("plan", plan.value);
     formData.append("file", file.value); // Añade el archivo al FormData
->>>>>>> oscarin
 
     const response = await axios.post("http://localhost:8000/añadirestudiante", formData, {
       headers: { "Content-Type": "multipart/form-data" },
