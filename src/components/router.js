@@ -1,36 +1,37 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Main_estudiante from './Main_estudiante.vue';
-import Main_profesor from './Main_profesor.vue';
-import Main_admin from './Main_admin.vue';
-import Login from './Login.vue';
-import Main from './Main.vue';
-import Perfil_estudiante from './Perfil_estudiante.vue';
-import Añadir_estudiante from './Añadir_estudiante.vue';
-import Añadir_profesor from './Añadir_profesor.vue';
-import Crear_cuentas from './Crear_cuentas.vue';
-import Editar_eliminar_cuentas from './Editar_eliminar_cuentas.vue';
-import Editar_eliminar_estudiantes from './Editar_eliminar_estudiantes.vue';
-import perfil_profesor from './Perfil_profesor.vue';
-import informacion_pago from './informacion_pago.vue';
-import Pagina_pago_banco from './pagina_pago_banco.vue';
-import Solicitudes from './Solicitudes.vue';
-import observador_estudiante from './observador_estudiante.vue';
-import obserador_admin from './obserador_admin.vue';
-import Añadir_clase from './Añadir_clase.vue';
-import Reserva_clase from './Reserva_clase.vue';
-import Añadir_solicitud from './añadir_solicitud.vue';
-import Editar_solicitud from './editar_solicitud.vue';
-import Eliminar_solicitud from './eliminar_solicitud.vue';
-import Asistencias from './Asistencias.vue';
-import Solicitudes_admin from './solicitudes_admin.vue';
-import Editar_solicitud_admin from './editar_solicitud_admin.vue';
-import Crear_comunicados from './Crear_comunicados.vue';
-import horario_estudiante from './horario_estudiante.vue';
-import horario_profesor from './horario_profesor.vue';
-import Crear_notas from './Crear_notas.vue';
-import Ver_comunicados from './Ver_comunicados.vue';
-import obtener_notas from './obtener_notas.vue';
-import Obtener_notas from './obtener_notas.vue';
+import Main_estudiante from './Mains/Main_estudiante.vue';
+import Main_profesor from './Mains/Main_profesor.vue';
+import Main_admin from './Mains/Main_admin.vue';
+import Login from './Footer_Login/Login.vue';
+import Main from './Mains/Main.vue';
+import Perfil_estudiante from './Perfiles/Perfil_estudiante.vue';
+import Añadir_estudiante from './Creacion_Cuentas/Añadir_estudiante.vue';
+import Añadir_profesor from './Creacion_Cuentas/Añadir_profesor.vue';
+import Crear_cuentas from './Creacion_Cuentas/Crear_cuentas.vue';
+import Editar_eliminar_cuentas from './Administracion_Cuentas/Editar_eliminar_cuentas.vue';
+import Editar_eliminar_estudiantes from './Administracion_Cuentas/Editar_eliminar_estudiantes.vue';
+import Editar_eliminar_profesores from './Administracion_Cuentas/Editar_eliminar_profesores.vue';
+import Perfil_profesor from './Perfiles/Perfil_profesor.vue';
+import informacion_pago from './Pagos_Cuenta/informacion_pago.vue';
+import Agregar_pago from './Pagos_Cuenta/Agregar_pago.vue';
+import Solicitudes from './Solicitudes/Solicitudes.vue';
+import observador_estudiante from './Observador/observador_estudiante.vue';
+import obserador_admin from './Observador/obserador_admin.vue';
+import Añadir_clase from './Clases_Reserva_Clases/Añadir_clase.vue';
+import Reserva_clase from './Clases_Reserva_Clases/Reserva_clase.vue';
+import Asistencias from './Horarios/Asistencias.vue';
+import solicitudes_admin from './Solicitudes/solicitudes_admin.vue';
+import Crear_comunicados from './Comunicados/Crear_comunicados.vue';
+import horario_estudiante from './Horarios/horario_estudiante.vue';
+import horario_profesor from './Horarios/horario_profesor.vue';
+import Crear_notas from './Notas_Evaluacion/Crear_notas.vue';
+import Ver_comunicados from './Comunicados/Ver_comunicados.vue';
+import obtener_notas from './Notas_Evaluacion/obtener_notas.vue';
+import Formulario_edicion_est from './Administracion_Cuentas/Formulario_edicion_est.vue';
+import Formulario_edicion_pro from './Administracion_Cuentas/Formulario_edicion_pro.vue';
+import Info_estudiante from './Administracion_Cuentas/Info_estudiante.vue';
+import Info_profesor from './Administracion_Cuentas/Info_profesor.vue';
+
 
 
 
@@ -72,7 +73,7 @@ const routes = [
   },
   {
     path: '/perfil_profesor',
-    component: perfil_profesor
+    component: Perfil_profesor
   },
 
   {
@@ -101,8 +102,38 @@ const routes = [
     children:[
       {
         path:"editar_eliminar_estudiantes",
-        component:Editar_eliminar_estudiantes
-      }
+        component:Editar_eliminar_estudiantes,
+        children:[
+          {
+            path:"editar",
+            component: Formulario_edicion_est
+          },
+          {
+            path:"informacion",
+            component: Info_estudiante            
+
+          }
+
+        ]
+      },
+
+      {
+        path:"editar_eliminar_profesores",
+        component:Editar_eliminar_profesores,
+        children:[
+          {
+            path:"editar",
+            component: Formulario_edicion_pro
+          },
+          {
+            path:"informacion",
+            component: Info_profesor
+          },
+
+        ]
+      },
+
+
     ]
   },
 
@@ -129,46 +160,20 @@ const routes = [
   },
 
   {
-    path:'/pagina_pago',
-    name:'Pagina_pago_banco',
-    component: Pagina_pago_banco,
-  },  
+    path:'/agregar_pago',
+    component: Agregar_pago,
+  },
 
   {
     path: '/solicitudes',
     component: Solicitudes,
-    children:
-    [
-      {      
-        path : 'anadir_solicitud',
-        component: Añadir_solicitud
-      },
-      {      
-        path : 'editar_solicitud',
-        name: 'editar_solicitud',
-        component: Editar_solicitud
-      },
-      {      
-        path : 'eliminar_solicitud',
-        name: 'eliminarr_solicitud',
-        component: Eliminar_solicitud
-      }
-      
-    ]
   },
 
   
   {
     path:'/solicitudes_admin',
     name:'solicitudes_admin',
-    component: Solicitudes_admin,
-    children:
-    [
-      {      
-        path : 'editar_solicitud_admin',
-        component: Editar_solicitud_admin
-      }
-    ]
+    component: solicitudes_admin,
   },
   
   {
@@ -206,7 +211,7 @@ const routes = [
   },
   {
     path:"/obtener_notas",
-    component:Obtener_notas
+    component:obtener_notas
 
   }
 
