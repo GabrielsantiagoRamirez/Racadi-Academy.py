@@ -96,44 +96,50 @@ const fetchUserProfile = async () => {
 
 
 <template>
+  <header_sin_login/>
 
-<header_sin_login/>  
-<div class="containerMadre_observadorEstudiante">
-  <div class="cont_MostrarObservacionesEstudiante">
-    <h2 class="titulos_observadorEstudiante ">Observaciones</h2>
-    <div class="muestra_observacionesEstudiante" v-if="observaciones.length > 0 " >
-      <!-- Aquí se mostrarán las observaciones -->
-      <div class="observation-item" v-for="observacion in observaciones" :key="observacion
-    .id_observacion">
-        <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
-        <p>{{ observacion.descripcion }}</p>
-        <p><strong>Creada por:</strong> {{ observacion.creada_por }}</p>
+  <div class="containerMadre_observadorEstudiante">
+    <div class="volver-container">
+      <router-link to="/main_estudiante">
+        <div class="back-button">
+          <i class="fa fa-arrow-left"></i> Volver
+        </div>
+      </router-link>
+    </div>
+
+    <div class="cont_MostrarObservacionesEstudiante">
+      <h2 class="titulos_observadorEstudiante">Observaciones</h2>
+      <div class="muestra_observacionesEstudiante" v-if="observaciones.length > 0">
+        <div class="observation-item" v-for="observacion in observaciones" :key="observacion.id_observacion">
+          <p><strong>Fecha:</strong> {{ observacion.fecha }}</p>
+          <p>{{ observacion.descripcion }}</p>
+          <p><strong>Creada por:</strong> {{ observacion.creada_por }}</p>
+        </div>
+      </div>
+      <div v-else>
+        Sin Observaciones
+      </div>
+      
+      <div class="seccion_Filtrar_ObservacionesEstudiante">
+        <h2 class="titulos_observadorEstudiante">Filtrar por fecha</h2>
+        <form @submit.prevent="buscarObservacionesFeceha">
+          <input type="date" id="filter-date" placeholder="Ingrese fecha" v-model="fecha">
+          <button class="btnFiltar_ObservacionesEstudiante">Filtrar</button>
+        </form>
+
+        <button class="btnFiltar_ObservacionesEstudiante2" @click="restablecer_observaciones">Mostrar observaciones</button>
       </div>
     </div>
-    <div v-else>
-      Sin Observaciones
-    </div>
-    
-    <div class="seccion_Filtrar_ObservacionesEstudiante">
-      <h2 class="titulos_observadorEstudiante ">Filtrar por fecha</h2>
-      <form @submit.prevent="buscarObservacionesFeceha">
-        <input type="date" id="filter-date" placeholder="Ingrese fecha" v-model="fecha">
-        <button class="btnFiltar_ObservacionesEstudiante">Filtrar</button>
-      </form>
-
-      <button class="btnFiltar_ObservacionesEstudiante2" @click="restablecer_observaciones">Mostrar observaciones</button>
-      
-    </div>
   </div>
-</div>
-<Footer/>  
 
-
+  <Footer/>
 </template>
 
-<style>
+
+<style scoped>
 .containerMadre_observadorEstudiante {
   display: flex;
+  flex-direction: column; /* Asegúrate de que el contenido se alinee verticalmente */
   gap: 30px;
   padding: 20px;
   width: 60%;
@@ -143,6 +149,14 @@ const fetchUserProfile = async () => {
   margin-left: auto;
   margin-right: auto;
   margin-top: 4%;
+  position: relative; /* Agregar esto para que los elementos hijos se posicionen respecto a este contenedor */
+}
+
+.volver-container {
+  position: absolute; /* Posiciona el botón absolutamente */
+  top: 15px; /* Ajusta según sea necesario */
+  left: 15px; /* Ajusta según sea necesario */
+  z-index: 1; /* Asegúrate de que esté por encima de otros elementos */
 }
 
 .cont_MostrarObservacionesEstudiante  {
@@ -154,6 +168,8 @@ const fetchUserProfile = async () => {
   color:#6bc8ec;
   margin-bottom: 20px;
   font-weight: bold;
+  margin-top: 5vh;
+  font-size: 20px;
 }
 
 .muestra_observacionesEstudiante  {
@@ -193,8 +209,8 @@ const fetchUserProfile = async () => {
   cursor: pointer;
   border-radius: 5px;
   margin-top: 2%;
-  
 }
+
 .btnFiltar_ObservacionesEstudiante2 {
   background-color:#6bc8ec;
   color: white;
@@ -202,8 +218,26 @@ const fetchUserProfile = async () => {
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
-
   margin-top: 2%;
-  
+}
+
+.back-button {
+  background-color: transparent; 
+  border: none; 
+  color: #6bc8ec; 
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease; 
+}
+
+.back-button i {
+  margin-right: 0.5rem; 
+  font-size: 1.5rem; 
+}
+
+.back-button:hover {
+  color: #83b4ff; 
 }
 </style>

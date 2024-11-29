@@ -6,9 +6,7 @@
         <i class="fa fa-arrow-left"></i> Volver
       </button>
     </router-link>
-    <h1 class="titulo">Reserva De Clases <br>
-    <span class="subtitulo"v-if="usuario">{{usuario.sede}}--{{ usuario.nivel_actual}}</span>
-    </h1>
+    <h1 class="titulo">Horario de clases</h1>
     <div class="semana">
       <div v-for="dia in diasSemana" :key="dia.fecha" class="dia">
         <h2>{{ dia.nombre }}</h2>
@@ -17,19 +15,14 @@
         <div v-if="dia.clases.length">
           <div v-for="clase in dia.clases" :key="clase.hora_inicio" class="clase">
             <p><strong>Horario:</strong> {{ convertir_hora_texto(clase.hora_inicio) }} - {{ convertir_hora_texto(clase.hora_fin) }}</p>
-            <p><strong>Docente:</strong> {{ clase.profesor }}</p>
-            <p><strong>Cupos:</strong> {{ clase.cupos }}</p>
-            <button 
-              class="btn-reservar" 
-              :class="{ 'reservado': existeReserva(clase) }"
-              @click="existeReserva(clase) ? cancelarReserva(clase.id_clase,clase.sede,clase.fecha,clase.hora_inicio,clase.hora_fin) : reservarClase(clase.id_clase,clase.sede,clase.fecha,clase.hora_inicio,clase.hora_fin)">
-              <i class="fas" :class="existeReserva(clase) ? 'fa-calendar-times' : 'fa-calendar-plus'"></i> 
-              {{ existeReserva(clase) ? 'Cancelar' : 'Reservar' }}
-            </button>
+            <p><strong>Docente:</strong> {{ clase.documento_profesor }}</p>
+            <p><strong>Sede:</strong> {{ clase.sede }}</p>
+            <p><strong>Nivel:</strong> {{ clase.nivel }}</p>
+           
           </div>
         </div>
         <div v-else>
-          <p style="text-align: center;">No hay clases disponibles.</p>
+          <p style="text-align: center;">No hay clases agendadas.</p>
         </div>
       </div>
     </div>
@@ -75,7 +68,7 @@ const fetchUserProfile = async () => {
 
 const obtener_clases = async () => {
   try {
-      const response = await axios.get(`http://localhost:8000/obtenerclasesestudiante/${usuario.value.sede}/${usuario.value.nivel_actual}`);
+      const response = await axios.get(`http://localhost:8000/clases_reservadas/${usuario.value.documento}`);
       clases.value = response.data;
   } catch (error) {
       console.log('Error fetching classes', error.response?.data || error.message);
@@ -134,87 +127,6 @@ const convertir_hora_texto = (hora) => {
 };
 
 
-// RESERVA DE CLASES 
-const reservarClase = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
-  try {
-      const response = await axios.post("http://localhost:8000/reservar_clase", {
-          documento_estudiante: usuario.value.documento,
-          id_clase: idClase
-      });
-
-      const observador_response = await axios.post("http://localhost:8000/añadirObservacion",{
-        descripcion:`El estudiante reservo la clase del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
-        documento:usuario.value.documento,
-        creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
-      })
-      Swal.fire({
-          icon: 'success',
-          title: 'Clase Agendada',
-          timer: 1500,
-          showConfirmButton: false
-      });
-      await obtenerReservas();
-  } catch (error) {
-      let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
-      Swal.fire({
-          icon: 'error',
-          title: mensajeError,
-          timer:1500,
-          showConfirmButton:false
-      });
-  }
-};
-
-// CANCELAR RESERVA DE CLASES
-const cancelarReserva = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
-  try {
-      await axios.delete('http://localhost:8000/cancelar_reserva', {
-          data: {
-              documento_estudiante: usuario.value.documento,
-              id_clase: idClase
-          }
-      });
-
-      const observador_response_cancelar = await axios.post("http://localhost:8000/añadirObservacion",{
-        descripcion:`El estudiante cancelo la clase reservada del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
-        documento:usuario.value.documento,
-        creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
-      })
-
-      Swal.fire({
-          icon: 'success',
-          title: 'Reserva Cancelada',
-          timer: 1500,
-          showConfirmButton: false
-      });
-
-      await obtenerReservas();
-      filtrarClasesPorDia(diasSemana.value); 
-      await nextTick(); // Forzar actualización de Vue reactivamente
-
-  } catch (error) {
-      let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
-      Swal.fire({
-          icon: 'error',
-          title: mensajeError,
-      });
-  }
-};
-
-// COMPROBAR SI EXISTE RESERVA
-const existeReserva = (clase) => {
-  return reservas.value.some(reserva => reserva.id_clase === clase.id_clase);
-};
-
-// OBTENER RESERVAS
-const obtenerReservas = async () => {
-  try {
-      const response = await axios.get(`http://localhost:8000/obtener_reservas/${usuario.value.documento}`);
-      reservas.value = response.data.length ? response.data : [];
-  } catch (error) {
-      console.log("Error al obtener reservas", error.response?.data || error.message);
-  }
-};
 
 onMounted(async () => {
   await fetchUserProfile();
@@ -228,13 +140,17 @@ onMounted(async () => {
 
 
 
+
+
+
 <style scoped>
+/* Estructura general */
 .contenedor-horario {
-  background-color: #ffffff; 
+  background-color: #ffffff; /* Beige claro */
   padding: 20px;
   margin: 0 auto;
   max-width: 1200px;
-  margin-top: 5vh;
+  margin-top: 10vh;
 }
 
 .titulo {
@@ -242,12 +158,6 @@ onMounted(async () => {
   color: #83B4FF; /* Azul */
   margin-bottom: 20px;
   font-size: 2rem;
-}
-.subtitulo {
-  text-align: center;
-  color: #83B4FF; /* Azul */
-  margin-bottom: 20px;
-  font-size: 1.4rem;
 }
 
 /* Estilo de los días de la semana */
@@ -258,29 +168,29 @@ onMounted(async () => {
 }
 
 .dia {
-  background-color: #fff; 
+  background-color: #fff; /* Fondo blanco */
   padding: 15px;
-  border-left: 1px solid #7FA1C3; 
-  border-right: 1px solid #7FA1C3; 
+  border-left: 1px solid #7FA1C3; /* Borde azul claro */
+  border-right: 1px solid #7FA1C3; /* Borde azul claro */
 }
 
 .dia h2 {
   text-align: center;
-  color: #83B4FF; 
+  color: #83B4FF; /* Azul */
   margin-bottom: 5px;
   font-size: 1.2rem;
 }
 
 .fecha {
   text-align: center;
-  color: #7FA1C3; 
+  color: #7FA1C3; /* Azul claro */
   margin-bottom: 15px;
   font-size: 1rem;
 }
 
 /* Estilo de las clases */
 .clase {
-  border: 1px solid #83B4FF; 
+  border: 1px solid #83B4FF; /* Borde azul */
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -292,7 +202,7 @@ onMounted(async () => {
 
 /* Botón de reserva */
 .btn-reservar {
-  background-color: #83B4FF; 
+  background-color: #83B4FF; /* Azul */
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -337,6 +247,8 @@ onMounted(async () => {
 .btn-reservar.reservado i {
   font-size: 1rem;
 }
+
+
 
 
 .back-button {

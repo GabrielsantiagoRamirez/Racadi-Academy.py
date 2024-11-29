@@ -1,185 +1,193 @@
 <template>
-    <header_sin_login/>
-    <div class="crear-clases-container">
-      <div class="volver-container">
-        <router-link to="/main_admin">
-          <div class="back-button">
-            <i class="fa fa-arrow-left"></i> Volver
-          </div>
-        </router-link>
-      </div>
-  
-      <h1>Crear Clases</h1>
-  
-      <div class="form-profesores-container">
-        <div class="form-container">
-          <form @submit.prevent="agregar_clase">
-            <div class="form-group">
-              <label for="sede">
-                <i class="fa fa-building"></i> Sede
-              </label>
-              <select v-model="sede" id="sede" required>
-                <option v-for="sede in sedes" :key="sede" :value="sede">{{ sede }}</option>
-              </select>
-            </div>
-  
-            <div class="form-group">
-              <label for="nivel">
-                <i class="fa fa-graduation-cap"></i> Nivel
-              </label>
-              <select v-model="nivel" id="nivel" required>
-                <option v-for="nivel in nombre_niveles" :key="nivel" :value="nivel">{{ nivel }}</option>
-              </select>
-            </div>
-  
-            <div class="form-group">
-              <label for="fecha">
-                <i class="fa fa-calendar-alt"></i> Fecha
-              </label>
-              <input type="date" v-model="fecha" required>
-            </div>
-  
-            <div class="form-group">
-              <label for="hora_inicio">
-                <i class="fa fa-clock"></i> Hora De Inicio
-              </label>
-              <input type="time" v-model="hora_inicio" required>
-            </div>
-  
-            <div class="form-group">
-              <label for="hora_fin">
-                <i class="fa fa-clock"></i> Hora De Finalización
-              </label>
-              <input type="time" v-model="hora_fin" required>
-            </div>
-  
-            <div class="form-group">
-              <label for="documento_profesor">
-                <i class="fa fa-id-card"></i> Documento del profesor
-              </label>
-              <input type="text" v-model="documento_profesor" required>
-            </div>
-  
-            <div class="form-group">
-              <label for="cupos">
-                <i class="fa fa-users"></i> Cupos de la clase
-              </label>
-              <input type="number" v-model="cupos" min="1" max="100" required>
-            </div>
-  
-            <button type="submit" class="submit-btn">Crear Clase</button>
-          </form>
-          <div v-if="error_mensaje" class="clase_error"> <i class="fa fa-exclamation"></i>&nbsp;{{ error_mensaje }}</div>
+  <header_sin_login/>
+  <div class="crear-clases-container">
+    <div class="volver-container">
+      <router-link to="/main_admin">
+        <div class="back-button">
+          <i class="fa fa-arrow-left"></i> Volver
         </div>
-  
-        <div class="profesores-container">
-          <div class="profesores-search">
-            <span class="protit">Profesores</span>
-            <form @submit.prevent="buscarProfesores">
-              <div class="search-bar">
-                <button type="button" class="fa fa-arrow-left search_l_bttn " @click="restablecerBusqueda"></button>
-                <input type="text" class="busqueda_adver" placeholder="Buscar por nombre" v-model="busquedaProfesor">
-                <button type="submit" class="fa fa-search search_r_bttn "></button>
-              </div>
-            </form>
+      </router-link>
+    </div>
+
+    <h1>Crear Clases</h1>
+
+    <div class="form-profesores-container">
+      <div class="form-container">
+        <form @submit.prevent="agregar_clase">
+          <!-- Formulario de creación de clases -->
+          <div class="form-group">
+            <label for="sede">
+              <i class="fa fa-building"></i> Sede
+            </label>
+            <select v-model="sede" id="sede" required>
+              <option v-for="sede in sedes" :key="sede" :value="sede">{{ sede }}</option>
+            </select>
           </div>
-  
-          <div v-for="profesor in profesores" :key="profesor.documento" class="profesor-item">
-            <p><strong>Documento:</strong> {{ profesor.documento }}</p>
-            <p><strong>Nombre:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
+
+          <div class="form-group">
+            <label for="nivel">
+              <i class="fa fa-graduation-cap"></i> Nivel
+            </label>
+            <select v-model="nivel" id="nivel" required>
+              <option v-for="nivel in nombre_niveles" :key="nivel" :value="nivel">{{ nivel }}</option>
+            </select>
           </div>
+
+          <div class="form-group">
+            <label for="fecha">
+              <i class="fa fa-calendar-alt"></i> Fecha
+            </label>
+            <input type="date" v-model="fecha" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hora_inicio">
+              <i class="fa fa-clock"></i> Hora De Inicio
+            </label>
+            <input type="time" v-model="hora_inicio" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hora_fin">
+              <i class="fa fa-clock"></i> Hora De Finalización
+            </label>
+            <input type="time" v-model="hora_fin" required>
+          </div>
+
+          <div class="form-group">
+            <label for="documento_profesor">
+              <i class="fa fa-id-card"></i> Documento del profesor
+            </label>
+            <input type="text" v-model="documento_profesor" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cupos">
+              <i class="fa fa-users"></i> Cupos de la clase
+            </label>
+            <input type="number" v-model="cupos" min="1" max="100" required>
+          </div>
+
+          <button type="submit" class="submit-btn">Crear Clase</button>
+        </form>
+        <div v-if="error_mensaje" class="clase_error"> <i class="fa fa-exclamation"></i>&nbsp;{{ error_mensaje }}</div>
+      </div>
+
+      <div class="profesores-container">
+        <div class="profesores-search">
+          <span class="protit">Profesores</span>
+          <form @submit.prevent="buscarProfesores">
+            <div class="search-bar">
+              <button type="button" class="fa fa-arrow-left search_l_bttn" @click="restablecerBusqueda"></button>
+              <input type="text" class="busqueda_adver" placeholder="Buscar por nombre" v-model="busquedaProfesor">
+              <button type="submit" class="fa fa-search search_r_bttn"></button>
+            </div>
+          </form>
+        </div>
+
+        <div v-for="profesor in profesores" :key="profesor.documento" class="profesor-item" @click="llenarDocumento(profesor.documento)">
+          <p><strong>Documento:</strong> {{ profesor.documento }}</p>
+          <p><strong>Nombre:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
         </div>
       </div>
     </div>
-    <Footer/>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue';
-  import axios from 'axios';
-  import Swal from 'sweetalert2';
-  import header_sin_login from './header_sin_login.vue';
-  import Footer from './Footer.vue';
-  
-  // Campos del formulario
-  const nivel = ref('');
-  const hora_inicio = ref('');
-  const hora_fin = ref('');
-  const fecha = ref('');
-  const documento_profesor = ref('');
-  const cupos = ref(0);
-  const sede = ref('');
-  const error_mensaje= ref('');
-  
-  // Sedes y niveles
-  const sedes = ['madrid', 'mosquera', 'funza', 'facatativa', 'bogota'];
-  const nombre_niveles = ref([]);
-  const profesores = ref([]);
-  const busquedaProfesor = ref('');
-  
-  const agregar_clase = async () => {
-    try {
+  </div>
+  <Footer/>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import header_sin_login from './header_sin_login.vue';
+import Footer from './Footer.vue';
+
+// Campos del formulario
+const nivel = ref('');
+const hora_inicio = ref('');
+const hora_fin = ref('');
+const fecha = ref('');
+const documento_profesor = ref('');
+const cupos = ref(0);
+const sede = ref('');
+const error_mensaje= ref('');
+
+// Sedes y niveles
+const sedes = ['madrid', 'mosquera', 'funza', 'facatativa', 'bogota'];
+const nombre_niveles = ref([]);
+const profesores = ref([]);
+const busquedaProfesor = ref('');
+
+const agregar_clase = async () => {
+  // Función para agregar clase
+  try {
       const response = await axios.post('http://localhost:8000/añadirclase', {
-        sede: sede.value,
-        nivel: nivel.value,
-        hora_inicio: hora_inicio.value,
-        hora_fin: hora_fin.value,
-        fecha: fecha.value,
-        documento_profesor: documento_profesor.value,
-        cupos: cupos.value,
+          sede: sede.value,
+          nivel: nivel.value,
+          hora_inicio: hora_inicio.value,
+          hora_fin: hora_fin.value,
+          fecha: fecha.value,
+          documento_profesor: documento_profesor.value,
+          cupos: cupos.value,
       });
       Swal.fire({
-        icon: 'success',
-        title: 'Clase creada con éxito',
-        timer: 2000,
-        showConfirmButton: false,
+          icon: 'success',
+          title: 'Clase creada con éxito',
+          timer: 2000,
+          showConfirmButton: false,
       });
-    } catch (error) {
+  } catch (error) {
       let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
-      error_mensaje.value=mensajeError
-    }
-  };
-  
-  const obtener_profesores = async () => {
-    try {
+      error_mensaje.value = mensajeError;
+  }
+};
+
+const obtener_profesores = async () => {
+  // Función para obtener profesores
+  try {
       const response = await axios.get('http://localhost:8000/obtenerprofesores');
       profesores.value = response.data;
-    } catch (error) {
+  } catch (error) {
       console.error("Error al capturar los profesores", error);
-    }
-  };
-  
-  const buscarProfesores = async () => {
-    try {
+  }
+};
+
+const buscarProfesores = async () => {
+  // Función para buscar profesores
+  try {
       const response = await axios.get('http://localhost:8000/buscarprofesores', {
-        params: { nombre: busquedaProfesor.value }
+          params: { nombre: busquedaProfesor.value }
       });
       profesores.value = response.data; // Actualiza la lista de profesores con los resultados de búsqueda
-    } catch (error) {
+  } catch (error) {
       console.error("Error al buscar profesores", error);
-    }
-  };
-  
-  const consultar_niveles = async () => {
-    try {
+  }
+};
+
+const consultar_niveles = async () => {
+  // Función para consultar niveles
+  try {
       const response = await axios.get('http://localhost:8000/obtenernombreniveles');
       nombre_niveles.value = response.data;
-    } catch (error) {
+  } catch (error) {
       console.error("Error al capturar los niveles", error);
-    }
-  };
-  
-  const restablecerBusqueda = () => {
-    busquedaProfesor.value = ''; 
-    obtener_profesores();
-  };
-  
-  onMounted(() => {
-    consultar_niveles();
-    obtener_profesores(); 
-  });
-  </script>
-  
+  }
+};
+
+const restablecerBusqueda = () => {
+  busquedaProfesor.value = ''; 
+  obtener_profesores();
+};
+
+const llenarDocumento = (documento) => {
+  documento_profesor.value = documento;
+};
+
+onMounted(() => {
+  consultar_niveles();
+  obtener_profesores(); 
+});
+</script>
 
 
 
@@ -197,7 +205,6 @@
   }
 
   .volver-container {
-    margin-bottom: 20px;
     display: flex;
     justify-content: flex-start;
   }
@@ -297,22 +304,35 @@
   }
 
 
-  .profesores-container {
+    .profesores-container {
     flex: 1;
     background-color: #fff;
-    padding: 15px;
+    padding-left :15px;
+    padding-right: 15px;
+    padding-bottom :15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-  }
+    overflow-y: scroll;
+    max-height: 500px;
+    }
 
-  .profesores-search {
-    margin-bottom: 10px;
-  }
+    .profesores-search {
+    position: sticky;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    top: 0;
+    background-color: #fff; 
+    z-index: 1; 
+    margin-bottom: 10px; 
+    border-bottom: 2px solid #83B4FF; 
+    }
 
   .search-bar {
     display: flex;
     align-items: center;
+    margin-top: 5px; 
+
   }
 
   .search-bar input {
@@ -357,15 +377,19 @@
   .profesor-item {
     padding: 8px 0;
     border-bottom: 1px solid #83B4FF;
+    cursor: pointer;
+  }
+  .profesor-item:hover{
+    background-color: rgb(240, 240, 240);
   }
   .busqueda_adver::placeholder{
     color: black;
   }
-  .protit{
+  .protit {
     color: #7fa1c3;
-    font-size: 18px;
-    
-  }
+    font-size: 20px; 
+    font-weight: bold; 
+    }
   strong {
     color: #7FA1C3;
   }

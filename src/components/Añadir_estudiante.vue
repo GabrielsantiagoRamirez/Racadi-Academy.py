@@ -108,8 +108,6 @@
           <option v-for="nombre in nombre_planes" :key="nombre" :value="nombre">{{ nombre }}</option>
         </select>
       </div>
-<<<<<<< HEAD
-=======
 
       <div class="form-group">
         <label for="file">
@@ -118,7 +116,6 @@
         <input type="file" @change="onFileChange" id="file" required>
       </div>
 
->>>>>>> oscarin
       <button type="submit" class="submit-button">
         <i class="fa fa-save"></i> Guardar Estudiante
       </button>
@@ -175,7 +172,6 @@ const añadir_estudiante = async () => {
     formData.append("nivel_actual", nivel_actual.value);
     formData.append("plan", plan.value);
     formData.append("file", file.value); // Añade el archivo al FormData
-
 
     const response = await axios.post("http://localhost:8000/añadirestudiante", formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -314,4 +310,7 @@ option {
   margin-right: 0.5rem;
   color: #83b4ff;
 }
+
+
+
 </style>

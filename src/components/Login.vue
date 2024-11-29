@@ -6,15 +6,27 @@
                 <h1 class="title_login">LOGIN</h1>
             </div>
             <div class="inp">
-                <input v-model="usuario" type="text" class="input_login" placeholder="usuario" required >
+                <input v-model="usuario" type="text" class="input_login" placeholder="usuario" required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="inp">
-                <input v-model="contraseña" type="password"  class="input_login" placeholder="contraseña" required>
-                <i class="fa-solid fa-lock"></i>
+                <input
+                    :type="mostrarContraseña ? 'text' : 'password'"
+                    v-model="contraseña"
+                    class="input_login"
+                    placeholder="contraseña"
+                    required
+                >
+                <i
+                    :class="mostrarContraseña ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
+                    @click="togglePassword"
+                    class="toggle_password_icon"
+                ></i>
             </div>
             <button class="submit_login" type="submit">Iniciar sesión</button>
-            <div class="login_mensaje_error" v-if="mensaje_error"> <i class="fa fa-exclamation"></i>&nbsp;{{mensaje_error }} </div>
+            <div class="login_mensaje_error" v-if="mensaje_error">
+                <i class="fa fa-exclamation"></i>&nbsp;{{ mensaje_error }}
+            </div>
             <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
             <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link></p>
         </form>
@@ -27,60 +39,49 @@
 </template>
 
 <script setup>
-import Header_sin_login from './header_sin_login.vue';
-
 import Header_login from './Header_login.vue';
 import Footer from './Footer.vue';
 import { ref } from 'vue';
 import axios from 'axios';
-import { useRouter } from 'vue-router'; 
+import { useRouter } from 'vue-router';
 import { jwtDecode } from "jwt-decode";
 
-
-// Variables para los inputs you know
 const usuario = ref('');
 const contraseña = ref('');
-const mensaje_error= ref('')
+const mensaje_error = ref('');
+const mostrarContraseña = ref(false);  
 
-//tener el router para la redireccion
 const router = useRouter();
 
-// funcion de inicio de sesion
 const handleLogin = async () => {
     try {
-        // Hacer la solicitud post a la API de login
         const response = await axios.post('http://localhost:8000/login', {
             usuario: usuario.value,
             contraseña: contraseña.value,
         });
         
-        const token_decodificado=jwtDecode(response.data.access_token)
-        console.log(response.data)
+        const token_decodificado = jwtDecode(response.data.access_token);
 
-        // guardamos el token el el local storage
-        localStorage.setItem('token' ,response.data.access_token )
-        console.log(localStorage.getItem('token'))
- 
+        localStorage.setItem('token', response.data.access_token);
 
-        // Redireccionar según el rol
         const rol = token_decodificado.rol;
         if (rol === 'administrador') {
-            router.push('/main_admin'); 
+            router.push('/main_admin');
         } else if (rol === 'estudiante') {
-            router.push('/main_estudiante'); 
+            router.push('/main_estudiante');
         } else if (rol === 'profesor') {
-            router.push('/main_profesor'); 
+            router.push('/main_profesor');
         }
     } catch (error) {
-        if (error.response && error.response.data.detail) {
-            mensaje_error.value=error.response.data.detail//devuelvo el error que retorna la api
-        } else {
-            mensaje_error.value='Algo salió mal. Intenta nuevamente'
-        }
+        mensaje_error.value = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente';
     }
 };
-</script>
 
+// Función para alternar entre mostrar y ocultar la contraseña
+const togglePassword = () => {
+    mostrarContraseña.value = !mostrarContraseña.value;
+};
+</script>
 
 <style>
 
@@ -95,14 +96,14 @@ a {
 b {
     color: rgb(70, 199, 199);
 }
-.login_mensaje_error{
+
+.login_mensaje_error {
     color: red;
     font-size: 18px;
     display: flex;
     align-self: self-start;
     margin-left: 9vh;
     margin-top: 5px;
-    
 }
 
 .wrapper_login {
@@ -111,13 +112,12 @@ b {
     height: 65vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 3px solid  #7baad6;
+    border: 3px solid #7baad6;
     box-shadow: 0 0 40px 0 #83B4FF;
     margin-top: 7vh;
     margin-left: auto;
     margin-right: auto;
-    background: linear-gradient(to right, #43607c,  #3562a7);
-
+    background: linear-gradient(to right, #43607c, #3562a7);
 }
 
 .form_login {
@@ -125,18 +125,19 @@ b {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: left
+    text-align: left;
 }
 
 .title_login {
     font-size: 40px;
     margin-top: 30px;
-    color:white;
+    color: white;
 }
 
 .inp {
     padding-bottom: 10px;
     border-bottom: 2px solid #eee;
+    position: relative;
 }
 
 .input_login {
@@ -171,7 +172,7 @@ b {
     margin-top: 5px;
 }
 
-.back_link_login{
+.back_link_login {
     color: #83B4FF;
     text-decoration: none;
     margin-left: 5px;
@@ -190,28 +191,39 @@ b {
     padding-right: 9vh;
 }
 
-
 .go_back_login {
-font-size: 18px;
-margin-top: 10px;
-color: #83B4FF;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #83B4FF;
 }
-.logo_login{
-height: 45vh;
-width:45vh;
-margin-top: 7vh;
+
+.logo_login {
+    height: 40vh;
+    width: 40vh;
+    margin-top: 7vh;
 }
-.txt_container_login{
+
+.txt_container_login {
     text-align: left;
     width: 100%;
     padding-left: 35vh;
 }
 
-.fa-solid{
+.fa-solid {
     color: white;
     font-size: 2vh;
 }
 
+.toggle_password_icon {
+    cursor: pointer;
+    color: white;
+    font-size: 2vh;
+    margin-left: 8px;
+    right: 0;
+    top: 45%;
+}
+
 </style>
+
 
 

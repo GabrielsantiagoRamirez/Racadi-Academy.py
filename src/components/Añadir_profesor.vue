@@ -1,15 +1,13 @@
 <template>
   <div class="form-container">
     <h1 class="form-title">Añadir Profesor</h1>
-    <form @submit.prevent="añadir_estudiante" class="form">
-      
+    <form @submit.prevent="añadir_profesor" class="form">
       <div class="form-group">
         <label for="documento">
           <i class="fa fa-id-card"></i> Documento
         </label>
         <input type="text" v-model="documento" id="documento" required>
       </div>
-
       <div class="form-group">
         <label for="tipo_de_documento">
           <i class="fa fa-file-alt"></i> Tipo de Documento
@@ -37,7 +35,7 @@
         <label for="fecha_nacimiento">
           <i class="fa fa-calendar-alt"></i> Fecha De Nacimiento
         </label>
-        <input type="date" class="fninp"v-model="fecha_nacimiento" id="fecha_nacimiento" required>
+        <input type="date" v-model="fecha_nacimiento" id="fecha_nacimiento" required>
       </div>
 
       <div class="form-group">
@@ -84,6 +82,13 @@
         <input type="password" v-model="contraseña" id="contraseña" required>
       </div>
 
+      <div class="form-group">
+        <label for="file">
+          <i class="fa fa-image"></i> Foto de Perfil
+        </label>
+        <input type="file" @change="onFileChange" id="file" required>
+      </div>
+
       <button type="submit" class="submit-button">
         <i class="fa fa-save"></i> Guardar Profesor
       </button>
@@ -93,79 +98,68 @@
 
 <script setup>
 import Swal from 'sweetalert2';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// tipo de documento y generos predefinidos
 const tipos_documento = ['cedula', 'cedula extranjera'];
-const generos =["masculino", "femenino", "otro"]
+const generos = ["masculino", "femenino", "otro"];
+
+const documento = ref("");
+const tipo_documento = ref("");
+const nombre = ref("");
+const apellido = ref("");
+const fecha_nacimiento = ref("");
+const genero = ref("");
+const celular = ref("");
+const correo = ref("");
+const direccion = ref("");
+const usuario = ref("");
+const contraseña = ref("");
+const file = ref(null);
 
 
+const onFileChange = (event) => {
+  file.value = event.target.files[0];
+};
 
-//variables para hacer el post
-const documento =ref("")
-const tipo_documento =ref("")
-const nombre =ref("")
-const apellido =ref("")
-const fecha_nacimiento=ref('')
-const genero=ref('')
-const celular =ref("")
-const correo =ref("")
-const direccion =ref("")
-const usuario =ref("")
-const contraseña =ref("")
+const añadir_profesor = async () => {
+  try {
+    const formData = new FormData();
+    formData.append("documento", documento.value);
+    formData.append("tipo_de_documento", tipo_documento.value);
+    formData.append("nombre", nombre.value);
+    formData.append("apellido", apellido.value);
+    formData.append("fecha_nacimiento", fecha_nacimiento.value);
+    formData.append("genero", genero.value);
+    formData.append("celular", celular.value);
+    formData.append("correo", correo.value);
+    formData.append("direccion", direccion.value);
+    formData.append("usuario", usuario.value);
+    formData.append("contraseña", contraseña.value);
+    formData.append("file", file.value); // Añade el archivo al FormData
 
+    const response = await axios.post("http://localhost:8000/añadirprofesor", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-
-
-const añadir_estudiante =async()=>{
-    try{
-        const response = await axios.post('http://localhost:8000/añadirprofesor',{
-        documento:documento.value,
-        tipo_de_documento:tipo_documento.value,
-        nombre:nombre.value,
-        apellido:apellido.value,
-        fecha_nacimiento:fecha_nacimiento.value,
-        genero:genero.value,
-        celular:celular.value,
-        correo:correo.value,
-        direccion:direccion.value,
-        usuario:usuario.value,
-        contraseña:contraseña.value
-        }
-
-        )
-        Swal.fire({
-            icon: 'success',
-            title: 'Profesor Registrado con exito',
-            timer:2000,
-            showConfirmButton:false
-        });
-
-    }catch (error) {
-        if (error.response && error.response.data.detail) {
-            let mensajeError = error.response.data.detail;
-
-            // Si `mensajeError` es un objeto, conviértelo a string para mostrarlo
-            if (typeof mensajeError === 'object') {
-                mensajeError = JSON.stringify(mensajeError);
-            }
-
-            Swal.fire({
-                icon: 'error',
-                title: mensajeError,
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Algo salió mal. Intenta nuevamente.',
-            });
-        }
-    }
+    Swal.fire({
+      icon: "success",
+      title: "Profesor registrado con éxito",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  } catch (error) {
+  console.error("Error de entidad:", error);
+  const mensajeError = error.response?.data.detail || "Algo salió mal. Intenta nuevamente.";
+  Swal.fire({
+    icon: "error",
+    title: mensajeError,
+  });
 }
 
-</script>
+};
 
+</script>
 
 <style scoped>
 .form-container {
@@ -261,4 +255,7 @@ option {
   margin-right: 0.5rem;
   color: #83b4ff;
 }
+
+
+
 </style>

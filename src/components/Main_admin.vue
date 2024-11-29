@@ -24,6 +24,11 @@
     <a href="">Crear clases</a>
 </router-link>
 
+<router-link to="/add_notes" class="acciones_Admin">
+    <i id="Icon_acciones_Admin" class="fa fa-book" aria-hidden="true"></i>
+    <a href="">Agregar Calificaciones</a>
+</router-link>
+
 
 <router-link to="/agregarobservacion" class="acciones_Admin">
     
@@ -41,9 +46,9 @@
 </router-link>
 
 
-<router-link to="/comunicados_admin" class="acciones_Admin">
+<router-link to="/crear_comunicados" class="acciones_Admin">
     
-    <i id="Icon_acciones_Admin" class="fa fa-anchor" aria-hidden="true"></i>
+    <i id="Icon_acciones_Admin" class="fa fa-comments" aria-hidden="true"></i>
         <a href="">Enviar Comunicados</a>
    
 </router-link>
@@ -62,7 +67,7 @@ import Header_sin_login from './header_sin_login.vue';
 import Footer from './Footer.vue';
 </script>
 
-<style>
+<style scoped>
 .h1_portal_Admin{
     text-align: center;
     font-size: 40px;

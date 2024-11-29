@@ -23,7 +23,7 @@
             </div>
             <div>
                 <i class="fa fa-phone"></i>
-                <p>+57 318 428 2495</p>
+                <p>+57 311 412 2265</p>
             </div>
             <div>
                 <i class="fa fa-envelope"></i>

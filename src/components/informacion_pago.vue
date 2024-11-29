@@ -157,8 +157,7 @@ onMounted(fetchUserProfile);
 }
 
 .boton_cancelar:hover {
-    background-color: #E2DAD6;
-    color: #53649b;
+    background-color: #7FA1C3;
 }
 
 .boton_confirmar:focus, .boton_cancelar:focus {
