@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login/>
+  <header_sin_login />
     <div class="contenedor_tabla_pago">
         <router-link to="/main_estudiante">
             <button class="back-button">
@@ -9,40 +9,42 @@
         <div>
             <span class="cabeza_tabla_pagos"> Créditos Activos</span>
         </div>
-        <table class="tabla_pago">
-            <thead class="contenedor_informacion_pago_header">
-                <tr class="fila_titulo">
-                    <td>Pagare</td>
-                    <td>Documento</td>
-                    <td>Saldo</td>
-                    <td>Pago Minimo</td>
-                    <td>Monto Por Mora</td>
-                    <td>Pago Total</td>
-                    <td>Fecha del Próximo Pago</td>
-                    <td>Días de Mora</td>
-                </tr>
-            </thead>
-            <tbody  v-if="cuenta">
-                <tr class="informacion_fila">
-                    <td>{{ cuenta.pagare }}</td>
-                    <td>{{ cuenta.documento }}</td>
-                    <td>$ {{ cuenta.saldo }}</td>
-                    <td>$ {{ cuenta.pago_minimo }}</td>
-                    <td>$ {{ cuenta.monto_por_mora }}</td>
-                    <td>$ {{ cuenta.pago_total }}</td>
-                    <td>{{ cuenta.fecha_proximo_pago }}</td>
-                    <td>{{ cuenta.dias_mora }}</td>
-                </tr>
-            </tbody>
-            <div v-else class="chargin">
-                Cargando... <i class="fa fa-clock"></i>
-            </div>
-        </table>
+        <div class="tabla-scroll"> <!-- Contenedor con scroll horizontal -->
+            <table class="tabla_pago">
+                <thead class="contenedor_informacion_pago_header">
+                    <tr class="fila_titulo">
+                        <td>Pagare</td>
+                        <td>Documento</td>
+                        <td>Saldo</td>
+                        <td>Pago Minimo</td>
+                        <td>Monto Por Mora</td>
+                        <td>Pago Total</td>
+                        <td>Fecha del Próximo Pago</td>
+                        <td>Días de Mora</td>
+                    </tr>
+                </thead>
+                <tbody v-if="cuenta">
+                    <tr class="informacion_fila">
+                        <td>{{ cuenta.pagare }}</td>
+                        <td>{{ cuenta.documento }}</td>
+                        <td>$ {{ cuenta.saldo }}</td>
+                        <td>$ {{ cuenta.pago_minimo }}</td>
+                        <td>$ {{ cuenta.monto_por_mora }}</td>
+                        <td>$ {{ cuenta.pago_total }}</td>
+                        <td>{{ cuenta.fecha_proximo_pago }}</td>
+                        <td>{{ cuenta.dias_mora }}</td>
+                    </tr>
+                </tbody>
+                <div v-else class="chargin">
+                    Cargando... <i class="fa fa-clock"></i>
+                </div>
+            </table>
+        </div>
 
-        <div class="title_margin" >
+        <div class="title_margin">
             <span class="cabeza_tabla_pagos">Historial De Pagos</span>
         </div>
-        <table class="tabla_pago" v-if="pagos.length>0">
+        <table class="tabla_pago_dos" v-if="pagos.length > 0">
             <thead class="contenedor_informacion_pago_header">
                 <tr class="fila_titulo">
                     <td>ID De Pago</td>
@@ -61,13 +63,10 @@
         <div v-else>
             <p class="no-historial-mensaje">Por el momento, no cuentas con un historial de pagos</p>
         </div>
-
-
     </div>
-
-
-
+    <Footer/>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -79,8 +78,8 @@ const cuenta = ref(null);
 const router = useRouter();
 const pagos = ref([])
 
-import header_sin_login from '../Headers/header_sin_login.vue';
 import Footer from '../Footer_Login/Footer.vue';
+import Header_sin_login from '../Headers/header_sin_login.vue';
 
 const info_cuenta = async () => {
     try {
@@ -146,11 +145,29 @@ onMounted(fetchUserProfile);
 .tabla_pago tbody {
     display: block;
 }
+
 .tabla_pago {
     border: 1px solid #d6e0f5; 
     border-radius: 8px; 
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.tabla_pago_dos thead, .tabla_pago_dos tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tabla_pago_dos tbody {
+    display: block;
+}
+
+.tabla_pago_dos {
+    border: 1px solid #d6e0f5; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 .fila_titulo {
     background: linear-gradient(90deg, #83B4FF, #7FA1C3); 
@@ -191,8 +208,6 @@ onMounted(fetchUserProfile);
     color: #7FA1C3;
 }
 
-
-
 .title_margin {
     margin-top: 30px;
 }
@@ -218,6 +233,18 @@ onMounted(fetchUserProfile);
 
 .tabla_pago th,
 .tabla_pago td {
+    padding: 12px;
+    border-bottom: 2px solid #83B4FF;
+}
+
+.tabla_pago_dos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.tabla_pago_dos th,
+.tabla_pago_dos td {
     padding: 12px;
     border-bottom: 2px solid #83B4FF;
 }
@@ -255,9 +282,77 @@ onMounted(fetchUserProfile);
     margin-top: 10px;
     font-weight: bold;
 }
+
 .chargin{
     font-size: 20px;
     color: #83B4FF;
     margin-top: 5px;
+}
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .contenedor_tabla_pago {
+        width: 90%;
+        padding: 15px;
+    }
+    .tabla-scroll{
+        overflow-x: scroll;
+    }
+    .cabeza_tabla_pagos {
+        font-size: 24px;
+    }
+    .tabla_pago {
+        overflow-x: auto;
+        display: block;
+        min-width: 800px;
+
+    }
+
+    .tabla_pago th,
+     .tabla_pago td {
+    padding: 6px;
+    border-bottom: 2px solid #83B4FF;
+    }
+
+    .tabla_pago_dos {
+        overflow-x: auto;
+        display: block;
+    }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+    .contenedor_tabla_pago {
+        width: 95%;
+        padding: 10px;
+    }
+    .tabla-scroll{
+        overflow-x: scroll;
+    }
+    .cabeza_tabla_pagos {
+        font-size: 20px;
+    }
+    .tabla_pago {
+        overflow-x: auto;
+        display: block;
+        min-width: 800px;
+    }
+
+    .tabla_pago th,
+     .tabla_pago td {
+    padding: 6px;
+    border-bottom: 2px solid #83B4FF;
+    }
+
+    .tabla_pago_dos {
+        overflow-x: auto;
+        display: block;
+    }
+    .back-button {
+        font-size: 1rem;
+    }
+    .no-historial-mensaje {
+        font-size: 16px;
+    }
 }
 </style>
