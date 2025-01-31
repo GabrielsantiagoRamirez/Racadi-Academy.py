@@ -1,5 +1,5 @@
 <template>
-  <header_sin_login />
+    <header_sin_login />
   <div class="contenedor-horario">
     <router-link to="/main_estudiante">
       <button class="back-button">
@@ -178,7 +178,7 @@ const reservarClase = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
       let mensajeError = error.response?.data.detail || 'Algo salió mal. Intenta nuevamente.';
       Swal.fire({
           icon: 'error',
-          title: mensajeError,
+          title: mensajeError
       });
   }
 };
@@ -251,9 +251,10 @@ onMounted(async () => {
   background-color: #ffffff; 
   padding: 20px;
   margin: 0 auto;
-  width: 1200px;
+  width: 90%;
   margin-top: 5vh;
   border-radius: 5px;
+  overflow-x: scroll;
 }
 
 .titulo {
@@ -394,4 +395,131 @@ onMounted(async () => {
     text-align: start;
     margin-left: 10px;
   }
+
+  /* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .contenedor-horario {
+    width: 90%; /* Ajuste de ancho para tablets */
+    padding: 15px; /* Padding reducido */
+    margin-top: 3vh; /* Margen superior reducido */
+  }
+
+  .titulo {
+    font-size: 1.8rem; /* 1.8rem = 28.8px */
+  }
+
+  .subtitulo {
+    font-size: 1.2rem; /* 1.2rem = 19.2px */
+  }
+
+  .semana {
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    overflow-x: auto; /* Scroll horizontal */
+    gap: 10px; /* Espacio entre días reducido */
+    padding-bottom: 10px; /* Espacio para el scroll */
+  }
+
+  .dia {
+    min-width: 150px; /* Ancho mínimo para cada día */
+    padding: 10px; /* Padding reducido */
+    font-size: 90%;
+
+  }
+
+  .dia h2 {
+    font-size: 1.1rem; /* 1.1rem = 17.6px */
+  }
+
+  .fecha {
+    font-size: 0.9rem; /* 0.9rem = 14.4px */
+  }
+
+  .clase {
+    padding: 8px; /* Padding reducido */
+  }
+
+  .btn-reservar {
+    font-size: 0.8rem; /* 0.8rem = 12.8px */
+    padding: 6px 10px; /* Padding reducido */
+  }
+
+  .btn-reservar.btn-reservar.reservado {
+    font-size: 0.8rem; /* 0.8rem = 12.8px */
+    padding: 6px 10px; /* Padding reducido */
+  }
+
+
+  .nextweek,
+  .currentweek {
+    font-size: 1.1rem; /* 1rem = 16px */
+  }
+
+  .back-button {
+    font-size: 1rem; /* 1rem = 16px */
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .contenedor-horario {
+    width: 90%; /* Ancho completo */
+    padding: 10px; /* Padding reducido */
+    margin-top: 2vh; /* Margen superior reducido */
+  }
+
+  .titulo {
+    font-size: 1.5rem; /* 1.5rem = 24px */
+  }
+
+  .subtitulo {
+    font-size: 1.2rem; /* 1rem = 16px */
+  }
+
+  .semana {
+    display: flex; /* Cambiar a flex para scroll horizontal */
+    overflow-x: auto; /* Scroll horizontal */
+    gap: 8px; /* Espacio entre días reducido */
+    padding-bottom: 10px; /* Espacio para el scroll */
+  }
+
+  .dia {
+    min-width: 150px; /* Ancho mínimo para cada día */
+    padding: 8px; /* Padding reducido */
+    font-size: 90%;
+
+  }
+
+  .dia h2 {
+    font-size: 1rem; /* 1rem = 16px */
+  }
+
+  .fecha {
+    font-size: 0.8rem; /* 0.8rem = 12.8px */
+  }
+
+  .clase {
+    padding: 6px; /* Padding reducido */
+  }
+
+  .btn-reservar {
+    font-size: 0.7rem; /* 0.7rem = 11.2px */
+    padding: 5px 8px; /* Padding reducido */
+  }
+  .btn-reservar.btn-reservar.reservado {
+    font-size: 0.7rem; /* 0.7rem = 11.2px */
+    padding: 5px 8px; /* Padding reducido */
+  }
+
+
+  .nextweek,
+  .currentweek {
+    font-size: 1rem; /* 0.9rem = 14.4px */
+  }
+
+  .back-button {
+    font-size: 0.9rem; /* 0.9rem = 14.4px */
+  }
+}
+
+ 
 </style>
