@@ -1,4 +1,5 @@
 <template>
+  <header_sin_login/>
 
 <div class="mainContainer">
 

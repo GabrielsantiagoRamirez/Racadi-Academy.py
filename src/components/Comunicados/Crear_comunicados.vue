@@ -1,5 +1,5 @@
 <template>
-  <header_sin_login />
+  <header_sin_login/>
   <div class="form-container">
     <div class="volver-container">
       <router-link to="/main_admin">
@@ -226,7 +226,7 @@ const crear_comunicado = async () => {
 @media (min-width: 481px) and (max-width: 1024px) {
   .form-container {
     width: 90%;
-    padding: 2rem;
+    padding: 1rem;
     margin: 2rem auto;
   }
 
@@ -254,7 +254,7 @@ const crear_comunicado = async () => {
 /* Para celulares */
 @media (min-width: 100px) and (max-width: 480px) {
   .form-container {
-    width: 95%;
+    width: 85%;
     padding: 1rem;
     margin: 1rem auto;
   }
@@ -262,7 +262,7 @@ const crear_comunicado = async () => {
   .form-row {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.1rem;
   }
 
   .volver-container {

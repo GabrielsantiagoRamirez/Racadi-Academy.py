@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login />
+  <header_sin_login/>
     <div class="container_principal_solicitudes">
       <div class="volver-container">
         <router-link to="/main_admin">
@@ -15,7 +15,9 @@
       <div class="columns-container">
         <div class="column">
           <h2 class="column-title">Solicitudes Pendientes</h2>
-          <table class="solicitudes-table">
+         
+          <div class="scroll-table">
+            <table class="solicitudes-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -42,6 +44,9 @@
             </tbody>
 
           </table>
+
+          </div>
+       
         </div>
   
         
@@ -421,10 +426,16 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 5vh;
   }
 
   .back-button {
     align-self: flex-start;
+  }
+
+  .scroll-table{
+    width: 100%;
+    overflow: scroll;
   }
 
   .columns-container {
@@ -436,12 +447,16 @@
   }
 
   .column {
-    width: 100%;
+    width: 90%;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
   }
+  
+
+
 
   .solicitudes-table {
     width: 100%;
@@ -452,6 +467,11 @@
     font-size: 12px;
     padding: 8px;
     text-align: center;
+  }
+
+  .column-title{
+    width: 90%;
+  
   }
 }
 

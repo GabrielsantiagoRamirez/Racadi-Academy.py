@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login />
+  <header_sin_login/>
     <div class="container_principal_solicitudes">
       <div class="volver-container">
         <router-link to="/main_estudiante">
@@ -586,6 +586,7 @@
     height: 100px; /* Altura reducida */
   }
 
+
   .columns-container {
     flex-direction: column; /* Cambiar a disposición en columna */
     gap: 10px; /* Espacio entre columnas reducido */
@@ -600,6 +601,7 @@
     font-size: 1rem; /* 1rem = 16px */
     padding: 6px; /* Padding reducido */
   }
+
 
   .solicitudes_texto {
     font-size: 1.5rem; /* 1.5rem = 24px */
@@ -624,6 +626,12 @@
     margin-top: 2vh; /* Margen superior reducido */
     padding: 8px; /* Padding reducido */
     font-size: 0.8rem; /* 0.8rem = 12.8px */
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .info-aviso i {
+    margin-bottom: 1.5vh;
   }
 
   .delete-button {

@@ -1,4 +1,5 @@
 <template>
+    <Header_login/>
     
     <div class="wrapper_login">
         <form @submit.prevent="handleLogin" class="form_login">
@@ -266,7 +267,7 @@ b {
        height: auto;
         width: 90%; 
         margin: 0 auto;
-        padding: 20px; 
+        padding: 10px; 
         margin-bottom: 10%;
         margin-top: 10%;
     }
@@ -300,18 +301,19 @@ b {
     }
 
     .submit_login {
-        width: 90%; 
+        width: 70%; 
         margin-top: 15px; 
     }
 
     .login_mensaje_error {
         font-size: 16px; 
         margin-left: 0; 
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .fp, .go_back_login {
         font-size: 14px; 
-        margin-bottom: 10%;
     }
 
     .logo_login {
@@ -359,13 +361,16 @@ b {
     }
 
     .submit_login {
-        width: 80%; 
+        width: 70%; 
         margin-top: 15px; 
+        max-width: 260px;
     }
 
     .login_mensaje_error {
         font-size: 16px; 
-        margin-left: 0; 
+        margin-left: auto;
+        margin-right: auto; 
+    
     }
 
     .fp, .go_back_login {

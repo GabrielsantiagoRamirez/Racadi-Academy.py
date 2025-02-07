@@ -1,4 +1,5 @@
 <template>
+  <header_sin_login/>
   <div class="crear-clases-container">
     <div class="volver-container">
       <router-link to="/main_admin">
