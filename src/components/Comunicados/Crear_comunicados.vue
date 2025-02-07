@@ -219,4 +219,66 @@ const crear_comunicado = async () => {
 .back-button:hover {
   color: #83b4ff; 
 }
+
+
+
+/* Para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .form-container {
+    width: 90%;
+    padding: 2rem;
+    margin: 2rem auto;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
+  }
+
+  .volver-container {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Para celulares */
+@media (min-width: 100px) and (max-width: 480px) {
+  .form-container {
+    width: 95%;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .volver-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
 </style>
