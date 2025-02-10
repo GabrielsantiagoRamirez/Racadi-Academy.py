@@ -273,5 +273,120 @@ button i {
   font-size: 14px;
 }
 
+@media (min-width: 481px) and (max-width: 1024px) {
+  .main-container {
+    flex-direction: column; /* Cambiar a columna para mejor disposición */
+    gap: 20px; /* Reducir el espacio entre elementos */
+    padding: 10px; /* Añadir padding para no pegar el contenido a los bordes */
+  }
+
+  .profesores-container {
+    max-width: 95%; /* Ocupar todo el ancho disponible */
+    max-height: 500px; /* Reducir la altura máxima */
+
+  }
+
+
+  .search-bar {
+    margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .profesor-item {
+    font-size: 16px; /* Reducir el tamaño de fuente */
+    flex-direction: column; /* Cambiar a columna para mejor disposición */
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+  }
+
+  .button-group {
+    margin-left: 0; /* Eliminar margen izquierdo */
+    margin-top: 10px; /* Añadir margen superior */
+    gap: 10px; /* Aumentar el espacio entre botones */
+  }
+
+  .protit {
+    font-size: 18px; /* Reducir el tamaño de fuente del título */
+  }
+
+  .search-bar input {
+    padding: 6px; /* Reducir el padding del input */
+  }
+
+  .search_r_bttn,
+  .search_l_bttn {
+    padding: 6px; /* Reducir el padding de los botones */
+    height: 30px; /* Reducir la altura de los botones */
+  }
+
+  .delete-button,
+  .edit-button,
+  .info-button {
+    padding: 6px; /* Reducir el padding de los botones */
+  }
+
+  button i {
+    font-size: 12px; /* Reducir el tamaño de los íconos */
+  }
+}
+
+@media (min-width: 150px) and (max-width: 480px) {
+  .main-container {
+    flex-direction: column; /* Cambiar a columna para mejor disposición */
+    gap: 15px; /* Reducir el espacio entre elementos */
+    padding: 20px; /* Añadir padding para no pegar el contenido a los bordes */
+  }
+
+  .profesores-container {
+    max-width: 100%; /* Ocupar todo el ancho disponible */
+    max-height: 400px; /* Reducir la altura máxima */
+    border-radius: 5px; /* Reducir el radio de borde */
+  }
+
+  .profesores-search {
+    border-bottom: 1px solid #83B4FF; /* Reducir el grosor del borde */
+  }
+
+  .search-bar {
+    margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .profesor-item {
+    font-size: 14px; /* Reducir el tamaño de fuente */
+    flex-direction: column; /* Cambiar a columna para mejor disposición */
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+    padding: 5px 0; /* Reducir el padding */
+  }
+
+  .button-group {
+    margin-left: 0; /* Eliminar margen izquierdo */
+    margin-top: 5px; /* Añadir margen superior */
+    gap: 5px; /* Reducir el espacio entre botones */
+  }
+
+  .protit {
+    font-size: 16px; /* Reducir el tamaño de fuente del título */
+  }
+
+  .search-bar input {
+    padding: 4px; /* Reducir el padding del input */
+    font-size: 12px; /* Reducir el tamaño de fuente del input */
+  }
+
+  .search_r_bttn,
+  .search_l_bttn {
+    padding: 4px; /* Reducir el padding de los botones */
+    height: 26px; /* Reducir la altura de los botones */
+  }
+
+  .delete-button,
+  .edit-button,
+  .info-button {
+    padding: 4px; /* Reducir el padding de los botones */
+    border-radius: 5px; /* Reducir el radio de borde */
+  }
+
+  button i {
+    font-size: 10px; /* Reducir el tamaño de los íconos */
+  }
+}
 
 </style>

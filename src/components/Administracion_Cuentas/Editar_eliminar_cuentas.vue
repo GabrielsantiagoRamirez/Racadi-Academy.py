@@ -161,6 +161,7 @@ h1{
   h1 {
     font-size: 1.5rem; /* 1.5rem = 24px */
     margin-bottom: 15px; /* Margen inferior reducido */
+    margin-top: 15px; /* Margen inferior reducido */
   }
 
   .cuentas-container {

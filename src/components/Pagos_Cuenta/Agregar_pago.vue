@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login/>
+  <header_sin_login/>
     <div class="crear-clases-container">
       <div class="volver-container">
         <router-link to="/main_admin">
@@ -10,6 +10,11 @@
       </div>
   
       <h1>Registrar Pagos</h1>
+
+          <!-- Botón flotante para móviles -->
+    <button class="floating-btn" @click="toggleEstudiantes">
+      <i class="fa fa-users"></i> Estudiantes
+    </button>
   
       <div class="form-profesores-container">
         <div class="form-container">
@@ -40,7 +45,7 @@
         </div>
         </div>
   
-        <div class="profesores-container">
+        <div class="profesores-container" :class="{ 'mobile-visible': showEstudiantes }">
           <div class="profesores-search">
             <span class="protit">Estudiantes</span>
             <form @submit.prevent="buscarEstudiantes">
@@ -54,7 +59,7 @@
           <div
           v-for="estudiante in estudiantes"
             :key="estudiante.documento"
-            class="profesor-item" @click="llenarDocumento(estudiante.documento),llenarValor(estudiante.pago_total)"
+            class="profesor-item" @click="seleccionarEstudiante(estudiante)"
           >
             <p><strong>Documento:</strong> {{ estudiante.documento }}</p>
             <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
@@ -64,6 +69,10 @@
 
         </div>
       </div>
+
+      <div v-if="estudianteSeleccionado" class="estudiante-seleccionado">
+      <p><strong>Estudiante seleccionado:</strong> {{ estudianteSeleccionado.nombre }} {{ estudianteSeleccionado.apellido }}</p>
+    </div>
     </div>
     <Footer/>
   </template>
@@ -85,6 +94,9 @@
 
   const estudiantes = ref([]);
   const busquedaEstudiante = ref('');
+
+  const showEstudiantes = ref(false);
+const estudianteSeleccionado = ref(null);
   
   const agregar_pagos = async () => {
     try {
@@ -141,16 +153,25 @@
     obtener_estudiantes();
   };
   
-  const llenarDocumento = (documentoxd) => {
-    cuenta_documento.value = documentoxd;
-    error_mensaje.value=""
 
-  };
+  const seleccionarEstudiante = (estudiante) => {
+  estudianteSeleccionado.value = estudiante;
+  cuenta_documento.value = estudiante.documento;
+  error_mensaje.value=""
+  valor.value =estudiante.pago_total;
+  showEstudiantes.value = false; // Cerrar el modal después de seleccionar
+  document.body.style.overflow = 'auto'; // Permitir scroll cuando se selecciona un profesor
+};
 
-  const llenarValor = (valorxd) => {
-    valor.value =valorxd;
-  };
+const toggleEstudiantes = () => {
+  showEstudiantes.value = !showEstudiantes.value;
   
+  if (showEstudiantes.value) {
+    document.body.style.overflow = 'hidden'; // Desactivar scroll cuando showProfesores es true
+  } else {
+    document.body.style.overflow = 'auto'; // Permitir scroll cuando showProfesores es false
+  }
+};
   onMounted(() => {
     obtener_estudiantes(); 
   });
@@ -387,9 +408,95 @@
   font-size: 1.5em; 
 }
 
+.floating-btn {
+  display: none;
+}
+
+.estudiante-seleccionado {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f4fa;
+    border-radius: 8px;
+    border: 1px solid #83B4FF;
+    text-align: center;
+  }
+
+  /* Estilos para móviles */
+@media (max-width: 768px) {
+  .form-profesores-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-container{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profesores-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 100px); /* Deja un margen de 30px a la derecha */
+  height: 100%; /* Asegura que ocupe toda la altura de la pantalla */
+  max-height: 100vh; /* Máxima altura igual a la altura del viewport */
+  background-color: white;
+  z-index: 999;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  overflow-y: auto; /* Permite scroll vertical */
+  border-left: 2px #83B4FF solid;
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.5);/* Añade una sombra para oscurecer un poquito el fondo */
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%); /* Empieza fuera de la pantalla a la izquierda */
+}
+
+.profesores-container.mobile-visible {
+  transform: translateX(0); /* Se desplaza hacia dentro de la pantalla cuando está visible */
+}
+
+/* Fondo oscurecido */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Asegura que ocupe toda la altura de la pantalla */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.overlay.show {
+  display: block;
+}
 
 
+  
+  .profesores-container.mobile-visible {
+    display: block;
+  }
 
+  .floating-btn {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #83B4FF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+
+}
   </style>
   
 
