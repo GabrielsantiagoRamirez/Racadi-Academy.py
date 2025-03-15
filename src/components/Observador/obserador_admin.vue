@@ -146,6 +146,7 @@ onMounted(obtener_estudiantes);
 </script>
 
 <template>
+  <header_sin_login/>
   <div class="contpadrepadre">
     <div class="volver-container">
       <router-link :to="perfilRuta">
@@ -211,7 +212,7 @@ onMounted(obtener_estudiantes);
           </form>
         </div>
         <div
-          v-for="estudiante in estudiantes"
+          v-for="estudiante in estudiantes.filter(e => e.estado)"
           :key="estudiante.documento"
           class="profesor-item"
           @click="seleccionarEstudiante(estudiante)"

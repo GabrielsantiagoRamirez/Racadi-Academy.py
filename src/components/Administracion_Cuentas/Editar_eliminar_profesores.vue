@@ -1,280 +1,361 @@
 <template>
-    <div class="main-container">
-      <div class="profesores-container">
-        <div class="profesores-search">
-          <span class="protit">Profesores</span>
-          <form @submit.prevent="buscarprofesores">
-            <div class="search-bar">
-              <button type="button" class="fa fa-arrow-left search_l_bttn" @click="restablecerBusqueda"></button>
-              <input type="text" class="busqueda_adver" placeholder="Buscar por nombre" v-model="busquedaProfesor">
-              <button type="submit" class="fa fa-search search_r_bttn"></button>
-            </div>
-          </form>
-        </div>
-        <div v-for="profesor in profesores" :key="profesor.documento" class="profesor-item">
-          <div class="student-info">
-            <p><strong>Documento:</strong> {{ profesor.documento }}</p>
-            <p><strong>Nombre:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
+  <div class="main-container">
+    <div class="profesores-container">
+      <div class="profesores-search">
+        <span class="protit">Profesores
+          <span v-if="mostrarInactivos">Inactivos</span>
+          <span v-else>Activos</span>
+        </span>
+
+        <button class="toggle-button" @click="toggleInactivos">
+          {{ mostrarInactivos ? 'Usuarios Activos' : 'Usuarios Inactivos' }}
+        </button>
+
+        <form @submit.prevent="buscarProfesores">
+          <div class="search-bar">
+            <button type="button" class="fa fa-arrow-left search_l_bttn" @click="restablecerBusqueda"></button>
+            <input type="text" class="busqueda_adver" placeholder="Buscar por nombre" v-model="busquedaProfesor">
+            <button type="submit" class="fa fa-search search_r_bttn"></button>
           </div>
-          <div class="button-group">
-            <button class="delete-button" @click="confirmDelete(profesor)">
-              <i class="fa fa-trash"></i>
-            </button>
-            <router-link :to="{ 
-                  path: '/editar_eliminar_cuentas/editar_eliminar_profesores/editar', 
-                  query: { profesor: JSON.stringify(profesor) } 
-                }">
-              <button class="edit-button">
-                <i class="fa fa-pencil"></i>
-              </button>
-            </router-link>
-            
-            <router-link :to="{ 
-                  path: '/editar_eliminar_cuentas/editar_eliminar_profesores/informacion', 
-                  query: { profesor: JSON.stringify(profesor) } 
-                }">
-              <button class="info-button">
-                <i class="fa fa-info-circle"></i>
-              </button>
-                </router-link>
-  
-  
-          </div>
-        </div>
+        </form>
       </div>
-  
-      <div>
-        <!--Le coloque una llave a el router vue para obligarlo a reconstruirse cada vez que cambia la url  --> 
-        <router-view :key="$route.fullPath" />
+      <div v-for="profesor in profesoresFiltrados" :key="profesor.documento" class="profesor-item">
+        <div class="student-info">
+          <p><strong>Documento:</strong> {{ profesor.documento }}</p>
+          <p><strong>Nombre:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
+        </div>
+        <div class="button-group">
+          <button v-if="!mostrarInactivos" class="delete-button" @click="confirmDelete(profesor)">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button v-if="mostrarInactivos" class="active-button" @click="confirmActive(profesor)">
+            <i class="fa fa-check"></i>
+          </button>
+          <router-link :to="{ 
+                path: '/editar_eliminar_cuentas/editar_eliminar_profesores/editar', 
+                query: { profesor: JSON.stringify(profesor) } 
+              }">
+            <button v-if="!mostrarInactivos" class="edit-button">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </router-link>
+          <router-link :to="{ 
+                path: '/editar_eliminar_cuentas/editar_eliminar_profesores/informacion', 
+                query: { profesor: JSON.stringify(profesor) } 
+              }">
+            <button class="info-button">
+              <i class="fa fa-info-circle"></i>
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import axios from 'axios';
-  import { ref, onMounted } from 'vue';
-  import Swal from 'sweetalert2';
-  
-  const profesores = ref([]);
-  const busquedaProfesor = ref('');
-  
-  const obtener_profesores = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/obtenerprofesores');
-      profesores.value = response.data;
-    } catch (error) {
-      console.error("Error al capturar los estudiantes", error);
-    }
-  };
-  
-  const buscarprofesores = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/buscarprofesores', {
-        params: { nombre: busquedaProfesor.value }
-      });
-      profesores.value = response.data;
-    } catch (error) {
-      console.error("Error al buscar estudiantes", error);
-    }
-  };
-  
-  const restablecerBusqueda = () => {
-    busquedaProfesor.value = '';
-    obtener_profesores();
-  };
-  
-  const deleteTeacher = async (documento) => {
-    try {
-      await axios.delete(`http://localhost:8000/eliminarprofesor/${documento}`);
-      Swal.fire({
-        icon: 'success',
-        title: 'Profesor Eliminado Exitosamente',
-      });
-  
-      profesores.value = profesores.value.filter(profesor => profesor.documento !== documento);
-    } catch (error) {
-      console.error('Error deleting student:', error);
-    }
-  };
-  
-  const confirmDelete = (teacher) => {
-    Swal.fire({
-      title: `¿Estás seguro de eliminar a\n${teacher.nombre} ${teacher.apellido}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#83B4FF',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, estoy seguro',
-      cancelButtonText: 'No, cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteTeacher(teacher.documento);
-      }
-    });
-  };
-  
-  onMounted(obtener_profesores);
-  </script>
-  
-  <style scoped>
-  
-  .main-container{
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
 
+    <div>
+      <router-view :key="$route.fullPath" />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import axios from 'axios';
+import { ref, onMounted, computed } from 'vue';
+import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const profesores = ref([]);
+const busquedaProfesor = ref('');
+const mostrarInactivos = ref(false);
+
+const obtener_profesores = async () => {
+  try {
+    const response = await axios.get('http://localhost:8000/obtenerprofesores');
+    profesores.value = response.data;
+  } catch (error) {
+    console.error("Error al capturar los profesores", error);
   }
-  
-  
-  .profesores-container {
-      flex: 1;
-      background-color: #fff;
-      padding-left :15px;
-      padding-right: 15px;
-      padding-bottom :15px;
-      border-radius: 8px;
-      box-shadow: 0px 3px 8px rgba(129, 188, 243, 0.747);
-      max-width: 500px;
-      overflow-y: scroll;
-      max-height: 700px;
-      }
-  
-      .profesores-search {
-      position: sticky;
-      padding-top: 15px;
-      top: 0;
-      background-color: #fff; 
-      z-index: 1; 
-      margin-bottom: 10px; 
-      border-bottom: 2px solid #83B4FF; 
-      }
-  
-  
-      
-  
-      .search-bar {
-      display: flex;
-      align-items: center;
-      padding-bottom: 15px; 
-      margin-top: 5px;
-      }
-  
-    
-      .search-bar input {
-        flex: 1;
-        padding: 8px;
-        border: 1px solid #83B4FF;
-        border-radius: 4px 0 0 4px;
-        background-color: #F0F0F0;
-      }
-    
-      .search_r_bttn  {
-        background-color: #7FA1C3;
-        color: white;
-        padding: 8px;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer;
-        border: none;
-        height: 34px;
-      }
-    
-      .search_l_bttn  {
-        background-color: #7FA1C3;
-        color: white;
-        padding: 8px;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-        cursor: pointer;
-        border: none;
-        height: 34px;
-      }
-    
-    
-    
-    
-      .profesores-list {
-        max-height: 250px;
-        overflow-y: auto;
-        border-top: 2px solid #83B4FF;
-        padding-top: 10px;
-      }
-    
-      .profesor-item {
-        padding: 8px 0;
-        border-bottom: 1px solid #83B4FF;
-        font-size: 18px;
-        display: flex;
-        flex-direction: row;
-      }
-  
-      .busqueda_adver::placeholder{
-        color: black;
-      }
-     
-      .protit {
-      color: #7fa1c3;
-      font-size: 20px;
-      font-weight: bold; 
-      }
-      strong {
-        color: #7FA1C3;
-      }
-  
-  .student-info{
-  padding: 0px;
+};
+
+const buscarProfesores = async () => {
+  try {
+    const response = await axios.get('http://localhost:8000/buscarprofesores', {
+      params: { nombre: busquedaProfesor.value }
+    });
+    profesores.value = response.data;
+  } catch (error) {
+    console.error("Error al buscar profesores", error);
   }
-  
-  .button-group {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    margin-left: auto;
-    align-items: center;
-  
+};
+
+const restablecerBusqueda = () => {
+  busquedaProfesor.value = '';
+  obtener_profesores();
+};
+
+const deleteTeacher = async (documento) => {
+  try {
+    await axios.put(`http://localhost:8000/desactivarprofesor/${documento}`);
+    Swal.fire({
+      icon: 'success',
+      title: 'Cuenta Deshabilitada Exitosamente',
+    });
+
+    await obtener_profesores();
+    router.replace({ path: '/editar_eliminar_cuentas/editar_eliminar_profesores' });
+  } catch (error) {
+    console.error('Error deleting teacher:', error);
   }
+};
+
+const confirmDelete = (teacher) => {
+  Swal.fire({
+    title: `¿Estás seguro de deshabilitar la cuenta de \n${teacher.nombre} ${teacher.apellido}?`,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#83B4FF',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, estoy seguro',
+    cancelButtonText: 'No, cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteTeacher(teacher.documento);
+    }
+  });
+};
+
+const activeTeacher = async (documento) => {
+  try {
+    await axios.put(`http://localhost:8000/activarprofesor/${documento}`);
+    Swal.fire({
+      icon: 'success',
+      title: 'Cuenta habilitada Exitosamente',
+    });
+
+    await obtener_profesores();
+    router.replace({ path: '/editar_eliminar_cuentas/editar_eliminar_profesores' });
+  } catch (error) {
+    console.error('Error habilitando profesor:', error);
+  }
+};
+
+const confirmActive = (teacher) => {
+  Swal.fire({
+    title: `¿Estás seguro de habilitar la cuenta de \n${teacher.nombre} ${teacher.apellido}?`,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#83B4FF',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, estoy seguro',
+    cancelButtonText: 'No, cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      activeTeacher(teacher.documento);
+    }
+  });
+};
+
+const toggleInactivos = () => {
+  mostrarInactivos.value = !mostrarInactivos.value;
+};
+
+const profesoresFiltrados = computed(() => {
+  return profesores.value.filter(p => mostrarInactivos.value ? !p.estado : p.estado);
+});
+
+onMounted(obtener_profesores);
+</script>
   
-  .delete-button, .edit-button, .info-button {
-    border: none;
-    padding: 7px;
+<style scoped>
+
+.main-container{
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.profesores-container {
+    flex: 1;
+    background-color: #fff;
+    padding-left :15px;
+    padding-right: 15px;
+    padding-bottom :15px;
     border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    color: white;
-  }
+    box-shadow: 0px 3px 8px rgba(129, 188, 243, 0.747);
+    max-width: 500px;
+    overflow-y: scroll;
+    max-height: 700px;
+    }
+
+    .profesores-search {
+    position: sticky;
+    padding-top: 15px;
+    top: 0;
+    background-color: #fff; 
+    z-index: 1; 
+    margin-bottom: 10px; 
+    border-bottom: 2px solid #83B4FF; 
+    }
+
+
+    
+
+    .search-bar {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px; 
+    margin-top: 5px;
+    }
+
   
-  .delete-button {
-    background-color: #FF6B6B;
-  }
-  .delete-button:hover {
-    background-color: #FF4C4C;
-    transform: scale(1.1);
-  }
+    .search-bar input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #83B4FF;
+      border-radius: 4px 0 0 4px;
+      background-color: #F0F0F0;
+    }
   
-  .edit-button {
-    background-color: #4CAF50;
-  }
-  .edit-button:hover {
-    background-color: #3F9C40;
-    transform: scale(1.1);
-  }
+    .search_r_bttn  {
+      background-color: #7FA1C3;
+      color: white;
+      padding: 8px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      border: none;
+      height: 34px;
+    }
   
-  .info-button {
-    background-color: #1E90FF;
-  }
-  .info-button:hover {
-    background-color: #1C86EE;
-    transform: scale(1.1);
-  }
+    .search_l_bttn  {
+      background-color: #7FA1C3;
+      color: white;
+      padding: 8px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      cursor: pointer;
+      border: none;
+      height: 34px;
+    }
+
+    .toggle-button {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  background-color: #83B4FF;
+  color: white;
+  border: none;
+  padding: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-button:hover {
+  background-color: #7FA1C3; 
+  transform: scale(1.05); 
+}
+
   
-  button i {
-    font-size: 14px;
-  }
   
-  @media (min-width: 481px) and (max-width: 1024px) {
+  
+  
+    .profesores-list {
+      max-height: 250px;
+      overflow-y: auto;
+      border-top: 2px solid #83B4FF;
+      padding-top: 10px;
+    }
+  
+    .profesor-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #83B4FF;
+      font-size: 18px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .busqueda_adver::placeholder{
+      color: black;
+    }
+   
+    .protit {
+    color: #7fa1c3;
+    font-size: 20px;
+    font-weight: bold; 
+    }
+    strong {
+      color: #7FA1C3;
+    }
+
+.student-info{
+padding: 0px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-left: auto;
+  align-items: center;
+
+}
+
+.delete-button, .edit-button, .info-button ,.active-button{
+  border: none;
+  padding: 7px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  color: white;
+}
+
+.delete-button {
+  background-color: #FF6B6B;
+}
+.delete-button:hover {
+  background-color: #FF4C4C;
+  transform: scale(1.1);
+}
+
+.edit-button {
+  background-color: #4CAF50;
+}
+.edit-button:hover {
+  background-color: #3F9C40;
+  transform: scale(1.1);
+}
+
+.info-button {
+  background-color: #1E90FF;
+}
+.info-button:hover {
+  background-color: #1C86EE;
+  transform: scale(1.1);
+}
+
+.active-button{
+  background-color: rgb(32, 201, 32);
+}
+
+.active-button:hover{
+  background-color: rgb(28, 199, 28);
+  transform: scale(1.1);
+
+}
+
+button i {
+  font-size: 14px;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
   .main-container {
     flex-direction: column; /* Cambiar a columna para mejor disposición */
     gap: 20px; /* Reducir el espacio entre elementos */
@@ -290,6 +371,13 @@
 
   .search-bar {
     margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .toggle-button {
+    font-size: 12px; /* Reducir el tamaño de la fuente */
+    padding: 5px; /* Reducir el padding */
+    top: 8px; /* Ajustar la posición */
+    right: 3px; /* Ajustar la posición */
   }
 
   .profesor-item {
@@ -332,7 +420,8 @@
 @media (min-width: 150px) and (max-width: 480px) {
   .main-container {
     flex-direction: column; /* Cambiar a columna para mejor disposición */
-    gap: 20px; /* Reducir el espacio entre elementos */
+    gap: 15px; /* Reducir el espacio entre elementos */
+    padding: 20px; /* Añadir padding para no pegar el contenido a los bordes */
   }
 
   .profesores-container {
@@ -342,12 +431,18 @@
   }
 
   .profesores-search {
-    padding-top: 5px; /* Reducir el padding superior */
     border-bottom: 1px solid #83B4FF; /* Reducir el grosor del borde */
   }
 
   .search-bar {
     margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .toggle-button {
+    font-size: 11px; /* Reducir aún más el tamaño de la fuente */
+    padding: 4px; /* Reducir el padding */
+    top: 6px; /* Ajustar la posición */
+    right: 2px; /* Ajustar la posición */
   }
 
   .profesor-item {
@@ -389,5 +484,5 @@
     font-size: 10px; /* Reducir el tamaño de los íconos */
   }
 }
-  </style>
-  
+
+</style>

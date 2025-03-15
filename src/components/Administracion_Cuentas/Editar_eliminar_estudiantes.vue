@@ -2,7 +2,16 @@
   <div class="main-container">
     <div class="profesores-container">
       <div class="profesores-search">
-        <span class="protit">Estudiantes</span>
+        <span class="protit">Estudiantes
+          <span  v-if="mostrarInactivos">Inactivos</span>
+          <span v-else>Activos</span>
+          
+        </span>
+
+        <button class="toggle-button" @click="toggleInactivos">
+          {{ mostrarInactivos ? 'Usuarios Activos' : 'Usuarios Inactivos' }}
+        </button>
+
         <form @submit.prevent="buscarEstudiantes">
           <div class="search-bar">
             <button type="button" class="fa fa-arrow-left search_l_bttn" @click="restablecerBusqueda"></button>
@@ -11,24 +20,26 @@
           </div>
         </form>
       </div>
-      <div v-for="estudiante in estudiantes" :key="estudiante.documento" class="profesor-item">
+      <div v-for="estudiante in estudiantesFiltrados" :key="estudiante.documento" class="profesor-item">
         <div class="student-info">
           <p><strong>Documento:</strong> {{ estudiante.documento }}</p>
           <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
         </div>
         <div class="button-group">
-          <button class="delete-button" @click="confirmDelete(estudiante)">
+          <button v-if="!mostrarInactivos" class="delete-button" @click="confirmDelete(estudiante)">
             <i class="fa fa-trash"></i>
+          </button>
+          <button v-if="mostrarInactivos" class="active-button" @click="confirmActive(estudiante)">
+            <i class="fa fa-check"></i>
           </button>
           <router-link :to="{ 
                 path: '/editar_eliminar_cuentas/editar_eliminar_estudiantes/editar', 
                 query: { estudiante: JSON.stringify(estudiante) } 
               }">
-            <button class="edit-button">
+            <button v-if="!mostrarInactivos" class="edit-button">
               <i class="fa fa-pencil"></i>
             </button>
           </router-link>
-          
           <router-link :to="{ 
                 path: '/editar_eliminar_cuentas/editar_eliminar_estudiantes/informacion', 
                 query: { estudiante: JSON.stringify(estudiante) } 
@@ -36,15 +47,12 @@
             <button class="info-button">
               <i class="fa fa-info-circle"></i>
             </button>
-              </router-link>
-
-
+          </router-link>
         </div>
       </div>
     </div>
 
     <div>
-      <!--Le coloque una llave a el router vue para obligarlo a reconstruirse cada vez que cambia la url  --> 
       <router-view :key="$route.fullPath" />
     </div>
   </div>
@@ -52,11 +60,15 @@
 
 <script setup>
 import axios from 'axios';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import Swal from 'sweetalert2';
+import { useRouter } from 'vue-router';
 
+
+const router = useRouter();
 const estudiantes = ref([]);
 const busquedaEstudiante = ref('');
+const mostrarInactivos = ref(false);
 
 const obtener_estudiantes = async () => {
   try {
@@ -85,13 +97,13 @@ const restablecerBusqueda = () => {
 
 const deleteStudent = async (documento) => {
   try {
-    await axios.delete(`http://localhost:8000/eliminarestudiante/${documento}`);
+    await axios.put(`http://localhost:8000/desactivarestudiante/${documento}`);
     Swal.fire({
       icon: 'success',
-      title: 'Estudiante Eliminado Exitosamente',
+      title: 'Cuenta Deshabilitada Exitosamente',
     });
-
-    estudiantes.value = estudiantes.value.filter(estudiante => estudiante.documento !== documento);
+    await obtener_estudiantes();
+    router.replace({ path: '/editar_eliminar_cuentas/editar_eliminar_estudiantes' });
   } catch (error) {
     console.error('Error deleting student:', error);
   }
@@ -99,7 +111,7 @@ const deleteStudent = async (documento) => {
 
 const confirmDelete = (student) => {
   Swal.fire({
-    title: `¿Estás seguro de eliminar a\n${student.nombre} ${student.apellido}?`,
+    title: `¿Estás seguro de deshabilitar la cuenta de \n${student.nombre} ${student.apellido}?`,
     icon: 'question',
     showCancelButton: true,
     confirmButtonColor: '#83B4FF',
@@ -112,6 +124,47 @@ const confirmDelete = (student) => {
     }
   });
 };
+
+
+
+const activeStudent = async (documento) => {
+  try {
+    await axios.put(`http://localhost:8000/activarestudiante/${documento}`);
+    Swal.fire({
+      icon: 'success',
+      title: 'Cuenta habilitada Exitosamente',
+    });
+
+    await obtener_estudiantes();
+    router.replace({ path: '/editar_eliminar_cuentas/editar_eliminar_estudiantes' });
+  } catch (error) {
+    console.error('Error deleting student:', error);
+  }
+};
+
+const confirmActive = (student) => {
+  Swal.fire({
+    title: `¿Estás seguro de habilitar la cuenta de \n${student.nombre} ${student.apellido}?`,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#83B4FF',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, estoy seguro',
+    cancelButtonText: 'No, cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      activeStudent(student.documento);
+    }
+  });
+};
+
+const toggleInactivos = () => {
+  mostrarInactivos.value = !mostrarInactivos.value;
+};
+
+const estudiantesFiltrados = computed(() => {
+  return estudiantes.value.filter(e => mostrarInactivos.value ? !e.estado : e.estado);
+});
 
 onMounted(obtener_estudiantes);
 </script>
@@ -191,6 +244,28 @@ onMounted(obtener_estudiantes);
       border: none;
       height: 34px;
     }
+
+    .toggle-button {
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  background-color: #83B4FF;
+  color: white;
+  border: none;
+  padding: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-button:hover {
+  background-color: #7FA1C3; 
+  transform: scale(1.05); 
+}
+
   
   
   
@@ -236,7 +311,7 @@ padding: 0px;
 
 }
 
-.delete-button, .edit-button, .info-button {
+.delete-button, .edit-button, .info-button ,.active-button{
   border: none;
   padding: 7px;
   border-radius: 8px;
@@ -269,6 +344,16 @@ padding: 0px;
   transform: scale(1.1);
 }
 
+.active-button{
+  background-color: rgb(32, 201, 32);
+}
+
+.active-button:hover{
+  background-color: rgb(28, 199, 28);
+  transform: scale(1.1);
+
+}
+
 button i {
   font-size: 14px;
 }
@@ -289,6 +374,13 @@ button i {
 
   .search-bar {
     margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .toggle-button {
+    font-size: 12px; /* Reducir el tamaño de la fuente */
+    padding: 5px; /* Reducir el padding */
+    top: 8px; /* Ajustar la posición */
+    right: 3px; /* Ajustar la posición */
   }
 
   .profesor-item {
@@ -347,6 +439,13 @@ button i {
 
   .search-bar {
     margin-top: 0; /* Eliminar margen superior */
+  }
+
+  .toggle-button {
+    font-size: 11px; /* Reducir aún más el tamaño de la fuente */
+    padding: 4px; /* Reducir el padding */
+    top: 6px; /* Ajustar la posición */
+    right: 2px; /* Ajustar la posición */
   }
 
   .profesor-item {

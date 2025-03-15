@@ -90,7 +90,7 @@
             </form>
           </div>
           <div
-          v-for="estudiante in estudiantes"
+          v-for="estudiante in estudiantes.filter(e => e.estado)"
             :key="estudiante.documento"
             class="profesor-item"
             :class="{ disabled: estudiante.nivel_actual === 'advanced' }"

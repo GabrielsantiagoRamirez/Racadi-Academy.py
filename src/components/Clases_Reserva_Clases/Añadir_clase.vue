@@ -97,7 +97,7 @@
           </form>
         </div>
 
-        <div v-for="profesor in profesores" :key="profesor.documento" class="profesor-item" @click="seleccionarProfesor(profesor)">
+        <div v-for="profesor in profesores.filter(p => p.estado)" :key="profesor.documento" class="profesor-item" @click="seleccionarProfesor(profesor)">
           <p><strong>Documento:</strong> {{ profesor.documento }}</p>
           <p><strong>Nombre:</strong> {{ profesor.nombre }} {{ profesor.apellido }}</p>
         </div>

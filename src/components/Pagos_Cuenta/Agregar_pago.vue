@@ -57,15 +57,17 @@
             </form>
           </div>
           <div
-          v-for="estudiante in estudiantes"
+            v-for="estudiante in estudiantes.filter(e => e.estado)"
             :key="estudiante.documento"
-            class="profesor-item" @click="seleccionarEstudiante(estudiante)"
+            class="profesor-item"
+            @click="seleccionarEstudiante(estudiante)"
           >
             <p><strong>Documento:</strong> {{ estudiante.documento }}</p>
             <p><strong>Nombre:</strong> {{ estudiante.nombre }} {{ estudiante.apellido }}</p>
-            <p><strong>Fecha de Cuota a Pagar:</strong> {{ estudiante.fecha_proximo_pago }} </p>
-            <p><strong>Deuda Actual:</strong> {{ estudiante.pago_total }} </p>
-        </div>
+            <p><strong>Fecha de Cuota a Pagar:</strong> {{ estudiante.fecha_proximo_pago }}</p>
+            <p><strong>Deuda Actual:</strong> {{ estudiante.pago_total }}</p>
+          </div>
+
 
         </div>
       </div>
