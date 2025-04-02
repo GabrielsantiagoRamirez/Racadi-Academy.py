@@ -96,7 +96,7 @@ const fetchUserProfile = async () => {
 
 
 <template>
-  <header_sin_login/>
+  <header_sin_login />
 
   <div class="containerMadre_observadorEstudiante">
     <div class="volver-container">
@@ -239,5 +239,75 @@ const fetchUserProfile = async () => {
 
 .back-button:hover {
   color: #83b4ff; 
+}
+
+
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .containerMadre_observadorEstudiante {
+    width: 90%; /* Ajuste de ancho para tablets */
+    margin-top: 3%; /* Margen superior reducido */
+    padding: 15px; /* Padding reducido */
+  }
+
+  .titulos_observadorEstudiante {
+    font-size: 1.2em; /* 1.2em = 19.2px */
+    margin-top: 5vh; /* Margen superior reducido */
+  }
+
+  .muestra_observacionesEstudiante {
+    height: 250px; /* Altura reducida */
+  }
+
+  .seccion_Filtrar_ObservacionesEstudiante input {
+    width: calc(100% - 80px); /* Ajuste de ancho para el input */
+  }
+
+  .btnFiltar_ObservacionesEstudiante,
+  .btnFiltar_ObservacionesEstudiante2 {
+    padding: 8px 12px; /* Padding reducido */
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .back-button {
+    font-size: 1em; /* 1em = 16px */
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .containerMadre_observadorEstudiante {
+    width: 95%; /* Ajuste de ancho para celulares */
+    margin-top: 2%; /* Margen superior reducido */
+    padding: 10px; /* Padding reducido */
+  }
+
+  .titulos_observadorEstudiante {
+    font-size: 1em; /* 1em = 16px */
+    margin-top: 6vh; /* Margen superior reducido */
+    font-size: 110%;
+  }
+
+  .muestra_observacionesEstudiante {
+    height: 200px; /* Altura reducida */
+  }
+
+  .seccion_Filtrar_ObservacionesEstudiante input {
+    width: 90%; /* Ancho completo para el input */
+    margin-bottom: 10px; /* Margen inferior añadido */
+  }
+
+  .btnFiltar_ObservacionesEstudiante,
+  .btnFiltar_ObservacionesEstudiante2 {
+    width: 100%; /* Ancho completo para los botones */
+    padding: 10px; /* Padding ajustado */
+    font-size: 0.8em; /* 0.8em = 12.8px */
+    margin-top: 10px; /* Margen superior añadido */
+  }
+
+  .back-button {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
 }
 </style>

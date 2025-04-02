@@ -1,5 +1,6 @@
 <template>
     <Header_login/>
+    
     <div class="wrapper_login">
         <form @submit.prevent="handleLogin" class="form_login">
             <div class="txt_container_login">
@@ -212,6 +213,7 @@ b {
 .fa-solid {
     color: white;
     font-size: 2vh;
+    margin-left: 8px;
 }
 
 .toggle_password_icon {
@@ -219,9 +221,167 @@ b {
     color: white;
     font-size: 2vh;
     margin-left: 8px;
-    right: 0;
-    top: 45%;
+   
 }
+
+
+
+
+
+/* Para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .wrapper_login {
+    width: 80%;
+    height: auto;
+    margin-top: 5vh;
+  }
+
+  .banner_login {
+    display: none;
+  }
+
+  .txt_container_login {
+    padding-left: 0;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-login {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+}
+
+
+
+
+/* Estilos para celulares */
+@media (min-width: 100px) and (max-width: 480px) {
+    .wrapper_login {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+       height: auto;
+        width: 90%; 
+        margin: 0 auto;
+        padding: 10px; 
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+
+    .txt_container_login {
+        text-align: center; 
+        width: 100%; 
+        margin: 20px 0; 
+        padding-left: 0; 
+    }
+
+    .banner_login {
+        display: none; 
+    }
+
+    .form_login {
+        width: 100%;
+        padding: 0; 
+        align-items: center; 
+    }
+
+    .title_login {
+        font-size: 28px; 
+        margin-top: 20px; 
+        margin-bottom: 10px; 
+    }
+
+    .input_login {
+        width: 80%; 
+        margin-top: 20px; 
+    }
+
+    .submit_login {
+        width: 70%; 
+        margin-top: 15px; 
+    }
+
+    .login_mensaje_error {
+        font-size: 16px; 
+        margin-left: 0; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .fp, .go_back_login {
+        font-size: 14px; 
+    }
+
+    .logo_login {
+        display: none; 
+    }
+}
+
+
+
+
+/* Estilos para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .wrapper_login {
+        width: 80%;
+        height: auto;
+        margin-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner_login {
+        display: none; 
+    }
+
+    .txt_container_login {
+    text-align: center; 
+    width: 100%; 
+    margin: 20px 0; 
+}
+
+    .form_login {
+        width: 90%;
+        margin: 0 auto;
+        padding: 2rem; 
+    }
+
+    .title_login {
+        font-size: 36px; 
+    }
+
+    .input_login {
+        width: 80%; 
+        margin-top: 20px; 
+    }
+
+    .submit_login {
+        width: 70%; 
+        margin-top: 15px; 
+        max-width: 260px;
+    }
+
+    .login_mensaje_error {
+        font-size: 16px; 
+        margin-left: auto;
+        margin-right: auto; 
+    
+    }
+
+    .fp, .go_back_login {
+        font-size: 16px; 
+    }
+
+    .logo_login {
+        display: none;
+    }
+}
+
 
 </style>
 

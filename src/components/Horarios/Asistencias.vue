@@ -17,7 +17,7 @@
         </div>
   
         <div v-for="estudiante in estudiantes" :key="estudiante.documento" class="estudiante-item row">
-          <div class="estudiante-info">
+          <div class="estudiante-info">   
             <p>{{ estudiante.nombre }} {{ estudiante.apellido }}</p>
           </div>
   
@@ -132,8 +132,9 @@
   }
   
   .asistencia_container {
-    width: 35%;
-    max-width: 600px;
+    width: 40%;
+    height:auto;
+    max-height: 70%;
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
@@ -141,6 +142,7 @@
     box-shadow: 0px 4px 20px rgba(12, 134, 138, 0.2);
     text-align: center;
     position: relative;
+    overflow-y: auto;
   }
   
   .back-button {
@@ -243,6 +245,85 @@
     font-size: 30px;
     color: #70a9fd;
   }
+
+  /* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .asistencia_container {
+    width: 60%; /* Ajuste de ancho para tablets */
+    max-height: 80%; /* Altura máxima ajustada */
+  }
+
+  h1 {
+    font-size: 26px; /* Tamaño de fuente reducido */
+  }
+
+  .estudiante-info p {
+    font-size: 18px; /* Tamaño de fuente reducido */
+  }
+
+  .botones-container button {
+    font-size: 14px; /* Tamaño de fuente reducido */
+    padding: 8px; /* Padding reducido */
+  }
+
+  .estado {
+    font-size: 18px; /* Tamaño de fuente reducido */
+  }
+
+  .no-estudiantes {
+    font-size: 16px; /* Tamaño de fuente reducido */
+  }
+
+  .no-estudiantes i {
+    font-size: 26px; /* Tamaño de ícono reducido */
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .asistencia_container {
+    width: 90%; /* Ajuste de ancho para celulares */
+    max-height: 90%; /* Altura máxima ajustada */
+    padding: 10px; /* Padding reducido */
+  }
+
+  h1 {
+    font-size: 22px; /* Tamaño de fuente reducido */
+  }
+
+  .estudiante-item {
+    flex-direction: column; /* Apilar elementos verticalmente */
+    align-items: flex-start; /* Alinear a la izquierda */
+    gap: 10px; /* Espacio entre elementos */
+  }
+
+  .estudiante-info p {
+    font-size: 16px; /* Tamaño de fuente reducido */
+  }
+
+  .botones-container {
+    width: 100%; /* Ancho completo */
+    justify-content: space-between; /* Espacio entre botones */
+  }
+
+  .botones-container button {
+    width: 48%; /* Ancho de botones ajustado */
+    font-size: 12px; /* Tamaño de fuente reducido */
+    padding: 6px; /* Padding reducido */
+  }
+
+  .estado {
+    font-size: 16px; /* Tamaño de fuente reducido */
+  }
+
+  .no-estudiantes {
+    font-size: 14px; /* Tamaño de fuente reducido */
+  }
+
+  .no-estudiantes i {
+    font-size: 22px; /* Tamaño de ícono reducido */
+  }
+}
   </style>
   
   

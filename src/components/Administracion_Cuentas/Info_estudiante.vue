@@ -171,7 +171,120 @@ const estudiante = route.query.estudiante
     color: #7fa1c3;
   }
   
-  
+  @media (min-width: 481px) and (max-width: 1024px) {
+  .perfil_tittle {
+    font-size: 1.5em; /* 1.5em = 24px */
+    margin-top: 30px;
+
+  }
+
+  .perfil-estudiante {
+    padding: 1em; /* 1em = 16px */
+    width: 94%; /* Ajuste de ancho para tablets */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .back-button,
+  .logout-button {
+    font-size: 1.1em; /* 1.1em = 17.6px */
+  }
+
+  .foto-perfil img {
+    width: 8em; /* 8em = 128px */
+    height: 8em; /* 8em = 128px */
+  }
+
+  .info-nombre h2 {
+    font-size: 1.5em; /* 1.5em = 24px */
+  }
+
+  .nivel-descripcion {
+    font-size: 1em; /* 1em = 16px */
+  }
+
+  .info-card h2 {
+    font-size: 1.5em; /* 1.5em = 24px */
+  }
+
+  .info-item {
+    font-size: 1em; /* 1em = 16px */
+  }
+
+  .info-aviso {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .perfil_tittle {
+    font-size: 1.25em; /* 1.25em = 20px */
+    margin-top: 30px;
+  }
+
+  .perfil-estudiante {
+    padding: 0.75em; /* 0.75em = 12px */
+    max-width: 90%; /* Ajuste de ancho para celulares */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .back-button,
+  .logout-button {
+    font-size: 1em; /* 1em = 16px */
+    top: 0.5em; /* 0.5em = 8px */
+  }
+
+  .back-button {
+    left: 0.5em; /* 0.5em = 8px */
+  }
+
+  .logout-button {
+    right: 0.5em; /* 0.5em = 8px */
+  }
+
+  .info-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .foto-perfil {
+    margin-right: 0;
+    margin-top: 1em; /* 1em = 16px */
+  }
+
+  .foto-perfil img {
+    width: 6em; /* 6em = 96px */
+    height: 6em; /* 6em = 96px */
+  }
+
+  .info-nombre h2 {
+    font-size: 1.25em; /* 1.25em = 20px */
+  }
+
+  .nivel-descripcion {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .info-card h2 {
+    font-size: 1.25em; /* 1.25em = 20px */
+  }
+
+  .info-item {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .info-aviso {
+    font-size: 0.8em; /* 0.8em = 12.8px */
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-aviso i {
+    margin-bottom: 0.5em; /* 0.5em = 8px */
+  }
+}
   
   </style>
   

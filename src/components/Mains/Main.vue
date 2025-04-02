@@ -4,59 +4,116 @@ import Footer from '../Footer_Login/Footer.vue';
 </script>
 
 <template>
+
     <headerRacadi/>
 
-   
-    
-    <div class="MainCont_titulo">
-        <h1 class="MainTitulos">¿Quienes somos?</h1>
-        <div class="MainTextos">En Racadi Academy, somos el enlace perfecto entre estudiantes y la academia de inglés, facilitando la gestión de horarios y reservas de manera rápida y sencilla. Nuestra plataforma está diseñada para optimizar tu tiempo, ofreciéndote una experiencia sin complicaciones al momento de programar tus clases de inglés.</div>
-   
+    <div class="inicioMain">
         
-            <h1 class="MainTitulos">Mision</h1>
-            <a class="MainTextos">Nuestro objetivo es simplificar la vida de estudiantes y academias al proporcionar una herramienta intuitiva y accesible para gestionar horarios y reservas. Queremos que te concentres en lo importante: aprender inglés, mientras nosotros nos encargamos de que tu agenda esté siempre organizada.</a>
-    
-            <h1 class="MainTitulos">Como funcionamos</h1>
-            <a class="MainTextos">Trabajamos de la mano con la academia para asegurarnos de que siempre tengas acceso a la disponibilidad actualizada de clases y profesores. Con nuestra plataforma, puedes revisar horarios, reservar sesiones, y gestionar tus clases con facilidad, todo desde un solo lugar.</a>
+         <h1 class="h1InicioMain">RACADI ACADEMI</h1>
+         <p class="pInicioMain">Explora un mundo de conocimiento y aprendizaje con nosotros. Nuestra academia está diseñada para potenciar tu crecimiento con cursos innovadores y educación de calidad.</p>
         
     </div>
+    
+
+
+
+
+    <div class="accordion">
+    <!-- Sección 1 -->
+    <div class="accordion-item">
+        <input type="checkbox" id="section1" class="accordion-input">
+        <label for="section1" class="accordion-header">
+            <h3>¿Quienes somos?</h3>
+        </label>
+        <div class="accordion-content">
+            <p>En Racadi Academy, somos el enlace perfecto entre estudiantes y la academia de inglés, facilitando la gestión de horarios y reservas de manera rápida y sencilla. Nuestra plataforma está diseñada para optimizar tu tiempo, ofreciéndote una experiencia sin complicaciones al momento de programar tus clases de inglés.</p>
+        </div>
+    </div>
+
+    <!-- Sección 2 -->
+    <div class="accordion-item">
+        <input type="checkbox" id="section2" class="accordion-input">
+        <label for="section2" class="accordion-header">
+            <h3>Mision</h3>
+        </label>
+        <div class="accordion-content">
+            <p>Nuestro objetivo es simplificar la vida de estudiantes y academias al proporcionar una herramienta intuitiva y accesible para gestionar horarios y reservas. Queremos que te concentras en lo importante: aprender inglés, mientras nosotros nos encargamos de que tu agenda esté siempre organizada.</p>
+        </div>
+    </div>
+
+    <!-- Sección 3 -->
+    <div class="accordion-item">
+        <input type="checkbox" id="section3" class="accordion-input">
+        <label for="section3" class="accordion-header">
+            <h3>Funcion</h3>
+        </label>
+        <div class="accordion-content">
+            <p>Trabajamos de la mano con la academia para asegurarnos de que siempre tengas acceso a la disponibilidad actualizada de clases y profesores. Con nuestra plataforma, puedes revisar horarios, reservar y gestionar tus clases con facilidad, todo desde un solo lugar.</p>
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+
+<h1 class="titulosMain">Funciones que cumplimos</h1>
+<p class="Maintextos">Por parte de nuestra pataforma para ofrecer una mejor comodidad y interactividad a nuestros estudiantes lo cua se lo ofrecemos con la versatilidad de nuestra plataforma y les aseguramos las siguientes funciones.  </p>
+
+
+
+
+    <div class="card-container">
+    <!-- Card 1 -->
+    <div class="card">
+        <img src="../img/reloj.png" alt="Descripción de la imagen 1" class="card-image">
+        <h3 class="card-title">Gestión Académica</h3>
+        <p class="card-text">Administre la información académica de sus estudiantes de principio a fin para mejorar procesos como: matrículas, programación de horarios, registro de notas y evaluación docente.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+        <img src="../img/dinero (1).png" alt="Descripción de la imagen 2" class="card-image">
+        <h3 class="card-title">Gestión Administrativa</h3>
+        <p class="card-text">Controle adecuadamente las cuentas por cobrar y los ingresos de sus estudiantes mediante órdenes de pago, recibos, facturas, créditos e informes, que faciliten tomar decisiones acertadamente.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+        <img src="../img/conversacion (1).png" alt="Descripción de la imagen 3" class="card-image">
+        <h3 class="card-title">Comunidad en linea</h3>
+        <p class="card-text">Aumente sus canales de comunicación entre los estudiantes, docentes y administrativos por medio del chat institucional , SMS mensajes de texto, la App móvil y las campañas de Mailing enviadas directamente desde su plataforma.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+        <img src="../img/bienestar.png" alt="Descripción de la imagen 4" class="card-image">
+        <h3 class="card-title">Bienestar institucional</h3>
+        <p class="card-text">Promueva la satisfacción de sus estudiantes por medio de encuestas, evaluación institucional y solicitudes en línea, además de tener accesos a una bolsa de empleo y gestionar las prácticas laborales en el mismo sistema.</p>
+    </div>
+</div>
+
+
+
+
 
 
 
 
     
-    <div class="Maincont_Ofrecemos">
-        <h1 class="MainTitulos_Ofrecemos">Te ofrecemos</h1>
-            
-      <div class="Maincont_cardOfrcemos">
-        <div class="Maincard_Ofrecemos">
-            <img src="..//components/img/reloj.png" class="Mainicono">
-            <h2><strong>Gestión Académica</strong></h2>
-            <p>Administre la información académica de sus estudiantes de principio a fin para mejorar procesos como: matrículas, programación de horarios, registro de notas y evaluación docente.</p>
-        </div>
-        <div class="Maincard_Ofrecemos">
-            <img src="..//components/img/dinero (1).png" class="Mainicono">
-            <h2><strong>Gestión Administrativa</strong></h2>
-            <p>Controle adecuadamente las cuentas por cobrar y los ingresos de sus estudiantes mediante órdenes de pago, recibos, facturas, créditos e informes, que faciliten tomar decisiones acertadamente.</p>
-        </div>
-        <div class="Maincard_Ofrecemos">
-            <img src="..//components/img/conversacion (1).png" class="Mainicono">
-            <h2><strong>Comunidad en Línea</strong></h2>
-            <p>Aumente sus canales de comunicación entre los estudiantes, docentes y administrativos por medio del chat institucional , SMS mensajes de texto, la App móvil y las campañas de Mailing enviadas directamente desde su plataforma.</p>
-        </div>
-        <div class="Maincard_Ofrecemos">
-            <img src="..//components/img/bienestar.png" class="Mainicono">
-            <h2><strong>Bienestar Institucional</strong></h2>
-            <p>Promueva la satisfacción de sus estudiantes por medio de encuestas, evaluación institucional y solicitudes en línea, además de tener accesos a una bolsa de empleo y gestionar las prácticas laborales en el mismo sistema.</p>
-        </div>
+   
 
-      </div>
-    </div>
+
+
+
+    
+    
   
     
     <div class="contMadre_niveles">
-        <h1 class="tituloNiveles">Las certificaciones que te ofrecemos</h1>
-            <a class="MainTextos">Te ofrecemos la certificacion de todos los niveles de ingles desde A1 hasta C2,iniciando desde el nivel que te encuentres hasta donde puedas llegar con nuestros planes.</a>
+        <h1 class="titulosMain">Las certificaciones que te ofrecemos</h1>
+            <a class="Maintextos">Te ofrecemos la certificacion de todos los niveles de ingles desde A1 hasta C2,iniciando desde el nivel que te encuentres hasta donde puedas llegar con nuestros planes.</a>
        <div class="contNiveles">
             <div class="niveles"><strong>A1</strong></div>
             <div class="niveles2"><strong>A2</strong></div>
@@ -72,7 +129,7 @@ import Footer from '../Footer_Login/Footer.vue';
 
 
     <div class="contNiveles_unete">
-        <img src="..//components/img/LogoRacadiLetras.png" class="logo_unete">
+        <img src="../img/LogoRacadiLetras.png" class="logo_unete">
         <div class="texto_unete"><strong>Logra tu meta de aprender hablar ingles on nosotros.</strong></div>
     </div>
     
@@ -82,122 +139,216 @@ import Footer from '../Footer_Login/Footer.vue';
 
 </template>
 
-<style>
+<style scoped>
 
-.MainCont_titulo{
-   
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 7% ; /* Aplica 0 de padding arriba y abajo, y 20px a los lados */
-    padding-bottom: 7%;
-    background-color: white;
-    border-radius: 4%;
-    box-shadow: 10px 10px 20px rgba(0.842, 0.842, 0.842, 0.842);
-    width: 80%;
+.titulosMain{
+    width: 70%;
+    font-size: 50px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8%;
-    
-}
-.Mainicono{
-    height: 60%;
-    width:40% ;
-}
-.MainTitulos{
-    font-family: "Anek Devanagari", sans-serif;
-  font-size:9vh;
-  color: #3AACD9; 
-  margin-top: 7%;
-  
-}
-.MainTextos{
-    font-family: "Anek Devanagari", sans-serif;
-    
-    color: black;
-    font-size: 4vh;
-    text-align:center;
-}
-
-
-
-.Maincont_Ofrecemos {
-    text-align: center;
-    height: auto;
-    margin-top: 10%;
-}
-
-/* Estilos para los títulos principales */
-.MainTitulos_Ofrecemos {
-    font-family: "Anek Devanagari", sans-serif;
-    font-size: 9vh;
     color: #3AACD9;
-    margin-top: 7%;
-}
-
-/* Estilos para el contenedor de las tarjetas */
-.Maincont_cardOfrcemos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Divide en dos columnas iguales */
-    justify-content: space-evenly; /* Espacio uniforme alrededor de los elementos */
-    gap: 9% 3%; /* Espacio entre filas y columnas */
-    padding: 4%;
-    height: auto;
-    background-color: white;
-    padding-bottom: 9%;
-    margin: 0 auto; /* Centra el contenedor principal */
-    
-}
-
-/* Estilos para cada tarjeta */
-.Maincard_Ofrecemos {
-    background-color:  #E2DAD6;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    font-weight: bold;
+    font-family: "Anek Devanagari", sans-serif;
+    margin-top: 100px;
     text-align: center;
-    width: 90%;
-    margin: 0 auto; /* Centra cada tarjeta dentro de su columna */
+}
+
+.Maintextos{
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:20px ;
+    color: black;
+    text-align: center;
+    margin-top: 40px;
+    font-family: "Anek Devanagari", sans-serif;
+}
+
+
+.inicioMain {
+    width: 100%;
+    height: 400px; /* Ajusta la altura según necesites */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: url('../img/imagenMain.jpg') no-repeat center center/cover;
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+}
+
+/* Capa oscura semitransparente */
+.inicioMain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Negro con 50% de opacidad */
+    z-index: 1; /* Coloca la capa sobre la imagen */
+}
+
+                .h1InicioMain {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .pInicioMain {
+            width: 30%;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #f0f0f0;
+            z-index: 2;
+        }
+
+
+
+
+
+
+/* Estilos para el contenedor del acordeón */
+.accordion {
+    width: 100%;
+    
+    
+ 
+    border-radius: 8px;
     
 }
 
-/* Ajustes para los iconos */
-.Mainicono {
-    height: auto; /* Ajusta la altura automáticamente */
-    max-width: 100%; /* Asegura que el ancho no exceda el contenedor */
+/* Estilos para cada ítem del acordeón */
+.accordion-item {
+    border-bottom: 5px solid #ddd;
+    
 }
 
-/* Estilos para los títulos dentro de las tarjetas */
-.Maincard_Ofrecemos h2 {
-    font-size: 5vh;
+/* Último ítem sin borde inferior */
+
+/* Ocultar el input checkbox */
+.accordion-input {
+    display: none;
+}
+
+/* Estilos para el encabezado del acordeón */
+.accordion-header {
+    display: block;
+    padding: 15px;
+    background-color: #3AACD9;
+    cursor: pointer;
+    text-align: center; /* Centrar el texto */
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #2c81a3;
+}
+
+.accordion-header h3 {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 40px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Estilos para el contenido del acordeón */
+.accordion-content {
+    padding: 0 50px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: #ddd;
+    text-align: center; /* Centrar el texto */
+    font-size: 20px;
+    font-family: "Anek Devanagari", sans-serif;
+}
+
+/* Cuando el input está checked, mostrar el contenido */
+.accordion-input:checked ~ .accordion-content {
+    max-height: 200px; /* Ajusta según el contenido */
+    padding: 15px;
+}
+
+
+
+
+
+
+
+        .card-container {
+     width: 100%;
+     gap: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+  padding-top: 30px;
+  padding-bottom: 30px;
+    
+   
+    
+    
+    
+}
+
+/* Estilos para cada card */
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.76);
+    width: calc(20% - 15px); /* Ancho de cada card (4 cards por fila) */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efecto de levantar la card al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la imagen de la card */
+.card-image {
+    width: 70%;
+    height: auto;
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+}
+
+/* Estilos para el título de la card */
+
+.card-title {
+    font-size: 1.5rem;
+    margin: 15px 0 10px;
+    /*color:  #4e70b5;*/
     color: #6bc8ec;
+    font-weight: bold;
     font-family: "Anek Devanagari", sans-serif;
 }
 
-/* Estilos para los párrafos dentro de las tarjetas */
-.Maincard_Ofrecemos p {
-    font-size: 3vh;
-    color: black;
-    font-family: "Anek Devanagari", sans-serif;
+/* Estilos para el texto de la card */
+.card-text {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 15px 20px;
+    margin: 0;
 }
 
-/* Media Query para pantallas pequeñas */
-@media (max-width: 768px) {
-    .Maincont_cardOfrcemos {
-        grid-template-columns: 1fr; /* Cambia a una columna en pantallas pequeñas */
-        gap: 5% 0; /* Reduce el espacio entre las tarjetas */
-    }
-
-    .Maincard_Ofrecemos {
-        width: 100%; /* Ajusta el ancho para ocupar todo el espacio disponible */
-    }
-}
 
 
 
         
-
 
 
 .contMadre_niveles {
@@ -329,6 +480,116 @@ import Footer from '../Footer_Login/Footer.vue';
     color: #3AACD9;
     text-align: center;
 
+}
+
+
+
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    /* Estilos para tablets */
+    .inicioMain {
+        padding: 2% 5%;
+    }
+
+    .h1InicioMain {
+        font-size: 3rem;
+    }
+
+    .pInicioMain {
+        font-size: 1.5rem;
+        width: 50%;
+    }
+
+    .accordion-header h3 {
+        font-size: 2rem;
+    }
+
+    .accordion-content p {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        width: 48%;
+        margin: 1%;
+    }
+
+    .titulosMain {
+        font-size: 2.5rem;
+        width: 80%;
+    }
+
+    .Maintextos {
+        font-size: 1.2rem;
+        width: 70%;
+    }
+
+    .niveles, .niveles2, .niveles3, .niveles4, .niveles5, .niveles6 {
+        width: 15%;
+        font-size: 1.5rem;
+    }
+
+    .logo_unete {
+        width: 40%;
+    }
+
+    .texto_unete {
+        font-size: 1.5rem;
+        width: 60%;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 480px) {
+    /* Estilos para celulares */
+    .inicioMain {
+        padding: 5% 2%;
+    }
+
+    .h1InicioMain {
+        font-size: 2.5rem;
+    }
+
+    .pInicioMain {
+        font-size: 1.2rem;
+        width: 80%;
+    }
+
+    .accordion-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .accordion-content p {
+        font-size: 1rem;
+    }
+
+    .card {
+        width: 100%;
+        margin: 2% 0;
+    }
+
+    .titulosMain {
+        font-size: 2rem;
+        width: 90%;
+    }
+
+    .Maintextos {
+        font-size: 1rem;
+        width: 90%;
+    }
+
+    .niveles, .niveles2, .niveles3, .niveles4, .niveles5, .niveles6 {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .logo_unete {
+        width: 50%;
+    }
+
+    .texto_unete {
+        font-size: 1.2rem;
+        width: 70%;
+    }
 }
 
 </style>

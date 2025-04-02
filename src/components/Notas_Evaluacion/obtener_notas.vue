@@ -1,7 +1,6 @@
 <template>
     <header_sin_login />
 
-
     <div class="main-main-container">
 
       <router-link to="/main_estudiante">
@@ -15,14 +14,14 @@
       <div class="container">
 
 <div class="levels">
-    <span>
-        selecciona
-    </span>
-  <button @click="getNotes('beginner')">Beginner</button>
-  <button @click="getNotes('basic 1')">Basic 1</button>
-  <button @click="getNotes('basic 2')">Basic 2</button>
-  <button @click="getNotes('intermediate')">Intermediate</button>
-  <button @click="getNotes('advanced')">Advanced</button>
+  <span class="select-title">Selecciona</span>
+  <div class="buttons-container">
+    <button @click="getNotes('beginner')">Beginner</button>
+    <button @click="getNotes('basic 1')">Basic 1</button>
+    <button @click="getNotes('basic 2')">Basic 2</button>
+    <button @click="getNotes('intermediate')">Intermediate</button>
+    <button @click="getNotes('advanced')">Advanced</button>
+  </div>
 </div>
 
 <div class="results">
@@ -225,6 +224,13 @@
     color: #83B4FF;
     
   }
+
+  .buttons-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+  }
   
   .levels button {
     width: 100%;
@@ -335,6 +341,173 @@
 
   }
 
+
+  /* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .main-main-container {
+    width: 90%; /* Ajuste de ancho para tablets */
+    margin-top: 3vh; /* Margen superior reducido */
+    padding: 15px; /* Padding reducido */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* 1.8rem = 28.8px */
+    margin-top: 7vh;
+
+  }
+
+  .container {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 3vh; /* Espacio entre secciones reducido */
+    padding: 10px; /* Padding reducido */
+  }
+
+  .select-title{
+    font-size: 1.4rem;
+  }
+
+  .levels {
+    width: 90%; /* Ancho completo */
+    max-height: none; /* Eliminar altura máxima */
+    font-size: 1.2em; /* 1.2em = 19.2px */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .levels button {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 10px; /* Espacio entre botones */
+  }
+
+  /* Ajustar el último botón para que ocupe dos columnas */
+  .buttons-container button:last-child {
+    grid-column: span 2; /* Ocupar dos columnas */
+    justify-self: center; /* Centrar horizontalmente */
+    width: 100%; /* Ancho reducido para que no ocupe todo el espacio */
+  }
+
+
+  .results {
+    width: 90%; /* Ancho completo */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .levelsectit {
+    font-size: 1.3em; /* 1.3em = 20.8px */
+  }
+
+  th,
+  td {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .footer-summary {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 10px; /* Espacio entre elementos reducido */
+  }
+
+  .final-grade {
+    width: auto; /* Ancho completo */
+  }
+
+  .comments {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+
+  .back-button {
+    font-size: 1em; /* 1em = 16px */
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .main-main-container {
+    width: 95%; /* Ajuste de ancho para celulares */
+    margin-top: 2vh; /* Margen superior reducido */
+    padding: 10px; /* Padding reducido */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* 1.5rem = 24px */
+    margin-top: 7vh;
+  }
+
+  .container {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 2vh; /* Espacio entre secciones reducido */
+    padding: 5px; /* Padding reducido */
+  }
+
+  .select-title{
+    font-size: 1.2rem;
+  }
+
+  .levels {
+    width: 90%; /* Ancho completo */
+    max-height: none; /* Eliminar altura máxima */
+    font-size: 1em; /* 1em = 16px */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .levels button {
+    font-size: 0.8em; /* 0.8em = 12.8px */
+  }
+
+  .buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 8px; /* Espacio entre botones reducido */
+  }
+
+  /* Ajustar el último botón para que ocupe dos columnas */
+  .buttons-container button:last-child {
+    grid-column: span 2; /* Ocupar dos columnas */
+    justify-self: center; /* Centrar horizontalmente */
+    width: 100%; /* Ancho reducido para que no ocupe todo el espacio */
+  }
+
+  .results {
+    width: 90%; /* Ancho completo */
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: scroll;
+  }
+
+  .levelsectit {
+    font-size: 1.1em; /* 1.1em = 17.6px */
+  }
+
+  th,
+  td {
+    font-size: 0.8em; /* 0.8em = 12.8px */
+  }
+
+  .footer-summary {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 8px; /* Espacio entre elementos reducido */
+  }
+
+  .final-grade {
+    width: auto; /* Ancho completo */
+  }
+
+  .comments {
+    font-size: 0.8em; /* 0.8em = 12.8px */
+  }
+
+  .back-button {
+    font-size: 0.9em; /* 0.9em = 14.4px */
+  }
+}
+
   
   </style>
-  

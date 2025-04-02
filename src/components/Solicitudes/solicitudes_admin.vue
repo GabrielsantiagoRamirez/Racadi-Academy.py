@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login />
+  <header_sin_login/>
     <div class="container_principal_solicitudes">
       <div class="volver-container">
         <router-link to="/main_admin">
@@ -15,7 +15,9 @@
       <div class="columns-container">
         <div class="column">
           <h2 class="column-title">Solicitudes Pendientes</h2>
-          <table class="solicitudes-table">
+         
+          <div class="scroll-table">
+            <table class="solicitudes-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -42,6 +44,9 @@
             </tbody>
 
           </table>
+
+          </div>
+       
         </div>
   
         
@@ -378,5 +383,98 @@
 .td_d_b{
   width: 1px;
 }
+
+
+
+
+
+/* Para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .container_principal_solicitudes {
+    width: 90%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .columns-container {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .column {
+    width: 48%;
+    margin-bottom: 0;
+  }
+
+  .solicitudes-table th, .solicitudes-table td {
+    font-size: 14px;
+  }
+}
+
+/* Para celulares */
+@media (min-width: 100px) and (max-width: 480px) {
+  .container_principal_solicitudes {
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .volver-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5vh;
+  }
+
+  .back-button {
+    align-self: flex-start;
+  }
+
+  .scroll-table{
+    width: 100%;
+    overflow: scroll;
+  }
+
+  .columns-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .column {
+    width: 90%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  
+
+
+
+  .solicitudes-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .solicitudes-table th, .solicitudes-table td {
+    font-size: 12px;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .column-title{
+    width: 90%;
+  
+  }
+}
+
+
   </style>
   

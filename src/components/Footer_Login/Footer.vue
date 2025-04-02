@@ -185,6 +185,83 @@
         margin-right: 3px;
         margin-bottom: 5px;
     }
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .footer-distributed {
+        padding: 4% 3%; /* Padding relativo */
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2em; /* 2em = 32px */
+    }
+
+    .footer-distributed .footer-center i {
+        margin: 0.625em 0.625em; /* 0.625em = 10px */
+    }
+
+    .footer-distributed .footer-icons {
+        margin-top: 1.25em; /* 1.25em = 20px */
+    }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+    .footer-distributed {
+        padding: 3% 2%; /* Padding relativo */
+        margin-top: 5%; /* Margen superior relativo */
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1.25em; /* 1.25em = 20px */
+    }
+
+    .footer-distributed h3 {
+        font-size: 1.75em; /* 1.75em = 28px */
+    }
+
+    .footer-distributed .footer-links a {
+        line-height: 1.6;
+    }
+
+    .footer-distributed .footer-center i {
+        margin: 0.625em 0.3125em; /* 0.625em = 10px, 0.3125em = 5px */
+        font-size: 1.25em; /* 1.25em = 20px */
+        width: 1.875em; /* 1.875em = 30px */
+        height: 1.875em; /* 1.875em = 30px */
+        line-height: 1.875em; /* 1.875em = 30px */
+    }
+
+    .footer-distributed .footer-center p {
+        font-size: 0.875em; /* 0.875em = 14px */
+    }
+
+    .footer-distributed .footer-company-about {
+        font-size: 0.875em; /* 0.875em = 14px */
+    }
+
+    .footer-distributed .footer-icons a {
+        width: 1.875em; /* 1.875em = 30px */
+        height: 1.875em; /* 1.875em = 30px */
+        font-size: 1.125em; /* 1.125em = 18px */
+        line-height: 1.875em; /* 1.875em = 30px */
+    }
+}
+
+
+
+
+
+
+  
     
     
-    </style>
+</style>

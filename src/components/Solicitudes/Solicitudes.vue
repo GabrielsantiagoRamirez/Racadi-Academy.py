@@ -1,5 +1,5 @@
 <template>
-    <header_sin_login />
+  <header_sin_login/>
     <div class="container_principal_solicitudes">
       <div class="volver-container">
         <router-link to="/main_estudiante">
@@ -484,6 +484,160 @@
 
 .td_d_b{
   width: 1px;
+}
+
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .container_principal_solicitudes {
+    width: 90%; /* Ajuste de ancho para tablets */
+    padding: 20px; /* Padding reducido */
+    margin: 20px auto; /* Margen reducido */
+  }
+
+  .form-container {
+    width: 90%; /* Ancho completo */
+    padding: 1rem; /* Padding reducido */
+  }
+
+  .form-title {
+    font-size: 1.5rem; /* 1.5rem = 24px */
+  }
+
+  .form-row {
+    grid-template-columns: 1fr; /* Cambiar a una columna */
+    gap: 1rem; /* Espacio entre elementos reducido */
+  }
+
+  .descripcion-textarea {
+    height: 120px; /* Altura reducida */
+  }
+
+  .columns-container {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 20px; /* Espacio entre columnas reducido */
+  }
+
+  .column {
+    padding: 15px; /* Padding reducido */
+    max-height: 400px; /* Altura máxima reducida */
+  }
+
+  .column-title {
+    font-size: 1.2rem; /* 1.2rem = 19.2px */
+    padding: 8px; /* Padding reducido */
+  }
+
+  .solicitudes_texto {
+    font-size: 1.8rem; /* 1.8rem = 28.8px */
+  }
+
+  .solicitudes-table th,
+  .solicitudes-table td {
+    padding: 10px; /* Padding reducido */
+    font-size: 0.9rem; /* 0.9rem = 14.4px */
+  }
+
+  .no-solicitudes {
+    font-size: 1.2rem; /* 1.2rem = 19.2px */
+    padding: 15px; /* Padding reducido */
+  }
+
+  .back-button {
+    font-size: 1.2rem; /* 1.2rem = 19.2px */
+  }
+
+  .info-aviso {
+    margin-top: 3vh; /* Margen superior reducido */
+    padding: 10px; /* Padding reducido */
+    font-size: 0.9rem; /* 0.9rem = 14.4px */
+  }
+
+  .delete-button {
+    padding: 4px 6px; /* Padding reducido */
+    font-size: 10px; /* Tamaño de fuente reducido */
+
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .container_principal_solicitudes {
+    width: 90%; /* Ancho completo */
+    padding: 10px; /* Padding reducido */
+    margin: 10px auto; /* Margen reducido */
+  }
+
+  .form-container {
+    width: 90%; /* Ancho completo */
+    padding: 0.5rem; /* Padding reducido */
+  }
+
+  .form-title {
+    font-size: 1.2rem; /* 1.2rem = 19.2px */
+  }
+
+  .form-row {
+    grid-template-columns: 1fr; /* Cambiar a una columna */
+    gap: 0.5rem; /* Espacio entre elementos reducido */
+  }
+
+  .descripcion-textarea {
+    height: 100px; /* Altura reducida */
+  }
+
+
+  .columns-container {
+    flex-direction: column; /* Cambiar a disposición en columna */
+    gap: 10px; /* Espacio entre columnas reducido */
+  }
+
+  .column {
+    padding: 10px; /* Padding reducido */
+    max-height: 300px; /* Altura máxima reducida */
+  }
+
+  .column-title {
+    font-size: 1rem; /* 1rem = 16px */
+    padding: 6px; /* Padding reducido */
+  }
+
+
+  .solicitudes_texto {
+    font-size: 1.5rem; /* 1.5rem = 24px */
+  }
+
+  .solicitudes-table th,
+  .solicitudes-table td {
+    padding: 8px; /* Padding reducido */
+    font-size: 0.8rem; /* 0.8rem = 12.8px */
+  }
+
+  .no-solicitudes {
+    font-size: 1rem; /* 1rem = 16px */
+    padding: 10px; /* Padding reducido */
+  }
+
+  .back-button {
+    font-size: 1rem; /* 1rem = 16px */
+  }
+
+  .info-aviso {
+    margin-top: 2vh; /* Margen superior reducido */
+    padding: 8px; /* Padding reducido */
+    font-size: 0.8rem; /* 0.8rem = 12.8px */
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .info-aviso i {
+    margin-bottom: 1.5vh;
+  }
+
+  .delete-button {
+    padding: 3px 5px; /* Padding reducido */
+    font-size: 8px; /* Tamaño de fuente reducido */
+  }
 }
   </style>
   

@@ -288,5 +288,76 @@
       outline: none;
       box-shadow: none;
     }
+
+    @media (min-width: 481px) and (max-width: 1024px) {
+  .form-container {
+    width: 90%; /* Ajustar el ancho para tablets */
+    padding: 1rem; /* Reducir el padding */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-title {
+    font-size: 1.3rem; /* Reducir el tamaño del título */
+  }
+
+  .form-group label {
+    font-size: 0.85rem; /* Reducir el tamaño de las etiquetas */
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.5rem; /* Reducir el padding de los inputs y selects */
+    font-size: 0.85rem; /* Reducir el tamaño de la fuente */
+  }
+
+  .submit-button {
+    padding: 0.5rem 1rem; /* Reducir el padding del botón */
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente */
+  }
+}
+
+@media (min-width: 150px) and (max-width: 480px) {
+  .form-container {
+    width: 90%; /* Ajustar el ancho para celulares */
+    padding: 0.8rem; /* Reducir el padding */
+    border-radius: 6px; /* Reducir el radio de borde */
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .form-title {
+    font-size: 1.3rem; /* Reducir el tamaño del título */
+    margin-bottom: 0.8rem; /* Reducir el margen inferior */
+  }
+
+  .form {
+    gap: 0.6rem; /* Reducir el espacio entre elementos */
+  }
+
+  .form-group {
+    width: 100%; /* Hacer que los campos ocupen todo el ancho */
+  }
+
+  .form-group label {
+    font-size: 0.8rem; /* Reducir el tamaño de las etiquetas */
+    margin-bottom: 0.3rem; /* Reducir el margen inferior */
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.4rem; /* Reducir el padding de los inputs y selects */
+    font-size: 0.8rem; /* Reducir el tamaño de la fuente */
+  }
+
+  .submit-button {
+    padding: 0.4rem 0.8rem; /* Reducir el padding del botón */
+    font-size: 0.85rem; /* Reducir el tamaño de la fuente */
+  }
+
+  .fa {
+    margin-right: 0.3rem; /* Reducir el margen del ícono */
+  }
+}
   </style>
   
