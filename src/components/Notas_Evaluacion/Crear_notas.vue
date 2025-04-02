@@ -138,7 +138,7 @@ const estudianteSeleccionado = ref(null);
   
   const agregar_notas = async () => {
     try {
-        const response = await axios.post('http://localhost:8000/add_notas', null, {
+        const response = await axios.post('http://localhost:8889/add_notas', null, {
             params: {
                 documento: documento.value,
                 speaking: speaking.value,
@@ -163,7 +163,7 @@ const estudianteSeleccionado = ref(null);
   
   const obtener_estudiantes = async () => {
     try {
-        const response = await axios.get('http://localhost:8000/obtenerestudiantes');
+        const response = await axios.get('http://localhost:8889/obtenerestudiantes');
         estudiantes.value = response.data;
     } catch (error) {
         console.error("Error al capturar los estudiantes", error);
@@ -172,7 +172,7 @@ const estudianteSeleccionado = ref(null);
   
   const buscarEstudiantes = async () => {
     try {
-        const response = await axios.get('http://localhost:8000/buscarestudiantes', {
+        const response = await axios.get('http://localhost:8889/buscarestudiantes', {
             params: { nombre: busquedaEstudiante.value }
         });
         estudiantes.value = response.data; 

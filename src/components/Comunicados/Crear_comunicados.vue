@@ -72,7 +72,7 @@ const crear_comunicado = async () => {
     formData.append("descripcion", descripcion.value);
     formData.append("file", file.value);
 
-    await axios.post("http://localhost:8000/crear_comunicados", formData, {
+    await axios.post("http://localhost:8889/crear_comunicados", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

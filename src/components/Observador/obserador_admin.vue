@@ -37,7 +37,7 @@ if (token) {
 
 const añadir_observacion = async () => {
   try {
-    await axios.post("http://127.0.0.1:8000/añadirObservacion", {
+    await axios.post("http://127.0.0.1:8889/añadirObservacion", {
       descripcion: descripcion.value,
       documento: documento.value,
       creada_por: usuario.value.usuario
@@ -70,7 +70,7 @@ const fetchUserProfile = async () => {
     return;
   }
   try {
-    const response = await axios.get('http://localhost:8000/users/me', {
+    const response = await axios.get('http://localhost:8889/users/me', {
       headers: { Authorization: `Bearer ${token}` }
     });
     usuario.value = response.data;
@@ -83,7 +83,7 @@ const fetchUserProfile = async () => {
 
 const obtener_estudiantes = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/obtenerestudiantes');
+    const response = await axios.get('http://localhost:8889/obtenerestudiantes');
     estudiantes.value = response.data;
   } catch (error) {
     console.error("Error al capturar los estudiantes", error);
@@ -92,7 +92,7 @@ const obtener_estudiantes = async () => {
 
 const buscarEstudiantes = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/buscarestudiantes', {
+    const response = await axios.get('http://localhost:8889/buscarestudiantes', {
       params: { nombre: busquedaEstudiante.value }
     });
     estudiantes.value = response.data;
@@ -108,7 +108,7 @@ const restablecerBusqueda = () => {
 
 const buscarObservaciones = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/filtro_ObservadoresDocumento/${documentoFiltro.value}`);
+    const response = await axios.get(`http://127.0.0.1:8889/filtro_ObservadoresDocumento/${documentoFiltro.value}`);
     observaciones.value = response.data;
   } catch (error) {
     console.error('Error al buscar observaciones:', error);

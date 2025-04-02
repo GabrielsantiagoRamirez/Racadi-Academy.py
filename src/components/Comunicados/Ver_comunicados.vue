@@ -99,7 +99,7 @@ if (token) {
 
 const get_comunicados = async () => {
   try {
-    const response = await axios.get(`http://localhost:8000/obtener_comunicados`);
+    const response = await axios.get(`http://localhost:8889/obtener_comunicados`);
     comunicados.value = response.data.sort((a, b) => b.id_comunicado - a.id_comunicado);
   } catch (error) {
     console.error('Error al capturar los comunicados', error);

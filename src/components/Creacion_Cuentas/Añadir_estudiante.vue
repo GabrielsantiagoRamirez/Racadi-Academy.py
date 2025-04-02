@@ -176,7 +176,7 @@ const añadir_estudiante = async () => {
       formData.append("file", file.value); 
     } 
 
-    const response = await axios.post("http://127.0.0.1:8000/añadirestudiante", formData, {
+    const response = await axios.post("http://127.0.0.1:8889/añadirestudiante", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -199,7 +199,7 @@ const añadir_estudiante = async () => {
 
 const consultar_planes = async () => {
   try {
-    const response = await axios.get("http://localhost:8000/obtenernombreplanes");
+    const response = await axios.get("http://localhost:8889/obtenernombreplanes");
     nombre_planes.value = response.data;
   } catch (error) {
     console.log("Error al capturar los planes", error);
@@ -208,7 +208,7 @@ const consultar_planes = async () => {
 
 const consultar_niveles = async () => {
   try {
-    const response = await axios.get("http://localhost:8000/obtenernombreniveles");
+    const response = await axios.get("http://localhost:8889/obtenernombreniveles");
     nombre_niveles.value = response.data;
   } catch (error) {
     console.log("Error al capturar los niveles", error);
