@@ -69,7 +69,7 @@ const fetchUserProfile = async () => {
     return; // Salir de la función si no hay token
   }
   try {
-    const response = await axios.get('http://localhost:8000/users/me', {
+    const response = await axios.get('http://localhost:8889/users/me', {
       headers: {
         Authorization: `Bearer ${token}`
       }

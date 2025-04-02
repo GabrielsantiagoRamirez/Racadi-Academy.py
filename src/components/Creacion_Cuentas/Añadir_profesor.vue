@@ -140,7 +140,7 @@ const añadir_profesor = async () => {
       formData.append("file", file.value); 
     } 
 
-    const response = await axios.post("http://localhost:8000/añadirprofesor", formData, {
+    const response = await axios.post("http://localhost:8889/añadirprofesor", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

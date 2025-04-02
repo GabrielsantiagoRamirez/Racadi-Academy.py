@@ -156,7 +156,7 @@ watch(hora_inicio, (nuevaHora) => {
 
 const agregar_clase = async () => {
   try {
-    const response = await axios.post('http://localhost:8000/añadirclase', {
+    const response = await axios.post('http://localhost:8889/añadirclase', {
       sede: sede.value,
       nivel: nivel.value,
       hora_inicio: hora_inicio.value,
@@ -179,7 +179,7 @@ const agregar_clase = async () => {
 
 const obtener_profesores = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/obtenerprofesores');
+    const response = await axios.get('http://localhost:8889/obtenerprofesores');
     profesores.value = response.data;
   } catch (error) {
     console.error("Error al capturar los profesores", error);
@@ -188,7 +188,7 @@ const obtener_profesores = async () => {
 
 const buscarProfesores = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/buscarprofesores', {
+    const response = await axios.get('http://localhost:8889/buscarprofesores', {
       params: { nombre: busquedaProfesor.value }
     });
     profesores.value = response.data;
@@ -199,7 +199,7 @@ const buscarProfesores = async () => {
 
 const consultar_niveles = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/obtenernombreniveles');
+    const response = await axios.get('http://localhost:8889/obtenernombreniveles');
     nombre_niveles.value = response.data;
   } catch (error) {
     console.error("Error al capturar los niveles", error);

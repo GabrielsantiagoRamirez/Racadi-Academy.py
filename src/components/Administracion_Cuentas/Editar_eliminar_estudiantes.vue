@@ -72,7 +72,7 @@ const mostrarInactivos = ref(false);
 
 const obtener_estudiantes = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/obtenerestudiantes');
+    const response = await axios.get('http://localhost:8889/obtenerestudiantes');
     estudiantes.value = response.data;
   } catch (error) {
     console.error("Error al capturar los estudiantes", error);
@@ -81,7 +81,7 @@ const obtener_estudiantes = async () => {
 
 const buscarEstudiantes = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/buscarestudiantes', {
+    const response = await axios.get('http://localhost:8889/buscarestudiantes', {
       params: { nombre: busquedaEstudiante.value }
     });
     estudiantes.value = response.data;
@@ -97,7 +97,7 @@ const restablecerBusqueda = () => {
 
 const deleteStudent = async (documento) => {
   try {
-    await axios.put(`http://localhost:8000/desactivarestudiante/${documento}`);
+    await axios.put(`http://localhost:8889/desactivarestudiante/${documento}`);
     Swal.fire({
       icon: 'success',
       title: 'Cuenta Deshabilitada Exitosamente',
@@ -129,7 +129,7 @@ const confirmDelete = (student) => {
 
 const activeStudent = async (documento) => {
   try {
-    await axios.put(`http://localhost:8000/activarestudiante/${documento}`);
+    await axios.put(`http://localhost:8889/activarestudiante/${documento}`);
     Swal.fire({
       icon: 'success',
       title: 'Cuenta habilitada Exitosamente',
