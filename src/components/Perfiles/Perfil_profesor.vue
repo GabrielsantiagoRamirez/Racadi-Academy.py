@@ -15,7 +15,7 @@
     <h1 class="perfil_tittle">Perfil Profesor</h1>
     <div v-if="usuario" class="info-header">
       <div class="foto-perfil">
-        <img v-if="usuario.foto_perfil" :src="`http://localhost:8000${usuario.foto_perfil}`" alt="Foto de perfil">
+        <img v-if="usuario.foto_perfil" :src="`http://localhost:8889${usuario.foto_perfil}`" alt="Foto de perfil">
         <img v-else src="../img/defaultFoto.jpg" alt="Foto de perfil por defecto">
       </div>
 

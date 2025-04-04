@@ -23,7 +23,7 @@
           <p class="comunicado-description">{{ comunicado.descripcion }}</p>
 
           <div v-if="comunicado.foto" class="comunicado-image">
-            <img :src="`http://localhost:8000${comunicado.foto}`" alt="Comunicado Image" />
+            <img :src="`http://localhost:8889${comunicado.foto}`" alt="Comunicado Image" />
           </div>
         </div>
 
