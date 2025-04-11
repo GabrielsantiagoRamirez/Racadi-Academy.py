@@ -278,4 +278,105 @@ onMounted(() => {
   background-color: #83b4ff;
   font-weight: bold;
 }
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .comunicados-background {
+    width: 85%;
+    padding: 15px;
+    margin-top: 5vh;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .volver-container {
+    margin-left: 1rem;
+  }
+
+  .back-button {
+    font-size: 20px;
+  }
+
+  .back-button i {
+    font-size: 22px;
+  }
+
+  .comunicado-card {
+    width: 380px;
+    padding: 1.5rem;
+  }
+
+  .comunicado-title {
+    font-size: 1.5rem;
+  }
+
+  .comunicado-description {
+    font-size: 1.1rem;
+  }
+
+  .comunicado-image img {
+    width: 340px;
+    height: 220px;
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .comunicados-background {
+    width: 95%;
+    padding: 10px;
+    margin-top: 3vh;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .volver-container {
+    margin-left: 0.5rem;
+    justify-content: center;
+  }
+
+  .back-button {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+
+  .back-button i {
+    font-size: 20px;
+  }
+
+  .comunicado-card {
+    width: 90%;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .comunicado-title {
+    font-size: 1.3rem;
+  }
+
+  .comunicado-description {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .comunicado-image img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .pagination {
+    gap: 5px;
+    margin-top: 1rem;
+  }
+
+  .pagination-button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
 </style>

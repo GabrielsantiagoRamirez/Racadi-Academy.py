@@ -45,20 +45,12 @@ if (token) {
 
   } catch (error) {
     perfilRuta.value = '/login'
-
-      
   }
 }
 </script>
 
-
-
 <style>
 /* Estilos para el header */
-
-@media (min-width: 1200px) and (max-width: 1499px){
-}
-
 .perfil_header{
   font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
@@ -110,5 +102,81 @@ if (token) {
   font-size: 40px; 
   line-height: 1.2; 
   text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
+}
+
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .container_header_sin {
+        height: 120px;
+        padding: 0 2%;
+    }
+
+    .logo {
+        width: 100px;
+        margin-left: 2vh;
+    }
+
+    .texto {
+        font-size: 28px;
+        width: 60%;
+    }
+
+    .container_redes {
+        max-width: 120px;
+    }
+
+    .redes {
+        font-size: 25px;
+    }
+
+    .perfil_header {
+        font-size: 20px;
+        margin-right: 2vh;
+    }
+
+    .perfil_sin {
+        font-size: 35px;
+    }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+    .container_header_sin {
+        height: auto;
+        flex-direction: column;
+        padding: 10px 0;
+        justify-content: center;
+    }
+
+    .logo {
+        width: 70px;
+        margin-left: 0;
+        margin-bottom: 5px;
+    }
+
+    .texto {
+        font-size: 18px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .container_redes {
+        max-width: 120px;
+        margin: 10px 0;
+    }
+
+    .redes {
+        font-size: 20px;
+    }
+
+    .perfil_header {
+        font-size: 16px;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .perfil_sin {
+        font-size: 25px;
+    }
 }
 </style>

@@ -120,5 +120,85 @@
   .back-button:hover {
     color: #83b4ff;
   }
+  
+  /* Media Queries para Tablets (481px - 1024px) */
+  @media (min-width: 481px) and (max-width: 1024px) {
+    .crear-cuentas-container {
+      padding: 1.5rem;
+      max-width: 85%;
+      margin-top: 40px;
+    }
+  
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+    }
+  
+    .cuenta-option {
+      padding: 1.2rem;
+      font-size: 1.1rem;
+    }
+  
+    .cuenta-option i {
+      font-size: 1.3rem;
+    }
+  
+    .back-button {
+      font-size: 1.1rem;
+    }
+  
+    .back-button i {
+      font-size: 1.3rem;
+    }
+  }
+  
+  /* Media Queries para Celulares (150px - 480px) */
+  @media (min-width: 150px) and (max-width: 480px) {
+    .crear-cuentas-container {
+      padding: 1.2rem;
+      max-width: 90%;
+      margin-top: 30px;
+      gap: 0.8rem;
+    }
+  
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    h1 i {
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+  
+    .cuenta-option {
+      padding: 1rem;
+      font-size: 1rem;
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .cuenta-option i {
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+  
+    .cuenta-view {
+      margin-top: 1.5rem;
+    }
+  
+    .back-button {
+      font-size: 1rem;
+      justify-content: center;
+    }
+  
+    .back-button i {
+      font-size: 1.2rem;
+    }
+  }
   </style>
   
