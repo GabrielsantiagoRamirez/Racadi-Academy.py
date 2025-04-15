@@ -150,7 +150,6 @@ const file = ref(null);
 
 const nombre_planes = ref([]);
 const nombre_niveles = ref([]);
-
 const onFileChange = (event) => {
   file.value = event.target.files[0];
 };
@@ -230,7 +229,6 @@ onMounted(consultar_planes);
   transition: all 0.3s ease;
 }
 
-
 .form-title {
   color: #7fa1c3;
   font-size: 2rem;
@@ -239,14 +237,12 @@ onMounted(consultar_planes);
   margin-bottom: 1.5rem;
 }
 
-
 .form {
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
   justify-content: space-between;
 }
-
 
 .form-group {
   display: flex;
@@ -261,7 +257,7 @@ onMounted(consultar_planes);
 }
 
 input[type="date"]::placeholder {
-    color: #83b4ff; 
+  color: #83b4ff; 
 }
 
 .form-group input,
@@ -274,8 +270,6 @@ input[type="date"]::placeholder {
   background-color: #ffffff;
 }
 
-
-
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
@@ -283,13 +277,11 @@ input[type="date"]::placeholder {
   box-shadow: 0px 0px 8px rgba(131, 180, 255, 0.5);
 }
 
-
 option {
   background-color: #f5eded;
   color: #333;
   padding: 0.5rem;
 }
-
 
 .submit-button {
   background-color: #83b4ff;
@@ -314,6 +306,66 @@ option {
   color: #83b4ff;
 }
 
+/* Media Queries for Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .form-container {
+    padding: 1.5rem;
+    max-width: 500px;
+  }
+  
+  .form-title {
+    font-size: 1.7rem;
+  }
+  
+  .form-group {
+    width: 100%; /* Stack form groups vertically on tablets */
+  }
+  
+  .submit-button {
+    padding: 0.7rem 1.3rem;
+    font-size: 1.1rem;
+  }
+}
 
-
+/* Media Queries for Mobile (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .form-container {
+    padding: 1.2rem;
+    margin: 0 1rem;
+    border-radius: 8px;
+  }
+  
+  .form-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form {
+    gap: 1rem;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .form-group label {
+    font-size: 0.9rem;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .submit-button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .fa {
+    margin-right: 0.3rem;
+    font-size: 0.9rem;
+  }
+}
 </style>

@@ -174,7 +174,6 @@ const añadir_profesor = async () => {
   transition: all 0.3s ease;
 }
 
-
 .form-title {
   color: #7fa1c3;
   font-size: 2rem;
@@ -183,7 +182,6 @@ const añadir_profesor = async () => {
   margin-bottom: 1.5rem;
 }
 
-
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -191,11 +189,10 @@ const añadir_profesor = async () => {
   justify-content: space-between;
 }
 
-
 .form-group {
   display: flex;
   flex-direction: column;
-  width: calc(50% - 0.6rem); 
+  width: calc(50% - 0.6rem);
 }
 
 .form-group label {
@@ -205,7 +202,7 @@ const añadir_profesor = async () => {
 }
 
 input[type="date"]::placeholder {
-    color: #83b4ff; 
+  color: #83b4ff;
 }
 
 .form-group input,
@@ -218,8 +215,6 @@ input[type="date"]::placeholder {
   background-color: #ffffff;
 }
 
-
-
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
@@ -227,13 +222,11 @@ input[type="date"]::placeholder {
   box-shadow: 0px 0px 8px rgba(131, 180, 255, 0.5);
 }
 
-
 option {
   background-color: #f5eded;
   color: #333;
   padding: 0.5rem;
 }
-
 
 .submit-button {
   background-color: #83b4ff;
@@ -258,6 +251,63 @@ option {
   color: #83b4ff;
 }
 
+/* Media Queries para Tablets (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .form-container {
+    padding: 1.5rem;
+    max-width: 80%;
+  }
 
+  .form-title {
+    font-size: 1.7rem;
+    margin-bottom: 1.2rem;
+  }
 
+  .form-group {
+    width: 100%; /* Cambia a una sola columna */
+  }
+
+  .submit-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Media Queries para Celulares (150px - 480px) */
+@media (min-width: 150px) and (max-width: 480px) {
+  .form-container {
+    padding: 1.2rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .form-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .form {
+    gap: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+
+  .fa {
+    font-size: 0.9rem;
+    margin-right: 0.4rem;
+  }
+}
 </style>
