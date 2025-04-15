@@ -140,76 +140,7 @@ const añadir_profesor = async () => {
       formData.append("file", file.value); 
     } 
 
-    const response = await axios.post("http://localhost:8889```javascript
-// Add validation for empty fields
-const añadir_profesor = async () => {
-  if (!documento.value || !tipo_documento.value || !nombre.value || !apellido.value || !fecha_nacimiento.value || !genero.value || !celular.value || !correo.value || !direccion.value || !usuario.value || !contraseña.value) {
-    Swal.fire({
-      icon: "error",
-      title: "Por favor, complete todos los campos",
-    });
-    return;
-  }
-
-  try {
-    const formData = new FormData();
-    formData.append("documento", documento.value);
-    formData.append("tipo_de_documento", tipo_documento.value);
-    formData.append("nombre", nombre.value);
-    formData.append("apellido", apellido.value);
-    formData.append("fecha_nacimiento", fecha_nacimiento.value);
-    formData.append("genero", genero.value);
-    formData.append("celular", celular.value);
-    formData.append("correo", correo.value);
-    formData.append("direccion", direccion.value);
-    formData.append("usuario", usuario.value);
-    formData.append("contraseña", contraseña.value);
-    if (file.value) {
-      formData.append("file", file.value); 
-    } 
-
-    const response = await axios.post("http://localhost:8889/añadirprofesor", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-
-    Swal.fire({
-      icon: "success",
-      title: "Profesor registrado con éxito",
-      timer: 2000,
-      showConfirmButton: false,
-    });
-  } catch (error) {
-    console.error("Error de entidad:", error);
-    const mensajeError = error.response?.data.detail || "Algo salió mal. Intenta nuevamente.";
-    Swal.fire({
-      icon: "error",
-      title: mensajeError,
-    });
-  }
-};
-
-// Add input validation for email and phone number
-const correo = ref("");
-const celular = ref("");
-
-watch(correo, (newValue) => {
-  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(newValue)) {
-    Swal.fire({
-      icon: "error",
-      title: "Por favor, ingrese un correo electrónico válido",
-    });
-  }
-});
-
-watch(celular, (newValue) => {
-  if (!/^\d{10}$/.test(newValue)) {
-    Swal.fire({
-      icon: "error",
-      title: "Por favor, ingrese un número de teléfono válido",
-    });
-  }
-});
-```/añadirprofesor", formData, {
+    const response = await axios.post("http://localhost:8000/añadirprofesor", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
