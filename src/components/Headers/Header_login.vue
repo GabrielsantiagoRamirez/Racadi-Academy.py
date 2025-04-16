@@ -1,128 +1,209 @@
 <template>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
-      <header class="container_header_login">
-      <div>
-          <img src="../img/logoRacadi.png" alt="" class="logo_h_login">
-      
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <header class="login-header">
+      <div class="login-header__content">
+        <div class="login-header__logo">
+          <img src="../img/logoRacadi.png" alt="RACADI ACADEMY Logo" class="login-logo">
+        </div>
+        
+        <div class="login-header__title">
+          <h1>RACADI ACADEMY</h1>
+          <p class="login-tagline">English Learning Platform</p>
+        </div>
+        
+        <div class="login-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
       </div>
-      <div class="texto_login">
-          <h1>
-              RACADI ACADEMY
-          </h1>
-      </div>
-      <div class="container_redes_login"> 
-              <a href="#"><i class="fa-brands fa-facebook-square redes_login"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram redes_login"></i></a>
-              <a href="#"><i class="fa-brands fa-whatsapp redes_login"></i></a>
-              <a href="#"><i class="fa-brands fa-github redes_login"></i></a>
-      </div>
-  </header>
-</template>
-
-<script setup>
-</script>
-
-<style>
-/* Estilos para el header */
-.container_header_login{
-background-color: #7FA1C3;
-width: 100%;
-height: 170px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-box-shadow: 0 0 15px 0 #263d53; 
-}
-
-.logo_h_login {
-width: 150px;
-display: flex;
-align-items: center;
-margin-left: 3vh;
-}
-
-.redes_login{
-font-size: 35px;
-color: white;
-}
-
-.container_redes_login{
-width: 100%;
-max-width: 160px;
-display: flex;
-justify-content: space-between;
-margin-right: 6vh;
-}
-
-.texto_login {
-font-family: "Anek Devanagari", sans-serif;
-font-optical-sizing: auto;
-color: white;
-width: 800px;
-text-align: center;
-font-size: 40px; 
-line-height: 1.2; 
-text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
-}
-
-/* Media Queries para Tablets (481px - 1024px) */
-@media (min-width: 481px) and (max-width: 1024px) {
-  .container_header_login {
-      height: 120px;
-      padding: 0 2%;
+    </header>
+  </template>
+  
+  <script setup>
+  </script>
+  
+  <style>
+  :root {
+    --login-primary: #4a6fa5;
+    --login-secondary: #7FA1C3;
+    --login-accent: #52639b;
+    --login-text-light: #ffffff;
+    --login-text-dark: #263d53;
+    --login-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --login-transition: all 0.3s ease;
   }
-
-  .logo_h_login {
-      width: 100px;
-      margin-left: 2vh;
+  
+  /* Base Styles */
+  .login-header {
+    background: linear-gradient(135deg, var(--login-secondary) 0%, var(--login-primary) 100%);
+    width: 100%;
+    padding: 1.5rem 0;
+    box-shadow: var(--login-shadow);
+    position: relative;
+    z-index: 100;
   }
-
-  .texto_login {
-      font-size: 28px;
-      width: 60%;
+  
+  .login-header__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
   }
-
-  .container_redes_login {
-      max-width: 120px;
-      margin-right: 2vh;
+  
+  .login-header__logo {
+    flex: 0 0 auto;
   }
-
-  .redes_login {
-      font-size: 25px;
+  
+  .login-logo {
+    width: 140px;
+    height: auto;
+    transition: var(--login-transition);
   }
-}
-
-/* Media Queries para Celulares (150px - 480px) */
-@media (min-width: 150px) and (max-width: 480px) {
-  .container_header_login {
-      height: 80px;
-      flex-direction: column;
-      padding: 10px 0;
+  
+  .login-header__title {
+    text-align: center;
+    flex: 1 1 auto;
+    padding: 0 1rem;
+  }
+  
+  .login-header__title h1 {
+    font-family: "Anek Devanagari", "Poppins", sans-serif;
+    font-weight: 700;
+    color: var(--login-text-light);
+    font-size: 2.2rem;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(1, 60, 90, 0.5);
+    letter-spacing: 0.5px;
+  }
+  
+  .login-tagline {
+    font-family: "Poppins", sans-serif;
+    color: var(--login-text-light);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+  
+  .login-social {
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .login-social a {
+    color: var(--login-text-light);
+    font-size: 1.25rem;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--login-transition);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .login-social a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Media Queries */
+  @media (max-width: 1024px) {
+    .login-header__content {
+      padding: 0 1.5rem;
+    }
+    
+    .login-header__title h1 {
+      font-size: 1.8rem;
+    }
+    
+    .login-logo {
+      width: 110px;
+    }
+    
+    .login-social {
+      gap: 1rem;
+    }
+    
+    .login-social a {
+      font-size: 1.1rem;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login-header {
+      padding: 1rem 0;
+    }
+    
+    .login-header__content {
+      flex-wrap: wrap;
       justify-content: center;
-  }
-
-  .logo_h_login {
-      width: 70px;
-      margin-left: 0;
-      margin-bottom: 5px;
-  }
-
-  .texto_login {
-      font-size: 18px;
+      gap: 1rem;
+    }
+    
+    .login-header__logo {
+      order: 1;
+    }
+    
+    .login-header__title {
+      order: 3;
       width: 100%;
-      margin: 5px 0;
+      padding: 0.5rem 0;
+    }
+    
+    .login-social {
+      order: 2;
+      gap: 0.8rem;
+    }
+    
+    .login-tagline {
+      display: none;
+    }
   }
-
-  .container_redes_login {
-      max-width: 120px;
-      margin-right: 0;
-      margin-top: 5px;
+  
+  @media (max-width: 480px) {
+    .login-header__title h1 {
+      font-size: 1.5rem;
+    }
+    
+    .login-logo {
+      width: 90px;
+    }
+    
+    .login-social {
+      gap: 0.6rem;
+    }
+    
+    .login-social a {
+      font-size: 1rem;
+      width: 28px;
+      height: 28px;
+    }
   }
-
-  .redes_login {
-      font-size: 20px;
+  
+  @media (max-width: 360px) {
+    .login-header__title h1 {
+      font-size: 1.3rem;
+    }
+    
+    .login-header__content {
+      padding: 0 1rem;
+    }
+    
+    .login-social {
+      display: none;
+    }
   }
-}
-</style>
+  </style>

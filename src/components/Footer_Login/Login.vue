@@ -28,7 +28,7 @@
             <div class="login_mensaje_error" v-if="mensaje_error">
                 <i class="fa fa-exclamation"></i>&nbsp;{{ mensaje_error }}
             </div>
-            <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Haz click aquí</b></a></p>
+            <p class="fp">¿Olvidaste tu contraseña? <a href="" class="back_link_login"><b>Contacta Soporte</b></a></p>
             <p class="go_back_login"><router-link to="/"><b>Volver</b></router-link></p>
         </form>
 

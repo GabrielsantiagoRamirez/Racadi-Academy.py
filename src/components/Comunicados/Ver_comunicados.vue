@@ -202,7 +202,7 @@ onMounted(() => {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 15px #83b4ff;
-  width: 450px;
+  width: 440px;
   padding: 2rem;
   text-align: center;
   transition: transform 0.3s ease;
@@ -304,7 +304,7 @@ onMounted(() => {
   }
 
   .comunicado-card {
-    width: 380px;
+    width: 360px;
     padding: 1.5rem;
   }
 
@@ -349,9 +349,11 @@ onMounted(() => {
   }
 
   .comunicado-card {
-    width: 90%;
+    width: 85%;
     padding: 1rem;
     margin: 1rem 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .comunicado-title {

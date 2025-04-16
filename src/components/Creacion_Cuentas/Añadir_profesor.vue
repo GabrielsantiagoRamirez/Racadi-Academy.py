@@ -251,63 +251,66 @@ option {
   color: #83b4ff;
 }
 
-/* Media Queries para Tablets (481px - 1024px) */
+/* Media Queries for Tablets (481px - 1024px) */
 @media (min-width: 481px) and (max-width: 1024px) {
   .form-container {
     padding: 1.5rem;
-    max-width: 80%;
+    max-width: 500px;
   }
-
+  
   .form-title {
     font-size: 1.7rem;
-    margin-bottom: 1.2rem;
   }
-
+  
   .form-group {
-    width: 100%; /* Cambia a una sola columna */
+    width: 100%; /* Stack form groups vertically on tablets */
   }
-
+  
   .submit-button {
-    padding: 0.7rem 1.2rem;
+    padding: 0.7rem 1.3rem;
     font-size: 1.1rem;
   }
 }
 
-/* Media Queries para Celulares (150px - 480px) */
+/* Media Queries for Mobile (150px - 480px) */
 @media (min-width: 150px) and (max-width: 480px) {
   .form-container {
     padding: 1.2rem;
-    max-width: 90%;
-    margin: 0 auto;
+    margin: 0 1rem;
+    border-radius: 8px;
   }
-
+  
   .form-title {
     font-size: 1.4rem;
     margin-bottom: 1rem;
   }
-
+  
   .form {
     gap: 1rem;
   }
-
+  
+  .form-group {
+    width: 100%;
+  }
+  
   .form-group label {
     font-size: 0.9rem;
   }
-
+  
   .form-group input,
   .form-group select {
     padding: 0.6rem;
     font-size: 0.9rem;
   }
-
+  
   .submit-button {
     padding: 0.6rem 1rem;
     font-size: 1rem;
   }
-
+  
   .fa {
+    margin-right: 0.3rem;
     font-size: 0.9rem;
-    margin-right: 0.4rem;
   }
 }
 </style>
