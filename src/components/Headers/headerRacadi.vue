@@ -49,6 +49,10 @@
 
 /* Base Styles */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
   width: 100%;
   padding: 1rem 0;
