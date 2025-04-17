@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted , onUnmounted } from 'vue';
 import headerRacadi from '../Headers/headerRacadi.vue';
 import Footer from '../Footer_Login/Footer.vue';
 
@@ -135,10 +135,62 @@ onMounted(() => {
     observer.observe(el);
   });
 });
+
+
+const showScrollButton = ref(false);
+
+const checkScroll = () => {
+  showScrollButton.value = window.scrollY > 300;
+};
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+onMounted(() => {
+  // Animación del carrusel de pagos
+  setInterval(() => {
+    currentSlide.value = (currentSlide.value + 1) % paymentMethods.value.length;
+  }, 3000);
+  
+  // Event listener para el botón de scroll
+  window.addEventListener('scroll', checkScroll);
+  
+  // Animaciones al hacer scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  
+  const animateOnScroll = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+  
+  const observer = new IntersectionObserver(animateOnScroll, observerOptions);
+  document.querySelectorAll('.scroll-animation').forEach(el => {
+    observer.observe(el);
+  });
+});
+
+// Limpiar el event listener cuando el componente se desmonte
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkScroll);
+});
 </script>
 
 <template>
-  <headerRacadi />
+  <div class="div-header">
+    <headerRacadi/>
+  </div>
+
 
   <!-- Hero Section con animación de entrada -->
   <div class="inicioMain scroll-animation">
@@ -427,6 +479,15 @@ onMounted(() => {
   </div>
 
   <Footer />
+  <button 
+  class="scroll-to-top" 
+  @click="scrollToTop"
+  :class="{ 'visible': showScrollButton }"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06l-6.22-6.22V21a.75.75 0 01-1.5 0V4.81l-6.22 6.22a.75.75 0 11-1.06-1.06l7.5-7.5z" clip-rule="evenodd" />
+  </svg>
+</button>
 </template>
 
 <style scoped>
@@ -507,6 +568,8 @@ onMounted(() => {
   100% { transform: scale(1); }
 }
 
+
+
 /* Clases de animación */
 .scroll-animation {
   opacity: 0;
@@ -573,6 +636,8 @@ body {
   color: var(--dark);
   background-color: var(--light);
 }
+
+
 
 .content-wrapper {
   max-width: 1200px;
@@ -1902,11 +1967,53 @@ body {
 }
 
 
+
+/* Botón de scroll to top */
+.scroll-to-top {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 50%;
+  background-color: #3a86ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  z-index: 999;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  background-color: #2667cc;
+  transform: translateY(-3px) scale(1.05);
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
 /* Tablets (481px - 1024px) */
 @media (min-width: 481px) and (max-width: 1024px) {
   /* Ajustes generales */
   .content-wrapper {
     padding: 0 20px;
+  }
+  .scroll-to-top {
+  width: 60px;
+  height: 60px;
   }
   
   .section-title {
@@ -2064,6 +2171,11 @@ body {
     font-size: 1.8rem;
     padding: 0 10px;
   }
+  .scroll-to-top {
+  width: 50px;
+  height: 50px;
+  }
+  
   
   .section-title::after {
     width: 60px;
