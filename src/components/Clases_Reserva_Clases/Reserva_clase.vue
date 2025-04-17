@@ -69,7 +69,7 @@ const fetchUserProfile = async () => {
       return;
   }
   try {
-      const response = await axios.get('http://localhost:8889/users/me', {
+      const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
           headers: {
               Authorization: `Bearer ${token}`,
           },
@@ -86,7 +86,7 @@ const fetchUserProfile = async () => {
 
 const obtener_clases = async () => {
   try {
-      const response = await axios.get(`http://localhost:8889/obtenerclasesestudiante/${usuario.value.sede}/${usuario.value.nivel_actual}`);
+      const response = await axios.get(`apiracadipy-production.up.railway.app/obtenerclasesestudiante/${usuario.value.sede}/${usuario.value.nivel_actual}`);
       clases.value = response.data;
   } catch (error) {
       console.log('Error fetching classes', error.response?.data || error.message);
@@ -157,12 +157,12 @@ const semanaAntrior = () => {
 // RESERVA DE CLASES 
 const reservarClase = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
   try {
-      const response = await axios.post("http://localhost:8889/reservar_clase", {
+      const response = await axios.post("apiracadipy-production.up.railway.app/reservar_clase", {
           documento_estudiante: usuario.value.documento,
           id_clase: idClase
       });
 
-      const observador_response = await axios.post("http://localhost:8889/añadirObservacion",{
+      const observador_response = await axios.post("apiracadipy-production.up.railway.app/añadirObservacion",{
         descripcion:`El estudiante reservo la clase del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
         documento:usuario.value.documento,
         creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
@@ -186,14 +186,14 @@ const reservarClase = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
 // CANCELAR RESERVA DE CLASES
 const cancelarReserva = async (idClase,sede,fecha,hora_inicio,hora_fin) => {
   try {
-      await axios.delete('http://localhost:8889/cancelar_reserva', {
+      await axios.delete('apiracadipy-production.up.railway.app/cancelar_reserva', {
           data: {
               documento_estudiante: usuario.value.documento,
               id_clase: idClase
           }
       });
 
-      const observador_response_cancelar = await axios.post("http://localhost:8889/añadirObservacion",{
+      const observador_response_cancelar = await axios.post("apiracadipy-production.up.railway.app/añadirObservacion",{
         descripcion:`El estudiante cancelo la clase reservada del dia ${fecha} , Sede: ${sede} , Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
         documento:usuario.value.documento,
         creada_por:`${usuario.value.nombre} ${usuario.value.apellido}`
@@ -227,7 +227,7 @@ const existeReserva = (clase) => {
 // OBTENER RESERVAS
 const obtenerReservas = async () => {
   try {
-      const response = await axios.get(`http://localhost:8000/obtener_reservas/${usuario.value.documento}`);
+      const response = await axios.get(`apiracadipy-production.up.railway.app/obtener_reservas/${usuario.value.documento}`);
       reservas.value = response.data.length ? response.data : [];
   } catch (error) {
       console.log("Error al obtener reservas", error.response?.data || error.message);

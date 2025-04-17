@@ -102,7 +102,7 @@ const estudianteSeleccionado = ref(null);
   
   const agregar_pagos = async () => {
     try {
-        const response = await axios.post('http://localhost:8889/agregar_pago', null, {
+        const response = await axios.post('apiracadipy-production.up.railway.app/agregar_pago', null, {
             params: {
                 cuenta_documento: cuenta_documento.value,
                 valor: valor.value,
@@ -129,7 +129,7 @@ const estudianteSeleccionado = ref(null);
   
   const obtener_estudiantes = async () => {
     try {
-        const response = await axios.get('http://localhost:8889/obtenerestudiantes');
+        const response = await axios.get('apiracadipy-production.up.railway.app/obtenerestudiantes');
         estudiantes.value = response.data;
         console.log(estudiantes.value)
     } catch (error) {
@@ -139,7 +139,7 @@ const estudianteSeleccionado = ref(null);
   
   const buscarEstudiantes = async () => {
     try {
-        const response = await axios.get('http://localhost:8889/buscarestudiantes', {
+        const response = await axios.get('apiracadipy-production.up.railway.app/buscarestudiantes', {
             params: { nombre: busquedaEstudiante.value }
         });
         estudiantes.value = response.data; 

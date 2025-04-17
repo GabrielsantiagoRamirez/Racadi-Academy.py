@@ -60,7 +60,7 @@ const plans = ref([
 const paymentMethods = ref([
   "https://1000marcas.net/wp-content/uploads/2019/12/VISA-Logo-2014.png",
   "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1280px-MasterCard_Logo.svg.png",
-  "https://logosenvector.com/logo/img/nequi-37254.png",
+  "https://images.seeklogo.com/logo-png/40/2/nequi-logo-png_seeklogo-404357.png",
   "https://cdn.worldvectorlogo.com/logos/daviplata.svg",
   "https://www.credisoat.com.co/sistecredito.png",
   "https://ml.globenewswire.com/Resource/Download/e5821d92-28d1-41e3-a149-24377c2ad046"

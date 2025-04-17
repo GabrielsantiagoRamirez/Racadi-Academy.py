@@ -15,7 +15,7 @@
     <h1 class="perfil_tittle">Perfil Estudiante</h1>
     <div v-if="usuario" class="info-header">
       <div class="foto-perfil">
-        <img v-if="usuario.foto_perfil" :src="`http://localhost:8889${usuario.foto_perfil}`" alt="Foto de perfil">
+        <img v-if="usuario.foto_perfil" :src="`apiracadipy-production.up.railway.app${usuario.foto_perfil}`" alt="Foto de perfil">
         <img v-else src="../img/defaultFoto.jpg" alt="Foto de perfil por defecto">
       </div>
 
@@ -74,7 +74,7 @@ const fetchUserProfile = async () => {
     return; // Salir de la función si no hay token
   }
   try {
-    const response = await axios.get('http://localhost:8889/users/me', {
+    const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -64,7 +64,7 @@ const fetchUserProfile = async () => {
       return;
   }
   try {
-      const response = await axios.get('http://localhost:8889/users/me', {
+      const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
           headers: {
               Authorization: `Bearer ${token}`,
           },
@@ -81,7 +81,7 @@ const fetchUserProfile = async () => {
 
 const obtener_clases = async () => {
   try {
-      const response = await axios.get(`http://localhost:8889/clases_reservadas/${usuario.value.documento}`);
+      const response = await axios.get(`apiracadipy-production.up.railway.app/clases_reservadas/${usuario.value.documento}`);
       clases.value = response.data;
   } catch (error) {
       console.log('Error fetching classes', error.response?.data || error.message);

@@ -23,7 +23,7 @@
           <p class="comunicado-description">{{ comunicado.descripcion }}</p>
 
           <div v-if="comunicado.foto" class="comunicado-image">
-            <img :src="`http://localhost:8889${comunicado.foto}`" alt="Comunicado Image" />
+            <img :src="`apiracadipy-production.up.railway.app${comunicado.foto}`" alt="Comunicado Image" />
           </div>
         </div>
 
@@ -99,7 +99,7 @@ if (token) {
 
 const get_comunicados = async () => {
   try {
-    const response = await axios.get(`http://localhost:8889/obtener_comunicados`);
+    const response = await axios.get(`apiracadipy-production.up.railway.app/obtener_comunicados`);
     comunicados.value = response.data.sort((a, b) => b.id_comunicado - a.id_comunicado);
   } catch (error) {
     console.error('Error al capturar los comunicados', error);

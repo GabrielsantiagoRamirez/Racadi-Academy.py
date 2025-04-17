@@ -140,7 +140,7 @@ const añadir_profesor = async () => {
       formData.append("file", file.value); 
     } 
 
-    const response = await axios.post("http://localhost:8000/añadirprofesor", formData, {
+    const response = await axios.post("apiracadipy-production.up.railway.app/añadirprofesor", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

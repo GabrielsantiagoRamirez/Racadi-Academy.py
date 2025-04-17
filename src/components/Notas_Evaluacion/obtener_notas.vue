@@ -118,7 +118,7 @@
       return;
     }
     try {
-      const response = await axios.get('http://localhost:8889/users/me', {
+      const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -134,7 +134,7 @@
   const getNotes = async (nivel) => {
     selectedLevel.value = nivel;
     try {
-      const response = await axios.get(`http://localhost:8889/getStudentsNotes/${nivel}/${usuario.value.documento}`);
+      const response = await axios.get(`apiracadipy-production.up.railway.app/getStudentsNotes/${nivel}/${usuario.value.documento}`);
       notas.value = response.data;
     } catch (error) {
       console.log('Error fetching notes', error.response?.data || error.message);

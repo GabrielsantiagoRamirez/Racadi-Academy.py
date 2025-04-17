@@ -55,7 +55,7 @@
   
   const get_students = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8889/getStudentsByClass/${idClase.value}`);
+    const response = await axios.get(`apiracadipy-production.up.railway.app/getStudentsByClass/${idClase.value}`);
     estudiantes.value = response.data.map(estudiante => ({
       ...estudiante,
       registrado: estudiante.asistencia !== null, 
@@ -68,8 +68,8 @@
 
   const registrar_asistencia = async (id_reserva, sede, fecha, hora_inicio, hora_fin, documento) => {
     try {
-      await axios.post(`http://127.0.0.1:8889/asistencia/${id_reserva}`);
-      await axios.post("http://localhost:8889/añadirObservacion", {
+      await axios.post(`apiracadipy-production.up.railway.app/asistencia/${id_reserva}`);
+      await axios.post("apiracadipy-production.up.railway.app/añadirObservacion", {
         descripcion: `El estudiante asistió a la clase del día ${fecha}, Sede: ${sede}, Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
         documento,
         creada_por: `${nombre.value} ${apellido.value}`
@@ -85,8 +85,8 @@
   
   const registrar_incumplimineto = async (id_reserva, sede, fecha, hora_inicio, hora_fin, documento) => {
     try {
-      await axios.post(`http://127.0.0.1:8889/incumplimiento/${id_reserva}`);
-      await axios.post("http://localhost:8889/añadirObservacion", {
+      await axios.post(`apiracadipy-production.up.railway.app/incumplimiento/${id_reserva}`);
+      await axios.post("apiracadipy-production.up.railway.app/añadirObservacion", {
         descripcion: `El estudiante NO asistió a la clase del día ${fecha}, Sede: ${sede}, Horario: ${convertir_hora_texto(hora_inicio)}--${convertir_hora_texto(hora_fin)}`,
         documento,
         creada_por: `${nombre.value} ${apellido.value}`

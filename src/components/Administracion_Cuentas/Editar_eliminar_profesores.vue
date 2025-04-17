@@ -70,7 +70,7 @@ const mostrarInactivos = ref(false);
 
 const obtener_profesores = async () => {
   try {
-    const response = await axios.get('http://localhost:8889/obtenerprofesores');
+    const response = await axios.get('apiracadipy-production.up.railway.app/obtenerprofesores');
     profesores.value = response.data;
   } catch (error) {
     console.error("Error al capturar los profesores", error);
@@ -79,7 +79,7 @@ const obtener_profesores = async () => {
 
 const buscarProfesores = async () => {
   try {
-    const response = await axios.get('http://localhost:8889/buscarprofesores', {
+    const response = await axios.get('apiracadipy-production.up.railway.app/buscarprofesores', {
       params: { nombre: busquedaProfesor.value }
     });
     profesores.value = response.data;
@@ -95,7 +95,7 @@ const restablecerBusqueda = () => {
 
 const deleteTeacher = async (documento) => {
   try {
-    await axios.put(`http://localhost:8889/desactivarprofesor/${documento}`);
+    await axios.put(`apiracadipy-production.up.railway.app/desactivarprofesor/${documento}`);
     Swal.fire({
       icon: 'success',
       title: 'Cuenta Deshabilitada Exitosamente',
@@ -126,7 +126,7 @@ const confirmDelete = (teacher) => {
 
 const activeTeacher = async (documento) => {
   try {
-    await axios.put(`http://localhost:8889/activarprofesor/${documento}`);
+    await axios.put(`apiracadipy-production.up.railway.app/activarprofesor/${documento}`);
     Swal.fire({
       icon: 'success',
       title: 'Cuenta habilitada Exitosamente',

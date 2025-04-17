@@ -74,7 +74,7 @@ const itsNextWeek = ref(false)
         return;
     }
     try {
-        const response = await axios.get('http://localhost:8889/users/me', {
+        const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -91,7 +91,7 @@ const itsNextWeek = ref(false)
   
   const obtener_clases = async () => {
     try {
-        const response = await axios.get(`http://localhost:8889/filtro_ClasesDocumento/${usuario.value.documento}`);
+        const response = await axios.get(`apiracadipy-production.up.railway.app/filtro_ClasesDocumento/${usuario.value.documento}`);
         clases.value = response.data;
     } catch (error) {
         console.log('Error fetching classes', error.response?.data || error.message);

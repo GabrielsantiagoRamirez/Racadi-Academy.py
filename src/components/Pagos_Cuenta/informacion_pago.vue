@@ -83,7 +83,7 @@ import Header_sin_login from '../Headers/header_sin_login.vue';
 
 const info_cuenta = async () => {
     try {
-        const response = await axios.get(`http://localhost:8889/datos_cuenta/${usuario.value.documento}`);
+        const response = await axios.get(`apiracadipy-production.up.railway.app/datos_cuenta/${usuario.value.documento}`);
         cuenta.value = response.data;
         console.log(cuenta.value)
     } catch (error) {
@@ -93,7 +93,7 @@ const info_cuenta = async () => {
 
 const info_pagos = async () => {
     try {
-        const response = await axios.get(`http://localhost:8889/getStudentpayments/${usuario.value.documento}`);
+        const response = await axios.get(`apiracadipy-production.up.railway.app/getStudentpayments/${usuario.value.documento}`);
         pagos.value = response.data;
         console.log(pagos.value)
     } catch (error) {
@@ -108,7 +108,7 @@ const fetchUserProfile = async () => {
         return;
     }
     try {
-        const response = await axios.get('http://localhost:8889/users/me', {
+        const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
