@@ -204,7 +204,7 @@
       formData.append("file", file.value); 
     } 
 
-    const response = await axios.put(`apiracadipy-production.up.railway.app/actualizarestudiante/${documento.value}`, formData, {
+    const response = await axios.put(`https://apiracadipy-production.up.railway.app/actualizarestudiante/${documento.value}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -228,7 +228,7 @@
 
   const consultar_planes = async () => {
     try {
-      const response = await axios.get("apiracadipy-production.up.railway.app/obtenernombreplanes");
+      const response = await axios.get("https://apiracadipy-production.up.railway.app/obtenernombreplanes");
       nombre_planes.value = response.data;
     } catch (error) {
       console.log("Error al capturar los planes", error);
@@ -237,7 +237,7 @@
   
   const consultar_niveles = async () => {
     try {
-      const response = await axios.get("apiracadipy-production.up.railway.app/obtenernombreniveles");
+      const response = await axios.get("https://apiracadipy-production.up.railway.app/obtenernombreniveles");
       nombre_niveles.value = response.data;
     } catch (error) {
       console.log("Error al capturar los niveles", error);

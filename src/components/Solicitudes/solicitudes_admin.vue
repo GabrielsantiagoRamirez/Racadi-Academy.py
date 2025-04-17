@@ -103,13 +103,13 @@
   };
   
   const enviarContestacion = async (id_solicitud, respuesta) => {
-    await axios.put(`apiracadipy-production.up.railway.app/actualizar_contestacion/${id_solicitud}/${respuesta}`);
+    await axios.put(`https://apiracadipy-production.up.railway.app/actualizar_contestacion/${id_solicitud}/${respuesta}`);
   };
   
 
   const obtener_solicitudes = async () => {
     try {
-      const response = await axios.get(`apiracadipy-production.up.railway.app/obtenersolicitudes`);
+      const response = await axios.get(`https://apiracadipy-production.up.railway.app/obtenersolicitudes`);
       solicitudes.value = response.data;
     } catch (error) {
       console.error('Error al obtener solicitudes:', error);

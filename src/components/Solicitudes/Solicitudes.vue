@@ -125,7 +125,7 @@
 
   const agregarSolicitud = async() =>{
     try{
-        const response = await axios.post("apiracadipy-production.up.railway.app/agregar_solicitud",{
+        const response = await axios.post("https://apiracadipy-production.up.railway.app/agregar_solicitud",{
             documento:usuario.value.documento,
             descripcion:descripcion.value
         });
@@ -167,7 +167,7 @@
 
   const eliminarSolicitud = async (id_solicitud) => {
   try {
-    await axios.delete(`apiracadipy-production.up.railway.app/eliminar_solicitud/${id_solicitud}`);
+    await axios.delete(`https://apiracadipy-production.up.railway.app/eliminar_solicitud/${id_solicitud}`);
     Swal.fire({
       icon: 'success',
       title: 'Solicitud eliminada exitosamente',
@@ -191,7 +191,7 @@
   
   const obtener_solicitudes = async () => {
     try {
-      const response = await axios.get(`apiracadipy-production.up.railway.app/obtenersolicitudestudiante/${usuario.value.documento}`);
+      const response = await axios.get(`https://apiracadipy-production.up.railway.app/obtenersolicitudestudiante/${usuario.value.documento}`);
       solicitudes.value = response.data;
     } catch (error) {
       console.error('Error fetching solicitudes:', error);
@@ -205,7 +205,7 @@
       return;
     }
     try {
-      const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
+      const response = await axios.get('https://apiracadipy-production.up.railway.app/users/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }

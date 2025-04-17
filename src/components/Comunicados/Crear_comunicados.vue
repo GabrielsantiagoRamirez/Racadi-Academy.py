@@ -72,7 +72,7 @@ const crear_comunicado = async () => {
     formData.append("descripcion", descripcion.value);
     formData.append("file", file.value);
 
-    await axios.post("apiracadipy-production.up.railway.app/crear_comunicados", formData, {
+    await axios.post("https://apiracadipy-production.up.railway.app/crear_comunicados", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

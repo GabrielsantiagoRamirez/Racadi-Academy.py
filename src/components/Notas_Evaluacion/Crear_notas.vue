@@ -138,7 +138,7 @@ const estudianteSeleccionado = ref(null);
   
   const agregar_notas = async () => {
     try {
-        const response = await axios.post('apiracadipy-production.up.railway.app/add_notas', null, {
+        const response = await axios.post('https://apiracadipy-production.up.railway.app/add_notas', null, {
             params: {
                 documento: documento.value,
                 speaking: speaking.value,
@@ -163,7 +163,7 @@ const estudianteSeleccionado = ref(null);
   
   const obtener_estudiantes = async () => {
     try {
-        const response = await axios.get('apiracadipy-production.up.railway.app/obtenerestudiantes');
+        const response = await axios.get('https://apiracadipy-production.up.railway.app/obtenerestudiantes');
         estudiantes.value = response.data;
     } catch (error) {
         console.error("Error al capturar los estudiantes", error);
@@ -172,7 +172,7 @@ const estudianteSeleccionado = ref(null);
   
   const buscarEstudiantes = async () => {
     try {
-        const response = await axios.get('apiracadipy-production.up.railway.app/buscarestudiantes', {
+        const response = await axios.get('https://apiracadipy-production.up.railway.app/buscarestudiantes', {
             params: { nombre: busquedaEstudiante.value }
         });
         estudiantes.value = response.data; 

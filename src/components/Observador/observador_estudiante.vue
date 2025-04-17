@@ -14,7 +14,7 @@ const fecha=  ref('')
 const buscarObservaciones = async () => {
   try {
     // Realiza la solicitud GET al endpoint de FastAPI
-    const response = await axios.get(`apiracadipy-production.up.railway.app/filtro_ObservadoresDocumento/${usuario.value.documento}` ) ;
+    const response = await axios.get(`https://apiracadipy-production.up.railway.app/filtro_ObservadoresDocumento/${usuario.value.documento}` ) ;
     
     // Asigna la respuesta a la variable observaciones
     observaciones.value = response.data;
@@ -38,7 +38,7 @@ const buscarObservaciones = async () => {
 const buscarObservacionesFeceha = async () => {
   try {
     // Realiza la solicitud GET al endpoint de FastAPI
-    const response = await axios.get(`apiracadipy-production.up.railway.app/filtro_ObservadoresFecha/${usuario.value.documento}/${fecha.value}`);
+    const response = await axios.get(`https://apiracadipy-production.up.railway.app/filtro_ObservadoresFecha/${usuario.value.documento}/${fecha.value}`);
     
     // Asigna la respuesta a la variable observaciones
     observaciones.value = response.data;
@@ -66,7 +66,7 @@ const fetchUserProfile = async () => {
           return; // Salir de la función si no hay token
         }
         try {
-          const response = await axios.get('apiracadipy-production.up.railway.app/users/me', {
+          const response = await axios.get('https://apiracadipy-production.up.railway.app/users/me', {
             headers: {
               Authorization: `Bearer ${token}`
             }

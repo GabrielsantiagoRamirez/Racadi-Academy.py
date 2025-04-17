@@ -156,7 +156,7 @@ watch(hora_inicio, (nuevaHora) => {
 
 const agregar_clase = async () => {
   try {
-    const response = await axios.post('apiracadipy-production.up.railway.app/añadirclase', {
+    const response = await axios.post('https://apiracadipy-production.up.railway.app/añadirclase', {
       sede: sede.value,
       nivel: nivel.value,
       hora_inicio: hora_inicio.value,
@@ -179,7 +179,7 @@ const agregar_clase = async () => {
 
 const obtener_profesores = async () => {
   try {
-    const response = await axios.get('apiracadipy-production.up.railway.app/obtenerprofesores');
+    const response = await axios.get('https://apiracadipy-production.up.railway.app/obtenerprofesores');
     profesores.value = response.data;
   } catch (error) {
     console.error("Error al capturar los profesores", error);
@@ -188,7 +188,7 @@ const obtener_profesores = async () => {
 
 const buscarProfesores = async () => {
   try {
-    const response = await axios.get('apiracadipy-production.up.railway.app/buscarprofesores', {
+    const response = await axios.get('https://apiracadipy-production.up.railway.app/buscarprofesores', {
       params: { nombre: busquedaProfesor.value }
     });
     profesores.value = response.data;
@@ -199,7 +199,7 @@ const buscarProfesores = async () => {
 
 const consultar_niveles = async () => {
   try {
-    const response = await axios.get('apiracadipy-production.up.railway.app/obtenernombreniveles');
+    const response = await axios.get('https://apiracadipy-production.up.railway.app/obtenernombreniveles');
     nombre_niveles.value = response.data;
   } catch (error) {
     console.error("Error al capturar los niveles", error);

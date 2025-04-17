@@ -168,7 +168,7 @@
         formData.append("file", file.value); 
       } 
   
-      const response = await axios.put(`apiracadipy-production.up.railway.app/actualizarprofesor/${documento.value}`, formData, {
+      const response = await axios.put(`https://apiracadipy-production.up.railway.app/actualizarprofesor/${documento.value}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   

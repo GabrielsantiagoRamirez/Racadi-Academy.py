@@ -4,7 +4,7 @@
       <h1 class="perfil_tittle">Informacion Profesor</h1>
       <div v-if="profesor" class="info-header">
         <div class="foto-perfil">
-          <img v-if="profesor.foto_perfil" :src="`apiracadipy-production.up.railway.app${profesor.foto_perfil}`" alt="Foto de perfil">
+          <img v-if="profesor.foto_perfil" :src="`https://apiracadipy-production.up.railway.app${profesor.foto_perfil}`" alt="Foto de perfil">
           <img v-else src="../img/defaultFoto.jpg" alt="Foto de perfil por defecto">
         </div>
   
