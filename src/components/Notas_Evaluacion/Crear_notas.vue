@@ -451,6 +451,9 @@ const toggleEstudiantes = () => {
     flex-direction: row;
     align-items: center;
   }
+  .crear-clases-container {
+      margin-top: 3vh;
+    }
 
   .form-container{
     margin-left: auto;

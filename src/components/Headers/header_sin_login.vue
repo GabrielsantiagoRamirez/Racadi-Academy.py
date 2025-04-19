@@ -47,6 +47,9 @@
       if (rol === 'profesor') {
         perfilRuta.value = '/perfil_profesor';
       }
+      if (rol =='administrador'){
+        perfilRuta.value= '/perfil_admin'
+      }
     } catch (error) {
       perfilRuta.value = '/login';
     }

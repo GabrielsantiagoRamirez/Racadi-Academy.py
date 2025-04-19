@@ -425,6 +425,10 @@ const toggleEstudiantes = () => {
 
   /* Estilos para móviles */
 @media (max-width: 768px) {
+
+  .crear-clases-container {
+      margin-top: 3vh;
+    }
   .form-profesores-container {
     flex-direction: row;
     align-items: center;

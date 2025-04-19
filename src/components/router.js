@@ -31,6 +31,7 @@ import Formulario_edicion_est from './Administracion_Cuentas/Formulario_edicion_
 import Formulario_edicion_pro from './Administracion_Cuentas/Formulario_edicion_pro.vue';
 import Info_estudiante from './Administracion_Cuentas/Info_estudiante.vue';
 import Info_profesor from './Administracion_Cuentas/Info_profesor.vue';
+import Perfil_admin from './Perfiles/Perfil_admin.vue';
 
 
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/perfil_estudiante',
     name: 'perfil_estudiante',
     component: Perfil_estudiante
+  },
+  {
+    path: '/perfil_admin',
+    name: 'perfil_admin',
+    component: Perfil_admin
   },
   {
     path: '/perfil_profesor',

@@ -2172,8 +2172,8 @@ body {
     padding: 0 10px;
   }
   .scroll-to-top {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   }
   
   
