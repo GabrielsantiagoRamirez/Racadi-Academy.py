@@ -15,7 +15,7 @@
     <h1 class="perfil_tittle">Perfil Estudiante</h1>
     <div v-if="usuario" class="info-header">
       <div class="foto-perfil">
-        <img v-if="usuario.foto_perfil" :src="`https://apiracadipy-production.up.railway.app${usuario.foto_perfil}`" alt="Foto de perfil">
+        <img v-if="usuario.foto_perfil" :src="usuario.foto_perfil" alt="Foto de perfil">
         <img v-else src="../img/defaultFoto.jpg" alt="Foto de perfil por defecto">
       </div>
 

@@ -23,7 +23,7 @@
           <p class="comunicado-description">{{ comunicado.descripcion }}</p>
 
           <div v-if="comunicado.foto" class="comunicado-image">
-            <img :src="`https://apiracadipy-production.up.railway.app${comunicado.foto}`" alt="Comunicado Image" />
+            <img :src="comunicado.foto" alt="Comunicado Image" />
           </div>
         </div>
 
