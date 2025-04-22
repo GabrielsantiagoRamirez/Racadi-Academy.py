@@ -196,7 +196,7 @@ onUnmounted(() => {
   <div class="inicioMain scroll-animation">
     <h1 class="h1InicioMain">RACADI ACADEMY</h1>
     <p class="pInicioMain">Transforma tu futuro con el poder del inglés. Más de 5,000 estudiantes confían en nosotros.</p>
-    <button class="hero-button pulse">¡Inscríbete ahora!</button>
+    <router-link to="/login"><button class="hero-button pulse" >¡Inscríbete ahora!</button></router-link>
   </div>
 
   <!-- Quiénes Somos -->
