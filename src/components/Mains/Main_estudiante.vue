@@ -213,6 +213,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+
+
 /* Base Styles */
 .h1_portal {
   text-align: center;
@@ -617,7 +619,7 @@ width: 100%;
   }
 
   .english-container {
-    width: 95%;
+    width: 90%;
   }
 
   .english-grid {
@@ -647,11 +649,17 @@ width: 100%;
 
 @media (max-width: 576px) {
   .h1_portal, .section-title {
-    font-size: 28px;
-    margin-top: 1.5%;
+    font-size: 30px;
+    margin-top: 6vh;
     margin-bottom: 1.5%;
+    font-weight: bold;
   }
+  
+  .section-title {
+    margin-bottom: 7vh;
 
+
+  }
   .cards-scroll-container::before,
   .cards-scroll-container::after {
     width: 30px;
@@ -712,6 +720,19 @@ width: 100%;
 }
 
 @media (max-width: 480px) {
+
+  .h1_portal, .section-title {
+    font-size: 30px;
+    margin-top: 6vh;
+    margin-bottom: 1.5%;
+    font-weight: bold;
+  }
+  
+  .section-title {
+    margin-bottom: 7vh;
+
+
+  }
   .feature-card {
     width: 130px;
     height: 130px;
@@ -739,10 +760,16 @@ width: 100%;
   }
 }
 
-@media (max-width: 380px) {
+
+
+@media (max-width: 400px ){
   .feature-card {
     width: 120px;
     height: 120px;
+  }
+
+  .english-container{
+    padding: 0;
   }
 
   .card-label {
@@ -750,8 +777,16 @@ width: 100%;
   }
 
   .h1_portal, .section-title {
-    font-size: 24px;
+    font-size: 27px;
+    margin-top: 6vh;
+    margin-bottom: 1.5%;
+    font-weight: bold;
   }
+  
+  .section-title {
+    margin-bottom: 7vh;
+  }
+
 }
 
 
