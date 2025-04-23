@@ -273,7 +273,7 @@
   }
 
   .profile-icon {
-    font-size: 8vh;
+    font-size: 5vh;
   }
 
   .header-social a {
