@@ -217,70 +217,116 @@
   }
   
   @media (max-width: 768px) {
-    .header-container {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    
-    .header-logo {
-      order: 1;
-    }
-    
-    .header-title {
-      order: 3;
-      width: 100%;
-      padding: 0.5rem 0;
-    }
-    
-    .header-social {
-      order: 2;
-      margin-right: 0;
-    }
-    
-    .profile-link {
-      order: 4;
-      margin-top: 0.5rem;
-    }
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
   }
-  
-  @media (max-width: 576px) {
-    .header-title h1 {
-      font-size: 1.5rem;
-    }
-    
-    .logo-img {
-      width: 100px;
-    }
-    
-    .header-social {
-      gap: 0.8rem;
-    }
-    
-    .header-social a {
-      width: 32px;
-      height: 32px;
-      font-size: 1.2rem;
-    }
-    
-    .profile-icon {
-        font-size: 45px;
- 
-    }
+
+  .header-logo, .header-title, .profile-link {
+    order: 1;
+    flex: 0 0 auto;
   }
-  
-  @media (max-width: 400px) {
-    .header-social {
-      display: none;
-    }
-    
-    .header-container {
-      justify-content: space-around;
-    }
-    
-    .header-title h1 {
-      font-size: 1.3rem;
-    }
+
+  .header-container > .header-social {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.1rem;
   }
+
+  .header-title {
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  .header-title h1 {
+    font-size: 1.8rem;
+  }
+
+  .logo-img {
+    width: 90px;
+  }
+
+  .profile-container {
+    gap: 0.3rem;
+  }
+
+  .profile-icon {
+    font-size: 40px;
+  }
+
+  .profile-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .logo-img {
+    width: 75px;
+  }
+
+  .profile-icon {
+    font-size: 36px;
+  }
+
+  .header-social a {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .logo-img {
+    width: 70px;
+  }
+
+  .profile-icon {
+    font-size: 32px;
+  }
+}
+
+
+
+@media (max-width: 399px) {
+  .header-title h1 {
+    font-size: 1.1rem;
+  }
+
+  .logo-img {
+    width: 60px;
+  }
+
+  .profile-icon {
+    font-size: 28px;
+  }
+
+  .profile-text {
+    font-size: 0.7rem;
+  }
+
+  .header-social a {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .header-container {
+    gap: 0.5rem;
+  }
+}
+
+
+
   </style>
