@@ -1,7 +1,7 @@
 <template>
   <Header_sin_login/>
   
-  <h1 class="h1_portal">Portal de estudiantes</h1>
+  <h1 class="h1_portal">Mi Portal Académico</h1>
 
   <div class="cards-scroll-container">
     <div class="cards-wrapper">
@@ -657,8 +657,6 @@ width: 100%;
   
   .section-title {
     margin-bottom: 7vh;
-
-
   }
   .cards-scroll-container::before,
   .cards-scroll-container::after {
