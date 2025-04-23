@@ -265,25 +265,28 @@
 
 @media (max-width: 576px) {
   .header-title h1 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .logo-img {
-    width: 75px;
+    width: 20vw;
   }
 
   .profile-icon {
-    font-size: 36px;
+    font-size: 8vh;
   }
 
   .header-social a {
-    width: 32px;
-    height: 32px;
+    width: 35px;
+    height: 35px;
     font-size: 1.2rem;
+  }
+  .header-container {
+    gap: 0rem;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 402px) {
   .header-title h1 {
     font-size: 1.3rem;
   }
@@ -293,7 +296,7 @@
   }
 
   .profile-icon {
-    font-size: 32px;
+    font-size: 40px;
   }
 }
 
@@ -301,29 +304,34 @@
 
 @media (max-width: 399px) {
   .header-title h1 {
-    font-size: 1.1rem;
+    font-size: 6vw; /* Tamaño basado en el ancho */
+    margin: 0.5rem 0; /* Espaciado relativo */
   }
 
   .logo-img {
-    width: 60px;
+    width: 15vw; /* Ya está en vw (correcto) */
+    max-width: 100px; /* Opcional: límite máximo */
   }
 
   .profile-icon {
-    font-size: 28px;
+    font-size: 9vw; /* Icono escalable por ancho */
   }
 
   .profile-text {
-    font-size: 0.7rem;
+    font-size: 3vw; /* Texto proporcional al ancho */
   }
 
   .header-social a {
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
+    width: 10vw; /* Botones sociales escalables */
+    height: 10vw;
+    min-width: 24px; /* Límite mínimo para legibilidad */
+    min-height: 24px;
+    font-size: 5vw; /* Icono interno escalable */
   }
 
+
   .header-container {
-    gap: 0.5rem;
+    gap: 1vw; /* Espacio entre elementos ajustable */
   }
 }
 
