@@ -101,7 +101,7 @@ const calcularDiasDeLaSemana = (fechaInicio = new Date()) => {
     const inicioSemana = new Date(fechaInicio);
     inicioSemana.setDate(fechaInicio.getDate() - (diaActual - 1));
   
-    itsweekend.value = diaActual === 5 || diaActual===6 || diaActual ===7;
+    itsweekend.value = diaActual ===3 || diaActual === 5 || diaActual===6 || diaActual ===7;
   
     for (let i = 0; i < dias.length; i++) {
       const fecha = new Date(inicioSemana);
